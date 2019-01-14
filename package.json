@@ -1,0 +1,25 @@
+{
+  "name": "blog",
+  "author": "Loris Leiva",
+  "description": "Personal website and blog",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lorisleiva/blog.git"
+  },
+  "keywords": [
+    "laravel",
+    "vuejs",
+    "vuepress",
+    "php",
+    "blog"
+  ],
+  "scripts": {
+    "dev": "vuepress dev",
+    "build": "vuepress build"
+  },
+  "devDependencies": {
+    "vuepress": "^1.0.0-alpha.31"
+  }
+}
