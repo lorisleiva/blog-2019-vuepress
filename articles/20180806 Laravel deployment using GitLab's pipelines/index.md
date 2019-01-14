@@ -1,6 +1,6 @@
 ---
 permalink: laravel-deployment-using-gitlab-pipelines
-date: 06-08-2019 (dd-mm-yyyy)
+date: 06-08-2019
 ---
 
 # Laravel deployment using GitLab's pipelines
@@ -11,7 +11,7 @@ In my [previous article](http://lorisleiva.com/using-gitlabs-pipeline-with-larav
     url="https://github.com/lorisleiva/laravel-docker/blob/master/gitlab/.gitlab-ci.deployments.yml"
 />
 
-# Pipeline specifications
+## Pipeline specifications
 
 Before diving into some code, let's take a minute to decide what we want our final pipeline to look like. 
 1. First I'd like the pipeline to **build** our dependencies and our assets.
@@ -37,10 +37,10 @@ Below is the final pipeline that we'll have at the end of this article. ✨
 - **Test.** We'll then run our test suite and check our codestyle also in parallel.
 - **Deploy.** Finally, we'll deploy on our staging host automatically and wait for manual confirmation before deploying on our production host. That way, us humans, can review our changes on the staging environment and **play** the production deployment if and only if we are satisfied with the results. If you're not using any staging environment you can simply delete the `staging` job. If you can move mountains you can move molehills.
 
-# Sharing files between jobs
+## Sharing files between jobs
 GitLab provides two ways of sharing files across your jobs. This is helpful for our pipeline because we are relying on the output of the `composer` and `npm` jobs for the rest of our jobs. If we had to build before every job, there wouldn't be much point having a `build` stage in the first place.
 
-## Cache
+### Cache
 The first mechanism provided by GitLab is caching. It is very similar to caching in Laravel, you describe what you want to cache and provide a key to retrieve the potentially cached content later.
 
 This is mostly useful when using the branch as a key, e.g. `master`. That way we can share content across all of the pipeline within a branch and improve our pipeline performances.
@@ -49,7 +49,7 @@ This is mostly useful when using the branch as a key, e.g. `master`. That way we
 
 <small>On the image above, the `test` job is still running `composer install` in case we updated the dependencies but it will update from the previous `/vendor` folder and not an empty one.</small>
 
-## Artifacts
+### Artifacts
 The second mechanism provided by GitLab consists of generating **artifacts**. You can think of artifacts as the **output of a job** which will be automatically provided to the following stages. This output is simply a set of predefined files and folders that is zipped at the end of a job.
 
 Let's say I have three jobs: build, test and deploy which are respectively in the stages build, test and deploy. If I define some artifacts on the `build` job then the `test` and `deploy` jobs will automatically download them before they start.
@@ -60,7 +60,7 @@ A cool side effect of artifacts is that you can download them directly from GitL
 
 ![Download artifacts dropdown on GitLab](./screenshot_download_artifacts.png)
 
-## Cache and artifacts together
+### Cache and artifacts together
 
 No need to choose when we can have both.
 - We'll use **artifacts** within the jobs of our `build` stage to provide content to the other jobs of the pipeline. 
@@ -70,7 +70,7 @@ No need to choose when we can have both.
 
 <small>Note that the `phpunit` job only needs the composer artifacts and the `codestyle` job doesn't need any artifacts at all. We'll describe this in the configurations to avoid unnecessary downloads.</small>
 
-# The gitlab-ci file
+## The gitlab-ci file
 Finally, let's write some code! Create a `.gitlab-ci.yml` file at the root of your project if you don't already have one.
 
 We'll be using my public [Laravel Docker](https://github.com/lorisleiva/laravel-docker) image which contains everything we need to use GitLab's pipeline on Laravel applications. Don't worry too much about what's inside for now, just plug and play.
@@ -81,11 +81,11 @@ image: lorisleiva/laravel-docker:latest
 # TODO: Define our jobs.
 ```
 
-# The build stage
+## The build stage
 
 ![Build stage](./final_pipeline_build.png)
 
-## Composer
+### Composer
 The purpose of this job is to properly initialise our Laravel application by running `composer install` and making sure our `.env` file is valid.
 
 ```yaml
@@ -139,7 +139,7 @@ composer:
       - vendor/
 ```
 
-## Npm
+### Npm
 Very similarly to the `composer` job, we define a `npm` job responsible for installing our node dependencies and compiling our assets.
 
 ```yaml
@@ -170,11 +170,11 @@ npm:
       - public/js/
 ```
 
-# The test stage
+## The test stage
 
 ![Test stage](./final_pipeline_test.png)
 
-## Phpunit
+### Phpunit
 
 The `phpunit` job automatically inherits all of the artifacts from the `composer` and `npm` jobs. Therefore our composer dependencies and our `.env` file are ready to use. All that's left to do is to run `phpunit`.
 
@@ -199,7 +199,7 @@ phpunit:
     - phpunit --coverage-text --colors=never
 ```
 
-## Codestyle
+### Codestyle
 
 Since the `lorisleiva/laravel-docker` image already contains `PHP_CodeSniffer`, the `codestyle` job can run `phpcs` directly. Moreover it doesn't need any artifacts from any previous job to run successfully and can therefore disable all dependencies. We can do this by assigning `[]` to the `dependencies` key.
 
@@ -211,11 +211,11 @@ codestyle:
     - phpcs --standard=PSR2 --extensions=php --ignore=app/Support/helpers.php app
 ```
 
-# The deploy stage
+## The deploy stage
 
 ![Deploy stage](./final_pipeline_deploy.png)
 
-## The blueprints
+### The blueprints
 The deploying jobs are going to be a little bit more challenging then the previous ones. Let's start by roughly describing what the job should do. For convenience we'll only work with the `staging` job for now since it will be very similar to the `production` job.
 
 ```yaml
@@ -242,7 +242,7 @@ staging:
 
 All that's left to do is make the pseudocode work.
 
-## Initialise an SSH connection
+### Initialise an SSH connection
 
 You might be wondering, how the hell are we going to make our GitLab pipelines communicate with our server?
 
@@ -257,7 +257,7 @@ The idea is much simpler.
 
 <small>Source: [GitLab Documentation - GitLab and SSH keys](https://docs.gitlab.com/ee/ci/ssh_keys/)</small>
 
-### 1. New SSH key pair
+#### 1. New SSH key pair
 
 Generate a new SSH key pair via `ssh-keygen` but be careful: 🚨
 - **Do not provide any paraphrase** otherwise your pipelines will be aimlessly waiting for someone to enter it before connecting.
@@ -267,7 +267,7 @@ Generate a new SSH key pair via `ssh-keygen` but be careful: 🚨
 ssh-keygen -t rsa -C "gitlab@yourdomain.com" -b 4096
 ```
 
-### 2. Give the public key to the server
+#### 2. Give the public key to the server
 
 ❑ &nbsp;Copy the **public key**. `pbcopy < ~/.ssh/id_rsa_gitlab.pub` \
 ❑ &nbsp;Connect to your server \
@@ -276,14 +276,14 @@ ssh-keygen -t rsa -C "gitlab@yourdomain.com" -b 4096
 
 ![Forge SSH keys](./screenshot_forge_ssh.png)
 
-### 3. Give the private key to GitLab
+#### 3. Give the private key to GitLab
 ❑ &nbsp;Copy the **private key**. `pbcopy < ~/.ssh/id_rsa_gitlab` \
 ❑ &nbsp;Connect to GitLab and go to your project settings. \
 ❑ &nbsp;Add a new variable called `SSH_PRIVATE_KEY` and give it the private key as value.
 
 ![GitLab variables](./screenshot_gitlab_variables.png)
 
-### 4. Initialise SSH on the pipeline
+#### 4. Initialise SSH on the pipeline
 Now we can start a ssh-agent and tell it to use our `$SSH_PRIVATE_KEY` variable that we added on the previous point. GitLab provides us with a little script that does just that.
 
 ```yaml
@@ -328,7 +328,7 @@ staging:
     - Deploy to the staging host using Laravel Deployer
 ```
 
-## Installing Laravel Deployer
+### Installing Laravel Deployer
 In order to deploy our Laravel application, we'll be using Laravel Deployer. It's a Laravel package I made that gives `php artisan` the power of zero-downtime deployment.
 
 If you already have Laravel Deployer installed, you can skip these few steps:
@@ -357,7 +357,7 @@ If you already have Laravel Deployer installed, you can skip these few steps:
 <small>For more deployment configuration check out the [documentation](https://github.com/lorisleiva/laravel-deployer/blob/master/docs/README.md) or the [video tutorials](https://www.youtube.com/playlist?list=PLP7iaQb3O2XsexM_5HMrcKNCu0IOcxIDh).</small>
 
 
-## Using Laravel Deployer in your pipelines
+### Using Laravel Deployer in your pipelines
 Now that we have installed Laravel Deployer and established an SSH communication between GitLab and our server, we can call `php artisan deploy` directly within our pipelines.
 
 If we have multiple hosts defined on our `config/deploy.php`, running `php artisan deploy` will deploy on all of them. Therefore on each deploying job, we have to specify on which host we'd like to deploy to. For example, running `php artisan deploy dev.yourdomain.com` will only deploy on our staging server.
@@ -390,7 +390,7 @@ staging:
 
 Yes! finally! 🔥
 
-## A manual production deployment
+### A manual production deployment
 We can now copy/paste the `staging` job to create the `production` job. It is basically the same except that the domain and the environment name change. We also add the `when: manual` option which makes sure the job won't be executed until someone clicks on the "play" button.
 
 ![Manual option](./screenshot_manual.gif)
@@ -413,7 +413,7 @@ production:
    - master
 ```
 
-## File permissions
+### File permissions
 
 One last thing. There is *currently* an [issue on GitLab](https://gitlab.com/gitlab-org/gitlab-runner/issues/1736) regarding the file permissions used by default when cloning on pipelines. Basically the file permissions are not strict enough but if they change it, it will break some existing features. This is a security issue for us because we are deploying those files with those "lazy" permissions on our production server.
 
@@ -441,7 +441,7 @@ production:
 
 <small>Note that we omit the vendor folder because otherwise our jobs won't be able to access the binaries that allow us to deploy our application. The `upload` strategy updates the vendor folder anyway as it doesn't cost much thanks to composer's cache.</small>
 
-# Conclusion
+## Conclusion
 Phew we did it. It is a pretty hardcore thing to set up but once its done, its hugely useful! I hope you didn't hit too many problems along the road. Don't hesitate to share your questions and ideas in the comments.
 
 ![cover](./cover.gif)
