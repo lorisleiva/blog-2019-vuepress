@@ -20,6 +20,7 @@
     "build": "vuepress build"
   },
   "devDependencies": {
+    "tailwindcss": "^0.7.3",
     "vuepress": "^1.0.0-alpha.31"
   }
 }
