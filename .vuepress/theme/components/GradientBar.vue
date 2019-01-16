@@ -8,6 +8,7 @@ export default {
         colors: { default: () => [ '#EE7752', '#E73C7E', '#23A6D5', '#23D5AB' ] },
         time: { default: '15s' },
         degree: { default: '120deg' },
+        progress: { default: 100 },
     },
     computed: {
         animatedGradient () {
@@ -17,6 +18,8 @@ export default {
                 animation: movingGradient ${this.time} linear infinite;
                 background-size: ${colors.length * 100}% 100%;
                 background-image: linear-gradient(${this.degree}, ${colors.join(', ')});
+                width: ${this.progress}%;
+                transition: width .3s linear;
             `
         }
     },
