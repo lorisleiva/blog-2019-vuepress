@@ -4,11 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@require 'code'
-@require 'container'
+body
+    font-family config('fonts.sans')
 
-@css {
-    body {
-        @apply .font-sans;
-    }    
-}
+@require 'container'
+@require 'content'
+@require 'code'

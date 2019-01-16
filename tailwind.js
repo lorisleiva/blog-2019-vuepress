@@ -105,8 +105,8 @@ module.exports = {
   },
 
   fonts: {
-    'source-sans': [
-      'Source Sans Pro',
+    'content': [
+      'Georgia',
       'system-ui',
       'BlinkMacSystemFont',
       '-apple-system',
@@ -121,6 +121,7 @@ module.exports = {
       'sans-serif',
     ],
     'sans': [
+      'Source Sans Pro',
       'system-ui',
       'BlinkMacSystemFont',
       '-apple-system',
@@ -183,8 +184,8 @@ module.exports = {
 
   leading: {
     'none': 1,
-    'tight': 1.25,
-    'normal': 1.5,
+    'tight': 1.15,
+    'normal': 1.6,
     'loose': 2,
   },
 
