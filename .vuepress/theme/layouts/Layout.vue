@@ -1,7 +1,9 @@
 <template>
     <div class="theme-container">
         <Header></Header>
-        <Content/>
+        <div class="container">
+            <Content/>
+        </div>
     </div>
 </template>
 
