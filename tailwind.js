@@ -135,6 +135,7 @@ module.exports = {
       'sans-serif',
     ],
     'serif': [
+      'Arkibal Serif',
       'Constantia',
       'Lucida Bright',
       'Lucidabright',

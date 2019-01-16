@@ -1,2 +1,4 @@
-# Lorisleiva.com
-✍️ Personal website and blog
+---
+title: Loris Leiva
+subtitle: Recreational programming
+---

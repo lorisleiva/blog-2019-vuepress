@@ -1,0 +1,18 @@
+arkibal = ('ArkibalSerif-Thin' 200),
+          ('ArkibalSerif-Light' 300),
+          ('ArkibalSerif-Medium' 400),
+          ('ArkibalSerif-Regular' 500),
+          ('ArkibalSerif-Bold' 600),
+          ('ArkibalSerif-Heavy' 700)
+
+for font in arkibal
+    @font-face
+        font-family 'Arkibal Serif'
+        font-weight font[1]
+        if font[2]
+            font-style font[2]
+        src url('../assets/fonts/arkibal_serif/' + font[0] + '.eot')
+        src url('../assets/fonts/arkibal_serif/' + font[0] + '.eot?#iefix') format("embedded-opentype"),
+            url('../assets/fonts/arkibal_serif/' + font[0] + '.woff2') format("woff2"),
+            url('../assets/fonts/arkibal_serif/' + font[0] + '.woff') format("woff"),
+            url('../assets/fonts/arkibal_serif/' + font[0] + '.svg#' + font[0]) format("svg")
