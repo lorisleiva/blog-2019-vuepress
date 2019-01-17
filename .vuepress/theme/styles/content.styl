@@ -20,3 +20,10 @@
         align-self stretch
         pre, pre[class*="language-"]
             @extends $container
+    
+    // Image breaks out of the container
+    > p > img
+        margin config('margin.8') 0
+        max-width 100%
+        @media lg
+            max-width config('screens.lg')
