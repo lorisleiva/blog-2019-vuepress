@@ -23,9 +23,16 @@
     
     // Image breaks out of the container
     > p > img
-        margin config('margin.6') 0
+        display block
+        margin config('margin.6') auto
         max-width 100%
         @media lg
             max-width 900px
         @media xl
             max-width 1040px
+    
+    // Helpers to constraint image size
+    @media sm
+        for i in 1..10
+            img[src$={'"#w' + (i * 10) + '"'}]
+                width i * 10% !important
