@@ -6,17 +6,21 @@ a
         color config('colors.primary')
 
 a.header-anchor
+    font-family config('fonts.sans')
+    font-weight config('fontWeights.bold')
     color config('colors.primary-light')
     float left
     font-size 0.85em
-    margin-top 0.125em
-    margin-left -1em
+    margin-top 0.14em
+    margin-left -0.85em
     padding-right 0.26em
     opacity 0
     text-decoration none
     border none
     &:hover
         color config('colors.primary')
+    h2 > &
+        margin-top 0
 
 h1, h2, h3, h4, h5, h6
     &:hover .header-anchor
