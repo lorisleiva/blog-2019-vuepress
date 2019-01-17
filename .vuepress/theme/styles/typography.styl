@@ -8,24 +8,38 @@ body
 
 {$headings}
     line-height config('leading.tight')
+    font-family config('fonts.sans')
     color config('colors.black')
     & +
         {$blocks}
             margin-top 0
 
+h1
+    font-family config('fonts.serif')
+
 h2
-    font-size config('textSizes.4xl')
+    font-size config('textSizes.3xl')
     font-family config('fonts.serif')
     font-weight config('fontWeights.semibold')
     margin-top config('margin.16')
     margin-bottom config('margin.6')
     border-bottom 1px solid config('colors.grey-light')
     padding-bottom .3rem
+    @media md 
+        font-size config('textSizes.4xl')
 
 h3
     font-size config('textSizes.3xl')
     margin-top config('margin.16')
-    margin-bottom config('margin.4')
+    margin-bottom config('margin.2')
+    @media md 
+        margin-bottom config('margin.3')
+        font-size config('textSizes.4xl')
+
+h4
+    font-size config('textSizes.xl')
+    @media md 
+        font-size config('textSizes.2xl')
 
 h4, h5, h6
     margin-top config('margin.12')

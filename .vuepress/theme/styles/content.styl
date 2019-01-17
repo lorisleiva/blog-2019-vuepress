@@ -1,10 +1,17 @@
 .content
+    // Typography.
     font-family config('fonts.content')
-    font-size 21px
+    font-size 18px
+    @media md 
+        font-size 21px
+
+    // Remove title and magnify introduction.
     > h1:first-of-type
         display none
     > p:first-of-type
         font-size config('textSizes.2xl')
+
+    // Code breaks out of the container.
     div[class*="language-"]
         @extends $break-out-of-container
         border-radius 0
