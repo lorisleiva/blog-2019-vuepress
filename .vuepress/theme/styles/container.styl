@@ -22,3 +22,16 @@ $break-out-of-container
 
 .break-out-of-container
     @extends $break-out-of-container
+
+$flex-container
+    @extends $container
+    display flex
+    flex-direction column
+    align-items center
+    > *
+        min-width 100%
+
+$break-out-of-flex-container
+    @extends $break-out-of-container
+    align-self stretch
+    

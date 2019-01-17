@@ -1,5 +1,6 @@
 .content
-    @extends $container
+    @extends $flex-container
+
     // Typography.
     font-family config('fonts.content')
     font-size 18px
@@ -14,7 +15,8 @@
 
     // Code breaks out of the container.
     div[class*="language-"]
-        @extends $break-out-of-container
+        @extends $break-out-of-flex-container
         border-radius 0
+        align-self stretch
         pre, pre[class*="language-"]
             @extends $container
