@@ -1,8 +1,16 @@
 $container
     width 100%
-    max-width 650px
+    max-width config('screens.md')
     margin-right auto
     margin-left auto
+    padding-left config('padding.6')
+    padding-right config('padding.6')
+    @media (min-width: config('screens.sm'))
+        padding-left config('padding.8')
+        padding-right config('padding.8')
+    @media (min-width: config('screens.lg'))
+        padding-left 0
+        padding-right 0
 
 $break-out-of-container
     width 100vw
