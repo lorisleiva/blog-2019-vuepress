@@ -449,9 +449,11 @@ module.exports = {
   },
 
   plugins: [
-    require('tailwindcss/plugins/container')({
-      // center: true,
-      // padding: '1rem',
+    require('tailwindcss-plugins/gradients')({
+      gradients: {
+        'topaz': ['30deg', '#EE7752', '#E73C7E'],
+      },
+      variants: ['responsive', 'hover']
     }),
   ],
 
