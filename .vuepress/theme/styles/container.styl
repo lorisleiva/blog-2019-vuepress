@@ -1,13 +1,19 @@
-.container
+$container
     width 100%
     max-width 650px
     margin-right auto
     margin-left auto
 
+$break-out-of-container
+    width 100vw
+    position relative
+    left 50%
+    right 50%
+    margin-left -50vw
+    margin-right -50vw
+
+.container
+    @extends $container
+
 .break-out-of-container
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    @extends $break-out-of-container

@@ -1,14 +1,20 @@
+$codeBackground = $codeBgColor
+$codeColor = config('colors.white')
+$codeHighlightBackground = rgba(0, 0, 0, 66%)
+$codeVerticalPadding = config('padding.8')
+// $codeHighlightBackground = linear-gradient(120deg, transparentify(#EE7752, $codeBgColor, 0.9), transparentify(#E73C7E, $codeBgColor, 0.9))
+
 pre, code, kbd
     font-family config('fonts.mono')
 
 pre, pre[class*="language-"]
-    line-height 1.4
-    padding 1.25rem 1.5rem
-    background-color $codeBgColor
+    line-height 1.4 !important
+    padding $codeVerticalPadding config('padding.8')
+    background $codeBackground
     border-radius config('borderRadius.lg')
     overflow auto
     code
-        color #fff
+        color $codeColor
         padding 0
         background-color transparent
         border-radius 0
@@ -30,19 +36,19 @@ kbd
 
 div[class*="language-"]
     position relative
-    background-color $codeBgColor
+    background $codeBackground
     border-radius config('borderRadius.lg')
     font-family config('fonts.mono')
     .highlight-lines
         user-select none
-        padding-top 1.3rem
+        padding-top $codeVerticalPadding
         position absolute
         top 0
         left 0
         width 100%
         line-height 1.4
         .highlighted
-            background-color rgba(0, 0, 0, 66%)
+            background $codeHighlightBackground
     pre, pre[class*="language-"]
         background transparent
         position relative
@@ -53,7 +59,7 @@ div[class*="language-"]
         top 0.8em
         right 1em
         font-size 0.75rem
-        color rgba(255, 255, 255, 0.4)
+        color rgba(0, 0, 0, 0.4)
 
 for lang in $codeLang
     div{'[class~="language-' + lang + '"]'}

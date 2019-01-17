@@ -5,3 +5,10 @@
         display none
     > p:first-of-type
         font-size config('textSizes.2xl')
+    div[class*="language-"]
+        @extends $break-out-of-container
+        border-radius 0
+        pre, pre[class*="language-"]
+            @extends $container
+            padding-right 0
+            padding-left 0
