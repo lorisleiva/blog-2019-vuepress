@@ -1,0 +1,57 @@
+$headings = 'h1, h2, h3, h4, h5, h6'
+$blocks = 'p, ul, ol, blocquote'
+
+body
+    color config('colors.grey-darkest')
+    font-family config('fonts.sans')
+    line-height: config('leading.normal')
+
+{$headings}
+    line-height config('leading.tight')
+    color config('colors.black')
+    & +
+        {$blocks}
+            margin-top 0
+
+h2
+    font-size config('textSizes.4xl')
+    font-family config('fonts.serif')
+    font-weight config('fontWeights.semibold')
+    margin-top config('margin.16')
+    margin-bottom config('margin.6')
+    border-bottom 1px solid config('colors.grey-light')
+    padding-bottom .3rem
+
+h3
+    font-size config('textSizes.3xl')
+    margin-top config('margin.16')
+    margin-bottom config('margin.4')
+
+h4, h5, h6
+    margin-top config('margin.12')
+    margin-bottom config('margin.3')
+
+li
+    margin-bottom config('margin.3')
+
+{$blocks}
+    margin config('margin.8') 0
+
+blockquote
+    font-size .9em
+    color config('colors.grey-dark')
+    border-left .5rem solid config('colors.grey-light')
+    margin config('padding.6') 0
+    padding config('padding.2') config('padding.6')
+    & > 
+        {$blocks}
+            &:first-child
+                margin-top 0
+            &:last-child
+                margin-bottom 0
+
+em, strong
+    color config('colors.black')
+
+small
+    color config('colors.grey-dark')

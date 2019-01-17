@@ -1,56 +1,6 @@
-.icon.outbound
-    display none !important
-
-a
-    text-decoration none
-    color config('colors.black')
-    border-bottom 1px solid config('colors.primary')
-    &:hover
-        color config('colors.primary')
-
-a.header-anchor
-    color config('colors.primary-light')
-    float left
-    font-size 0.85em
-    margin-top 0.125em
-    margin-left -1em
-    padding-right 0.26em
-    opacity 0
-    text-decoration none
-    border none
-    &:hover
-        color config('colors.primary')
-
-h1, h2, h3, h4, h5, h6
-    line-height config('leading.tight')
-    margin-top config('margin.12')
-    margin-bottom config('margin.3')
-    &:hover .header-anchor
-        opacity: 1
-
-h1, h2
-    margin-top config('margin.16')
-    margin-bottom config('margin.6')
-
 .content
-    // Typography
-    color config('colors.grey-darkest')
     font-family config('fonts.content')
     font-size 21px
-    em, strong
-        color config('colors.black')
-    small
-        color config('colors.grey-dark')
-
-    // Spacing
-    > *
-        margin-bottom config('margin.8')
-    li
-        margin-bottom config('margin.3')
-    > p, ul, ol
-        line-height config('leading.normal')
-    
-    // Introduction
     > h1:first-of-type
         display none
     > p:first-of-type
