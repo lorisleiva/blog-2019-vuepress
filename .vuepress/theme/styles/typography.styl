@@ -21,7 +21,7 @@ h2
     font-size config('textSizes.3xl')
     font-family config('fonts.serif')
     font-weight config('fontWeights.semibold')
-    margin-top config('margin.16')
+    margin-top config('margin.8')
     margin-bottom config('margin.6')
     border-bottom 1px solid config('colors.grey-light')
     padding-bottom .3rem
@@ -30,7 +30,7 @@ h2
 
 h3
     font-size config('textSizes.3xl')
-    margin-top config('margin.16')
+    margin-top config('margin.8')
     margin-bottom config('margin.2')
     @media md 
         margin-bottom config('margin.3')
@@ -42,14 +42,14 @@ h4
         font-size config('textSizes.2xl')
 
 h4, h5, h6
-    margin-top config('margin.12')
+    margin-top config('margin.4')
     margin-bottom config('margin.3')
 
 li
     margin-bottom config('margin.3')
 
 {$blocks}
-    margin config('margin.8') 0
+    margin-bottom config('margin.8')
 
 blockquote
     font-size .9em
@@ -57,12 +57,11 @@ blockquote
     border-left .5rem solid config('colors.grey-light')
     margin config('padding.6') 0
     padding config('padding.2') config('padding.6')
-    & > 
-        {$blocks}
-            &:first-child
-                margin-top 0
-            &:last-child
-                margin-bottom 0
+    > *
+        &:first-child
+            margin-top 0
+        &:last-child
+            margin-bottom 0
 
 em, strong
     color config('colors.black')
