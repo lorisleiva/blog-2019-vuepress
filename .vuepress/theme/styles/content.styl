@@ -11,7 +11,9 @@
     > h1:first-of-type
         display none
     > p:first-of-type
-        font-size config('textSizes.2xl')
+        font-size config('textSizes.xl')
+        @media md 
+            font-size config('textSizes.2xl')
 
     // Code breaks out of the container.
     div[class*="language-"]
