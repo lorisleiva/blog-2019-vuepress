@@ -15,7 +15,8 @@ module.exports = {
 		},
 	},
 	head: [
-        // TODO: Favicons, manifests, etc.
+		// TODO: Favicons, manifests, etc.
+		// TODO: ['script', { type: 'application/ld+json' }, JSON.stringify({})],
     ],
     postcss: {
         plugins: [
