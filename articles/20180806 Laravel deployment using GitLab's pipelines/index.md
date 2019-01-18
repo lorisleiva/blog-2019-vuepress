@@ -1,6 +1,11 @@
 ---
 permalink: laravel-deployment-using-gitlab-pipelines
-date: 06-08-2019
+image: /assets/img/cover.8b68dd73.gif
+description: In this tutorial, we will set up a complex GitLab pipeline that builds our application, tests it and deploys it using Laravel Deployer.
+tags:
+  - Laravel Lab
+  - Laravel Deployer
+date: 2018-06-07 23:46 UTC
 ---
 
 # Laravel deployment using GitLab's pipelines

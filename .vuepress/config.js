@@ -9,15 +9,13 @@ module.exports = {
 			{ text: 'CV', link: '/cv/' },
 			{ text: 'Persona', link: '/persona/' },
 		],
-		user: {
-            //
-		}
+		author: {
+			name: 'Loris Leiva',
+			twitter: '@lorismatic',
+		},
 	},
-	plugins: [
-        //
-	],
 	head: [
-        //
+        // TODO: Favicons, manifests, etc.
     ],
     postcss: {
         plugins: [
