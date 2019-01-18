@@ -58,7 +58,7 @@ Let's say I have three jobs: build, test and deploy which are respectively in th
 
 A cool side effect of artifacts is that you can download them directly from GitLab's UI when your pipeline is finished.
 
-![Download artifacts dropdown on GitLab](./screenshot_download_artifacts.png)
+![Download artifacts dropdown on GitLab](./screenshot_download_artifacts.png#w60)
 
 ### Cache and artifacts together
 
