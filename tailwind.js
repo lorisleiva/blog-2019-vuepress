@@ -389,6 +389,8 @@ module.exports = {
 
   svgFill: {
     'current': 'currentColor',
+    'header-first-gradient': 'url(#header-first-gradient)',
+    'header-second-gradient': 'url(#header-second-gradient)',
   },
 
   svgStroke: {
@@ -432,11 +434,11 @@ module.exports = {
     position: ['responsive'],
     resize: ['responsive'],
     shadows: ['responsive', 'hover', 'focus'],
-    svgFill: [],
+    svgFill: ['group-hover'],
     svgStroke: [],
     tableLayout: ['responsive'],
     textAlign: ['responsive'],
-    textColors: ['responsive', 'hover', 'focus'],
+    textColors: ['responsive', 'hover', 'focus', 'group-hover'],
     textSizes: ['responsive'],
     textStyle: ['responsive', 'hover', 'focus'],
     tracking: ['responsive'],
