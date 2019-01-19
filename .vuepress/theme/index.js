@@ -1,5 +1,10 @@
+const path = require('path')
+
 module.exports = {
 	plugins: [
-        'seo'
-	],
+        'seo',
+    ],
+    enhanceAppFiles: [
+        path.resolve(__dirname, 'search.js'),
+    ]
 }

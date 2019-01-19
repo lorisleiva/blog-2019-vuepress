@@ -47,7 +47,7 @@
                 <div class="mr-2">📄</div>
                 <div>
                     <div v-text="page.title"></div>
-                    <span v-if="page.header" class="header">&gt; {{ page.header.title }}</span>
+                    <span v-if="page.header" class="text-sm">&rightarrow;&nbsp;{{ page.header.title }}</span>
                 </div>
             </div>
 
@@ -64,9 +64,6 @@
 
 <script>
 export default {
-    props: {
-        maxSuggestions: { default: 5 },
-    },
     data () {
         return {
             openned: false,
@@ -91,32 +88,11 @@ export default {
                 .filter(page => menuPaths.includes(page.path))
                 .sort((a, b) => menuPaths.indexOf(a.path) - menuPaths.indexOf(b.path))
         },
-        search () {
-            const query = this.query.trim().toLowerCase()
-            const match = x => x.title && x.title.toLowerCase().indexOf(query) > -1
-            const { pages } = this.$site
-            const results = []
-
-            for (let i = 0; i < pages.length; i++) {
-                if (results.length >= this.maxSuggestions) break
-                results.push(...this.searchPage(pages[i], match, match))
-            }
-
-            return results
-        },
-        searchPage (page, matchPage, matchHeader) {
-            if (matchPage(page)) return [page]
-            if (! page.headers) return []
-            
-            return page.headers
-                .filter(header => matchHeader(header))
-                .map(header => Object.assign({}, page, { header, path: `${page.path}#${header.slug}` }))
-        },
     },
     computed: {
         suggestions () {
-            return this.query.trim() ? this.search() : this.menu
-        }
+            return this.query.trim() ? this.$search(this.query, 5) : this.menu
+        },
     },
     mounted () {
         this.initMenu()
