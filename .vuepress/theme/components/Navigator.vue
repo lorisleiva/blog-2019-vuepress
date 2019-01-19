@@ -20,7 +20,7 @@
         </div>
 
         <!-- Search menu -->
-        <div v-show="openned" class="absolute pin-t pin-r shadow-md rounded-lg bg-grey-lighter opacity-100 p-4 -mr-5 -mt-3 min-w-450">
+        <div v-if="openned" class="absolute pin-t pin-r shadow-md rounded-lg bg-grey-lighter opacity-100 p-4 -mr-5 -mt-3 min-w-450">
             
             <!-- Search fields -->
             <div class="flex items-center rounded bg-white mb-4">
@@ -46,13 +46,18 @@
             <div @mouseleave="unfocus">
                 <div 
                     v-for="(page, index) in suggestions" 
-                    class="flex px-4 py-2 text-lg font-semibold text-grey-darker rounded cursor-pointer"
-                    :class="index === focused ? 'bg-grey-light' : ''"
+                    class="flex items-baseline px-4 py-2 text-lg font-semibold text-grey-darker rounded cursor-pointer"
+                    :class="index === focused ? 'bg-topaz' : ''"
                     @click="go(index)"
                     @mouseenter="focus(index)"
                 >
-                    <div class="mr-2">📄</div>
-                    <div>
+                    <Icon
+                        class="w-4 mr-3"
+                        icon="home" 
+                        :primary="index === focused ? 'text-grey-lighter' : 'text-grey-dark'"
+                        :secondary="index === focused ? 'text-white' : 'text-grey-darker'"
+                    ></Icon>
+                    <div :class="index === focused ? 'text-white' : ''">
                         <div v-text="page.title"></div>
                         <span v-if="page.header" class="text-sm">&rightarrow;&nbsp;{{ page.header.title }}</span>
                     </div>
