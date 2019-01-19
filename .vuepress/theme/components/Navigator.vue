@@ -20,7 +20,7 @@
         </div>
 
         <!-- Search menu -->
-        <div v-show="openned" class="absolute pin-t pin-r shadow-md rounded-lg bg-grey-lighter opacity-100 p-4 -mr-5 -mt-3 min-w-400">
+        <div v-show="openned" class="absolute pin-t pin-r shadow-md rounded-lg bg-grey-lighter opacity-100 p-4 -mr-5 -mt-3 min-w-450">
             
             <!-- Search fields -->
             <div class="flex items-center rounded bg-white mb-4">
@@ -68,7 +68,6 @@ export default {
         return {
             openned: false,
             query: '',
-            menu: [],
         }
     },
     methods: {
@@ -82,20 +81,17 @@ export default {
                 })
             }
         },
-        initMenu () {
-            const menuPaths = this.$site.themeConfig.nav
-            this.menu = this.$site.pages
-                .filter(page => menuPaths.includes(page.path))
-                .sort((a, b) => menuPaths.indexOf(a.path) - menuPaths.indexOf(b.path))
-        },
     },
     computed: {
         suggestions () {
             return this.query.trim() ? this.$search(this.query) : this.menu
         },
+        menu () {
+            const menuPaths = this.$site.themeConfig.nav
+            return this.$site.pages
+                .filter(page => menuPaths.includes(page.path))
+                .sort((a, b) => menuPaths.indexOf(a.path) - menuPaths.indexOf(b.path))
+        },
     },
-    mounted () {
-        this.initMenu()
-    }
 }
 </script>
