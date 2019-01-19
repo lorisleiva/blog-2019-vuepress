@@ -6,6 +6,7 @@ tags:
   - Laravel Lab
   - Laravel Deployer
 date: 2018-06-07 23:46 UTC
+icon: launch
 ---
 
 # Laravel deployment using GitLab's pipelines

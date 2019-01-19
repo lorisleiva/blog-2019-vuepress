@@ -1,5 +1,6 @@
 ---
 permalink: persona
+icon: user
 ---
 
 # Persona

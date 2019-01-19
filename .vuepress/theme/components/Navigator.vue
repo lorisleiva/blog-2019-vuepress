@@ -20,7 +20,7 @@
         </div>
 
         <!-- Search menu -->
-        <div v-if="openned" class="absolute pin-t pin-r shadow-md rounded-lg bg-grey-lighter opacity-100 p-4 -mr-5 -mt-3 min-w-450">
+        <div v-show="openned" class="absolute pin-t pin-r shadow-md rounded-lg bg-grey-lighter p-4 -mr-5 -mt-3 min-w-450">
             
             <!-- Search fields -->
             <div class="flex items-center rounded bg-white mb-4">
@@ -45,17 +45,18 @@
             <!-- Results -->
             <div @mouseleave="unfocus">
                 <div 
-                    v-for="(page, index) in suggestions" 
-                    class="flex items-baseline px-4 py-2 text-lg font-semibold text-grey-darker rounded cursor-pointer"
+                    v-for="(page, index) in suggestions"
+                    :key="page.key + (page.header ? `_${page.header.slug}` : '')"
+                    class="flex px-4 py-2 text-lg font-semibold text-grey-darker rounded cursor-pointer"
                     :class="index === focused ? 'bg-topaz' : ''"
                     @click="go(index)"
                     @mouseenter="focus(index)"
                 >
                     <Icon
-                        class="w-4 mr-3"
-                        icon="home" 
-                        :primary="index === focused ? 'text-grey-lighter' : 'text-grey-dark'"
-                        :secondary="index === focused ? 'text-white' : 'text-grey-darker'"
+                        class="w-5 h-5 mr-3 mt-2px"
+                        :icon="iconForPage(page)" 
+                        :primary="index === focused ? 'text-white' : 'text-grey-dark'"
+                        :secondary="index === focused ? 'text-grey-light' : 'text-grey-darkest'"
                     ></Icon>
                     <div :class="index === focused ? 'text-white' : ''">
                         <div v-text="page.title"></div>
@@ -67,9 +68,8 @@
                 <div 
                     v-if="query && suggestions.length === 0"
                     class="p-6 text-center text-grey-dark"
-                >
-                    Sorry, couldn't find that one...
-                </div>
+                    v-text="`I'm Old Gregg...`"
+                ></div>
             </div>
         </div>
     </div>
@@ -118,14 +118,20 @@ export default {
         },
         search () {
             this.focused = 0
-            return this.$search(this.query)
+            return this.$search(this.query, 6)
         },
+        iconForPage (page) {
+            if (page.frontmatter.icon) return page.frontmatter.icon
+            if (page.regularPath.startsWith('/articles')) return 'news'
+            return 'document'
+        }
     },
     computed: {
         suggestions () {
             return this.query.trim() ? this.search() : this.menu
         },
         menu () {
+            console.log(this.$site.pages)
             const menuPaths = this.$site.themeConfig.nav
             return this.$site.pages
                 .filter(page => menuPaths.includes(page.path))

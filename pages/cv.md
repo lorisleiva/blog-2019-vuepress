@@ -1,5 +1,6 @@
 ---
 permalink: cv
+icon: work
 ---
 
 # CV

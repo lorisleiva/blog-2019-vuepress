@@ -1,5 +1,5 @@
 <template>
-    <div class="w-4 h-4" v-html="svg"></div>
+    <div v-html="svg"></div>
 </template>
 
 <script>
@@ -22,7 +22,10 @@ export default {
     },
     methods: {
         proxyClasses (key) {
-            this.$el.getElementsByClassName(key)[0].classList = `${key} fill-current ${this[key]}`
+            const elements = this.$el.getElementsByClassName(key)
+            for (let i = 0; i < elements.length; i++) {
+                elements[i].classList = `${key} fill-current ${this[key]}`
+            }
         }
     },
     watch: {
