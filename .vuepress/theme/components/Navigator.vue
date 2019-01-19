@@ -30,9 +30,9 @@
                     type="text" 
                     placeholder="Search..."
                     class="flex-1 bg-transparent rounded-l text-xl pl-4 leading-normal focus:outline-none"
-                    @keyup.enter="go(focused)"
-                    @keyup.up="move(-1)"
-                    @keyup.down="move(1)"
+                    @keydown.enter="go(focused)"
+                    @keydown.up.prevent="move(-1)"
+                    @keydown.down.prevent="move(1)"
                 >
                 <div class="group rounded-r px-4 py-2 cursor-pointer" @click="toggle">
                     <svg class="w-8 h-8 block flex-no-shrink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
