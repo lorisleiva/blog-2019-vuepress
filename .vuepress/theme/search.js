@@ -12,7 +12,7 @@ export default ({ Vue }) => {
                     results.push(...searchPage(pages[i], match, match))
                 }
     
-                return results
+                return maxSuggestions ? results.slice(0, maxSuggestions) : results
             }
         }
     })

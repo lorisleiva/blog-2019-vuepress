@@ -91,7 +91,7 @@ export default {
     },
     computed: {
         suggestions () {
-            return this.query.trim() ? this.$search(this.query, 5) : this.menu
+            return this.query.trim() ? this.$search(this.query) : this.menu
         },
     },
     mounted () {
