@@ -1,34 +1,42 @@
 <template>
-    <div class="relative">
-        <NavigatorButton
-            @click="toggle"
-        ></NavigatorButton>
-
-        <div
-            v-show="openned"
-            class="absolute pin-t pin-r shadow-md rounded-lg bg-grey-lighter p-4 -mr-5 -mt-3 min-w-450"
-        >
-            <NavigatorInput
-                ref="input"
-                v-model="query"
-            ></NavigatorInput>
-
-            <NavigatorResults
-                :query="query"
-                :focused="focused"
-                :suggestions="suggestions"
-            ></NavigatorResults>
+    <OnClickOutside :do="() => this.openned && this.toggle()">
+        <div class="relative">
+            <NavigatorButton @click="toggle"></NavigatorButton>
+            <div
+                v-show="openned"
+                class="absolute pin-t pin-r shadow-md rounded-lg bg-grey-lighter p-4 -mr-5 -mt-3 min-w-450"
+            >
+                <NavigatorInput
+                    ref="input"
+                    v-model="query"
+                ></NavigatorInput>
+                <NavigatorResults
+                    :query="query"
+                    :focused="focused"
+                    :suggestions="suggestions"
+                ></NavigatorResults>
+            </div>
         </div>
-    </div>
+    </OnClickOutside>
 </template>
 
 <script>
+import OnClickOutside from './OnClickOutside'
 import NavigatorButton from './NavigatorButton'
 import NavigatorInput from './NavigatorInput'
 import NavigatorResults from './NavigatorResults'
 
 export default {
-    components: { NavigatorButton, NavigatorInput, NavigatorResults },
+    components: { OnClickOutside, NavigatorButton, NavigatorInput, NavigatorResults },
+    provide () {
+        return {
+            toggle: this.toggle,
+            go: this.go,
+            move: this.move,
+            focus: this.focus,
+            unfocus: this.unfocus,
+        }
+    },
     data () {
         return {
             openned: false,
@@ -77,6 +85,9 @@ export default {
         unfocus () {
             this.focused = -1
         },
+        dummy () {
+            console.log('click outside')
+        }
     },
 }
 </script>
