@@ -1,20 +1,24 @@
 <template>
     <OnClickOutside :do="() => this.openned && this.toggle()">
-        <div class="relative">
-            <NavigatorButton @click="toggle"></NavigatorButton>
-            <div
-                v-show="openned"
-                class="absolute pin-t pin-r shadow-md rounded-lg bg-grey-lighter p-4 -mr-5 -mt-3 min-w-450"
-            >
-                <NavigatorInput
-                    ref="input"
-                    v-model="query"
-                ></NavigatorInput>
-                <NavigatorResults
-                    :query="query"
-                    :focused="focused"
-                    :suggestions="suggestions"
-                ></NavigatorResults>
+        <div class="fixed w-full z-navigator">
+            <div class="container flex justify-end">
+                <div class="relative mt-24 -mr-32">
+                    <NavigatorButton @click="toggle"></NavigatorButton>
+                    <div
+                        v-show="openned"
+                        class="absolute pin-t pin-r shadow-md rounded-lg bg-grey-lighter p-4 -mr-5 -mt-3 min-w-450"
+                    >
+                        <NavigatorInput
+                            ref="input"
+                            v-model="query"
+                        ></NavigatorInput>
+                        <NavigatorResults
+                            :query="query"
+                            :focused="focused"
+                            :suggestions="suggestions"
+                        ></NavigatorResults>
+                    </div>
+                </div>
             </div>
         </div>
     </OnClickOutside>
