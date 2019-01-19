@@ -1,3 +1,7 @@
+---
+permalink: cv
+---
+
 # CV
 
 TODO

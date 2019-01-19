@@ -1,3 +1,7 @@
+---
+permalink: persona
+---
+
 # Persona
 
 TODO

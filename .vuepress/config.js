@@ -3,12 +3,8 @@ module.exports = {
 	dest: './public',
 	themeConfig: {
 		domain: 'https://lorisleiva.com',
-		repo: 'https://github.com/lorisleiva/blog',
-		nav: [
-			{ text: 'Home', link: '/' },
-			{ text: 'CV', link: '/cv/' },
-			{ text: 'Persona', link: '/persona/' },
-		],
+		repo: 'https://github.com/lorisleiva/blog', // TODO: Not used yet
+		nav: [ '/', '/cv/', '/persona/' ],
 		author: {
 			name: 'Loris Leiva',
 			twitter: '@lorismatic',
