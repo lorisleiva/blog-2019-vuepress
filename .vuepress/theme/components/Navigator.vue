@@ -30,6 +30,9 @@
                     type="text" 
                     placeholder="Search..."
                     class="flex-1 bg-transparent rounded-l text-xl pl-4 leading-normal focus:outline-none"
+                    @keyup.enter="go(focused)"
+                    @keyup.up="move(-1)"
+                    @keyup.down="move(1)"
                 >
                 <div class="group rounded-r px-4 py-2 cursor-pointer" @click="toggle">
                     <svg class="w-8 h-8 block flex-no-shrink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -40,23 +43,28 @@
             </div>
 
             <!-- Results -->
-            <div 
-                v-for="page in suggestions" 
-                class="flex px-4 py-2 text-lg font-semibold text-grey-darker hover:bg-grey-light rounded cursor-pointer"
-            >
-                <div class="mr-2">📄</div>
-                <div>
-                    <div v-text="page.title"></div>
-                    <span v-if="page.header" class="text-sm">&rightarrow;&nbsp;{{ page.header.title }}</span>
+            <div @mouseleave="unfocus">
+                <div 
+                    v-for="(page, index) in suggestions" 
+                    class="flex px-4 py-2 text-lg font-semibold text-grey-darker rounded cursor-pointer"
+                    :class="index === focused ? 'bg-grey-light' : ''"
+                    @click="go(index)"
+                    @mouseenter="focus(index)"
+                >
+                    <div class="mr-2">📄</div>
+                    <div>
+                        <div v-text="page.title"></div>
+                        <span v-if="page.header" class="text-sm">&rightarrow;&nbsp;{{ page.header.title }}</span>
+                    </div>
                 </div>
-            </div>
 
-            <!-- No results -->
-            <div 
-                v-if="query && suggestions.length === 0"
-                class="p-6 text-center text-grey-dark"
-            >
-                Sorry, couldn't find that one...
+                <!-- No results -->
+                <div 
+                    v-if="query && suggestions.length === 0"
+                    class="p-6 text-center text-grey-dark"
+                >
+                    Sorry, couldn't find that one...
+                </div>
             </div>
         </div>
     </div>
@@ -67,24 +75,50 @@ export default {
     data () {
         return {
             openned: false,
+            focused: 0,
             query: '',
         }
     },
     methods: {
         toggle () {
             this.openned = ! this.openned
-            this.query = ''
-
             if (this.openned) {
                 this.$nextTick(() => {
                     this.$refs.searchField.focus()
                 })
+            } else {
+                this.reset()
             }
+        },
+        reset () {
+            this.openned = false
+            this.focused = 0
+            this.query = ''
+        },
+        focus (index) {
+            this.focused = index
+        },
+        unfocus () {
+            this.focused = -1
+        },
+        move (velocity) {
+            this.focused += velocity
+            if (this.focused < 0) this.focused = this.suggestions.length - 1
+            if (this.focused >= this.suggestions.length) this.focused = 0
+        },
+        go (index) {
+            if (typeof this.suggestions[index] === 'undefined') return
+            this.$router.push(this.suggestions[index].path)
+            this.reset()
+        },
+        search () {
+            this.focused = 0
+            return this.$search(this.query)
         },
     },
     computed: {
         suggestions () {
-            return this.query.trim() ? this.$search(this.query) : this.menu
+            return this.query.trim() ? this.search() : this.menu
         },
         menu () {
             const menuPaths = this.$site.themeConfig.nav
