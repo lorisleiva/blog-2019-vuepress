@@ -2,11 +2,11 @@
     <OnClickOutside :do="() => this.openned && this.toggle()">
         <div class="fixed w-full z-navigator">
             <div class="container flex justify-end">
-                <div class="relative mt-24 -mr-32">
+                <div class="relative mt-10 sm:mt-16 md:mt-24 mr-4 md:mr-2 lg:-mr-16 xl:-mr-32">
                     <NavigatorButton @click="toggle"></NavigatorButton>
                     <div
                         v-show="openned"
-                        class="absolute pin-t pin-r shadow-md rounded-lg bg-grey-lighter p-4 -mr-5 -mt-3 min-w-450"
+                        class="absolute pin-t pin-r shadow-md rounded-lg bg-grey-lighter p-4 -mr-5 -mt-3 w-navigator-sm sm:w-navigator"
                     >
                         <NavigatorInput
                             ref="input"
