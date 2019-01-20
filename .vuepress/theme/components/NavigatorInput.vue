@@ -7,7 +7,7 @@
             type="text" 
             placeholder="Search..."
             class="flex-1 bg-transparent rounded-l text-xl pl-4 leading-normal focus:outline-none"
-            @keydown.enter="go()"
+            @keydown.enter="go($event)"
             @keydown.up.prevent="move(-1)"
             @keydown.down.prevent="move(1)"
         >

@@ -1,12 +1,13 @@
 <template>
     <div @mouseleave="unfocus">
-        <div 
+        <a 
             v-for="(page, index) in suggestions"
             :key="page.key + (page.header ? `_${page.header.slug}` : '')"
-            class="flex px-4 py-2 text-lg font-semibold text-grey-darker rounded cursor-pointer"
+            class="flex px-4 py-2 text-lg font-semibold text-grey-darker hover:text-grey-darker rounded cursor-pointer border-0"
             :class="index === focused ? 'bg-topaz' : ''"
-            @click="go(index)"
+            @click="go($event, index)"
             @mouseenter="focus(index)"
+            :href="page.path"
         >
             <Icon
                 class="w-5 h-5 mr-3 mt-2px"
@@ -18,7 +19,7 @@
                 <div v-text="page.title"></div>
                 <span v-if="page.header" class="text-sm">&rightarrow;&nbsp;{{ page.header.title }}</span>
             </div>
-        </div>
+        </a>
 
         <!-- No results -->
         <div 

@@ -67,7 +67,12 @@ export default {
                 ? this.$nextTick(() => this.$refs.input.focus())
                 : this.reset()
         },
-        go (index) {
+        go (event, index) {
+            // Allow cmd+click to open a new tab.
+            if (event.metaKey) return
+            event.preventDefault()
+
+            // Find page for index and push to router.
             index = typeof index === 'undefined' ? this.focused : index
             if (typeof this.suggestions[index] === 'undefined') return
             this.$router.push(this.suggestions[index].path)
@@ -89,9 +94,6 @@ export default {
         unfocus () {
             this.focused = -1
         },
-        dummy () {
-            console.log('click outside')
-        }
     },
 }
 </script>
