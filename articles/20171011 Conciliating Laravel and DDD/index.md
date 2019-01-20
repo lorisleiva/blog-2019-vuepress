@@ -231,4 +231,4 @@ Also note that I did not wrap all modules in the application layer inside a `/Mo
 ## Conclusion
 Implementing Domain-Driven Design is always going to be a challenge no matter what framework we use. The blue book and the writing of this article helped me in the process of understanding how to use DDD without frustrating our use of Laravel as we know it. My goal is not to provide a textbook structure that everyone should follow but to share my **current view** on the matter and establish the basis of a very interesting discovery process.
 
-As promised, [part 2 of this article](/conciliating-laravel-and-ddd-part-2/) will focus on how to leverage the use of Eloquent within the domain layer and try to deal with the frustrations that come along.
+As promised, [part 2 of this article](/conciliating-laravel-and-ddd-part-2) will focus on how to leverage the use of Eloquent within the domain layer and try to deal with the frustrations that come along.
