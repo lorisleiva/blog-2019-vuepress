@@ -5,7 +5,7 @@
             class="flex items-center border rounded-full h-8 px-3 mr-3 mb-3"
             :class="classesFor(skill.theme)"
         >
-            <Icon class="w-3 md:w-4 mr-2 mt-2px" v-if="skill.icon" :icon="skill.icon"></Icon>
+            <Icon class="w-3 md:w-4 mr-2 mt-1" v-if="skill.icon" :icon="skill.icon"></Icon>
             <div v-text="skill.body"></div>
         </div>
     </div>

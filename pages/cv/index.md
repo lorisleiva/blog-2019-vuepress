@@ -12,7 +12,7 @@ I am a remote software engineer whose ambition in not to "create the next big th
 <Skills
     class="mb-8"
     :skills="[
-        { body: 'Soft', theme: 'category', icon: 'home' },
+        { body: 'Soft', theme: 'category', icon: 'chat-group-alt' },
         { body: 'IT Consulting' },
         { body: 'Project management' },
         { body: 'Team management' },
@@ -21,7 +21,7 @@ I am a remote software engineer whose ambition in not to "create the next big th
         { body: 'Visual communication' },
         { body: 'Marketing' },
 
-        { body: 'Technical', theme: 'category', icon: 'home' },
+        { body: 'Technical', theme: 'category', icon: 'layers' },
         { body: 'Software engineering', theme: 'highlighted' },
         { body: 'CI / CD' },
         { body: 'Algorithmic optimization' },
@@ -29,7 +29,7 @@ I am a remote software engineer whose ambition in not to "create the next big th
         { body: 'Concurrent programming' },
         { body: 'Network security' },
 
-        { body: 'Backend', theme: 'category', icon: 'home' },
+        { body: 'Backend', theme: 'category', icon: 'server' },
         { body: 'Laravel', theme: 'highlighted' },
         { body: 'Symfony' },
         { body: 'SQL' },
@@ -39,14 +39,14 @@ I am a remote software engineer whose ambition in not to "create the next big th
         { body: 'Python' },
         { body: 'Low-Level (C, Shell, Perl, VHDL)' },
 
-        { body: 'Frontend', theme: 'category', icon: 'home' },
+        { body: 'Frontend', theme: 'category', icon: 'interface' },
         { body: 'VueJS', theme: 'highlighted' },
         { body: 'React' },
         { body: 'CSS Preprocessors (Sass, Less, Stylus)' },
         { body: 'CSS Postprocessors (Tailwind CSS, PostCSS)' },
         { body: 'Templating (Twig, Blade, Handlebars)' },
 
-        { body: 'Graphical', theme: 'category', icon: 'home' },
+        { body: 'Graphical', theme: 'category', icon: 'swatch' },
         { body: 'Sketch' },
         { body: 'Photoshop' },
         { body: 'Illustrator' },
