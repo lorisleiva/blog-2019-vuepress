@@ -4,7 +4,7 @@ module.exports = {
 	themeConfig: {
 		domain: 'https://lorisleiva.com',
 		repo: 'https://github.com/lorisleiva/blog', // TODO: Not used yet
-		nav: [ '/', '/cv/', '/persona/' ],
+		nav: [ '/', '/cv/' ],
 		author: {
 			name: 'Loris Leiva',
 			twitter: '@lorismatic',
