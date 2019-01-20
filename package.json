@@ -24,6 +24,6 @@
     "tailwindcss": "^0.7.3",
     "tailwindcss-plugins": "^0.1.2",
     "vuepress": "^1.0.0-alpha.32",
-    "vuepress-plugin-seo": "^0.1.1"
+    "vuepress-plugin-seo": "^0.1.2"
   }
 }
