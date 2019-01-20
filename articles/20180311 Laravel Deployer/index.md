@@ -10,7 +10,7 @@ date: 2018-03-11 22:41 UTC
 
 I released a Laravel package that gives Artisan the power of zero downtime deployment. Get started in three simple steps.
 
-<GithubButton url="https://github.com/lorisleiva/laravel-deployer">Laravel Deployer on GitHub</GithubButton>
+<GithubButton url="https://github.com/lorisleiva/laravel-deployer" title="Laravel Deployer on GitHub" />
 
 ## Introduction
 In my quest to have more control over my deployments, I discovered a few useful open source tools that let me achieve this with the luxury of zero downtime deployments. As a Laravel developer, [Deployer.org](https://github.com/deployphp/deployer) was the most suitable and comfortable option for me. Since most of the configurations I used for my projects were Laravel specific more than project specific, I decided to extract that logic into a package and encapsulate it within our friend `php artisan`.
@@ -51,4 +51,4 @@ Once you’ve set up your deployment hosts you can even use the shortcut `php ar
 
 I hope this package will save you as much time as it will do for my future projects. Contributions and feature requests are more than welcome to ensure more of us can deploy with minimal configuration steps.
 
-<GithubButton url="https://github.com/lorisleiva/laravel-deployer">Laravel Deployer on GitHub</GithubButton>
+<GithubButton url="https://github.com/lorisleiva/laravel-deployer" title="Laravel Deployer on GitHub" />
