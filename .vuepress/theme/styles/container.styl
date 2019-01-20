@@ -17,12 +17,6 @@ $break-out-of-container
     margin-left -50vw
     margin-right -50vw
 
-.container
-    @extends $container
-
-.break-out-of-container
-    @extends $break-out-of-container
-
 $flex-container
     @extends $container
     display flex
@@ -34,4 +28,21 @@ $flex-container
 $break-out-of-flex-container
     @extends $break-out-of-container
     align-self stretch
-    
+
+$bleeding-out-of-container
+    display block
+    margin config('margin.6') auto
+    width 100%
+    @media lg
+        width config('width.bleeding-out-of-container-sm')
+    @media xl
+        width config('width.bleeding-out-of-container')
+
+.container
+    @extends $container
+
+.break-out-of-container
+    @extends $break-out-of-container
+
+.bleeding-out-of-container
+    @extends $bleeding-out-of-container

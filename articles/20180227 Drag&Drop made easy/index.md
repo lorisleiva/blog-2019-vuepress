@@ -40,8 +40,10 @@ With that first line, we tell our directive `v-dragdrop` to:
 
 You can find a working example in the CodePen below.
 
-<iframe class="mb-8 bleeding-out-of-container" height='367' scrolling='no' title='Drag&Drop made easy' src='//codepen.io/lorisleiva/embed/JpeBdr/?height=367&theme-id=light&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/lorisleiva/pen/JpeBdr/'>Drag&Drop made easy</a> by Loris Leiva (<a href='https://codepen.io/lorisleiva'>@lorisleiva</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
+<p>
+    <iframe class="mb-8 bleeding-out-of-container" height='367' scrolling='no' title='Drag&Drop made easy' src='//codepen.io/lorisleiva/embed/JpeBdr/?height=367&theme-id=light&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true'>See the Pen <a href='https://codepen.io/lorisleiva/pen/JpeBdr/'>Drag&Drop made easy</a> by Loris Leiva (<a href='https://codepen.io/lorisleiva'>@lorisleiva</a>) on <a href='https://codepen.io'>CodePen</a>.
+    </iframe>
+</p>
 
 ## The Dragdrop directive
 
