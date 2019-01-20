@@ -10,6 +10,7 @@ I am a remote software engineer whose ambition in not to "create the next big th
 ## Skills
 
 <Skills
+    class="mb-8"
     :skills="[
         { body: 'Soft', theme: 'category', icon: 'home' },
         { body: 'IT Consulting' },
