@@ -1,8 +1,8 @@
 <template>
     <p>
         <iframe 
-            :src="url" 
-            class="bleeding-out-of-container youtube-iframe"
+            :src="url" width="560" height="396"
+            class="youtube-iframe bleeding-out-of-container"
             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen
         ></iframe>
     </p>
@@ -18,7 +18,8 @@ export default {
 
 <style lang="stylus">
 .youtube-iframe
-    height 300px
-    @media sm
-        height 500px
+    @media lg
+        height 506px
+    @media xl
+        height 585px
 </style>
