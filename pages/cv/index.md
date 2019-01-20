@@ -9,7 +9,51 @@ Having recently graduated from the EPFL, I am eager to find a career path that m
 
 ## Skills
 
-TODO
+<Skills
+    :skills="[
+        { body: 'Soft', theme: 'category', icon: 'home' },
+        { body: 'IT Consulting' },
+        { body: 'Project management' },
+        { body: 'Team management' },
+        { body: 'Prospecting clients' },
+        { body: 'Mentoring' },
+        { body: 'Visual communication' },
+        { body: 'Marketing' },
+
+        { body: 'Technical', theme: 'category', icon: 'home' },
+        { body: 'Software engineering', theme: 'highlighted' },
+        { body: 'CI / CD' },
+        { body: 'Algorithmic optimization' },
+        { body: 'AI & machine learning' },
+        { body: 'Concurrent programming' },
+        { body: 'Network security' },
+
+        { body: 'Backend', theme: 'category', icon: 'home' },
+        { body: 'Laravel', theme: 'highlighted' },
+        { body: 'Symfony' },
+        { body: 'SQL' },
+        { body: 'Doctrine' },
+        { body: 'Java' },
+        { body: 'Scala' },
+        { body: 'Python' },
+        { body: 'Low-Level (C, Shell, Perl, VHDL)' },
+
+        { body: 'Frontend', theme: 'category', icon: 'home' },
+        { body: 'VueJS', theme: 'highlighted' },
+        { body: 'React' },
+        { body: 'CSS Preprocessors (Sass, Less, Stylus)' },
+        { body: 'CSS Postprocessors (Tailwind CSS, PostCSS)' },
+        { body: 'Templating (Twig, Blade, Handlebars)' },
+
+        { body: 'Graphical', theme: 'category', icon: 'home' },
+        { body: 'Sketch' },
+        { body: 'Photoshop' },
+        { body: 'Illustrator' },
+        { body: 'InDesign' },
+        { body: 'AfterEffect' },
+        { body: 'Cinema4D' },
+    ]"
+></Skills>
 
 ## Education
 
