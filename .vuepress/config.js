@@ -1,6 +1,5 @@
 module.exports = {
 	title: 'Loris Leiva',
-	dest: './public',
 	themeConfig: {
 		domain: 'https://lorisleiva.com',
 		repo: 'https://github.com/lorisleiva/blog', // TODO: Not used yet
