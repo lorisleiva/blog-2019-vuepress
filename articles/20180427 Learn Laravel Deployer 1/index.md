@@ -10,32 +10,32 @@ date: 2018-04-27 08:58 UTC
 
 <YouTube url="https://www.youtube.com/embed/EaCd1ocep8A?rel=0" />
 
-# Checklist
+## Checklist
 
-### Set up Laravel Deployer
-❑ &nbsp;Go to your application folder
-❑ &nbsp;`composer require lorisleiva/laravel-deployer`
-❑ &nbsp;`php artisan deploy:init`
+#### Set up Laravel Deployer
+❑ &nbsp;Go to your application folder \
+❑ &nbsp;`composer require lorisleiva/laravel-deployer` \
+❑ &nbsp;`php artisan deploy:init` \
 ❑ &nbsp;`php artisan deploy`
 
-### Ensure your server can communicate with GitHub
-- If your server don’t have a SSH key, create one:
-	❑ &nbsp;`ssh-keygen -t rsa -b 4096 -C "root@laraveldeployer.com"`
-	❑ &nbsp;`eval "$(ssh-agent -s)"`
+#### Ensure your server can communicate with GitHub
+- If your server don’t have a SSH key, create one: \
+	❑ &nbsp;`ssh-keygen -t rsa -b 4096 -C "root@laraveldeployer.com"` \
+	❑ &nbsp;`eval "$(ssh-agent -s)"` \
 	❑ &nbsp;`ssh-add ~/.ssh/id_rsa`
-- If your server don’t have github.com in its `known_hosts`:
-	❑ &nbsp;Deploy using the `git_tty` option.
+- If your server don’t have github.com in its `known_hosts`: \
+	❑ &nbsp;Deploy using the `git_tty` option. \
 	❑ &nbsp;`php artisan deploy -o git_tty=true`
 
-### Set up your production environment
-❑ &nbsp;`php artisan ssh`
-❑ &nbsp;`cp .env.example .env`
-❑ &nbsp;`php artisan key:generate`
-❑ &nbsp;`vim .env` and configure your production environment.
-❑ &nbsp;`exit`
+#### Set up your production environment
+❑ &nbsp;`php artisan ssh` \
+❑ &nbsp;`cp .env.example .env` \
+❑ &nbsp;`php artisan key:generate` \
+❑ &nbsp;`vim .env` and configure your production environment. \
+❑ &nbsp;`exit` \
 ❑ &nbsp;`php artisan deploy`
 
-### Update nginx configurations
-❑ &nbsp;`vim /etc/nginx/sites-available/mydomain.com`
-❑ &nbsp;Point the `root` folder to the `current/public` directory.
+#### Update nginx configurations
+❑ &nbsp;`vim /etc/nginx/sites-available/mydomain.com` \
+❑ &nbsp;Point the `root` folder to the `current/public` directory. \
 ❑ &nbsp;`service nginx restart && service php7.2-fpm reload`
