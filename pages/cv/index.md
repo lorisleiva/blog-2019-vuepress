@@ -5,7 +5,7 @@ icon: work
 
 # Curriculum Vitæ
 
-Having recently graduated from the EPFL, I am eager to find a career path that matches my work ethic and values. My primary goal is to be working in a motivating environment with talented people and an out-of-the-box business culture promoting individualism and thoroughness.
+I am a remote software engineer whose ambition in not to "create the next big thing" or "change the world" but rather to find my humble place in this world and enjoy every minute of the work I do. This page focuses on giving you more insights on my background.
 
 ## Skills
 
