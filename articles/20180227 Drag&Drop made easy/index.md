@@ -10,9 +10,7 @@ date: 2018-02-28 09:47 UTC
 
 When you need a quick drag&drop that reorders your data as well as elements in the DOM.
 
-<GithubButton
-    url="https://github.com/lorisleiva/vue-lab/tree/master/directives/dragdrop"
-/>
+<GithubButton url="https://github.com/lorisleiva/vue-lab/tree/master/directives/dragdrop" />
 
 ## Introduction
 Whilst the [Dragula](https://github.com/bevacqua/dragula) library has mastered the art of quick and easy drag&drop, it still has to be complete enough to appeal to a vast majority of projects. As a result it can be pretty cumbersome to implement a very simple drag&drop reordering that keeps track of the new order within your data.
@@ -197,6 +195,4 @@ And that's it! Next time you need to reorder some array by dragging and dropping
 If more control over dragula's options is needed (like adding a handle), one can easily use an `options` attribute (similarly to the `order` attribute) to register these options when instantiating Dragula.
 
 
-<GithubButton
-    url="https://github.com/lorisleiva/vue-lab/tree/master/directives/dragdrop"
-/>
+<GithubButton url="https://github.com/lorisleiva/vue-lab/tree/master/directives/dragdrop" />

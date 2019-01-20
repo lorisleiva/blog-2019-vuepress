@@ -10,9 +10,7 @@ date: 2017-09-05 12:45 UTC
 
 For those time where you don't want the user to delete elements by mistake but don't want to bother him/her with a modal neither.
 
-<GithubButton
-    url="https://github.com/lorisleiva/vue-lab/tree/master/components/delete"
-/>
+<GithubButton url="https://github.com/lorisleiva/vue-lab/tree/master/components/delete"/>
 
 ## What are we building?
 
@@ -348,6 +346,4 @@ I often find myself trying new ways to improve both user experience and my own e
 
 Back to our delete component, I think it provides a nice starting point that I could leverage in my applications. I am not trying to create a application-agnostic component that will be pulled out of a package. I have tried that enough to realize my apps will always try to hack it in some ways. What I'm trying to do here is to create some **goodies** that I can copy/paste/modify into my projects. That's my sweet spot.
 
-<GithubButton
-    url="https://github.com/lorisleiva/vue-lab/tree/master/components/delete"
-/>
+<GithubButton url="https://github.com/lorisleiva/vue-lab/tree/master/components/delete"/>
