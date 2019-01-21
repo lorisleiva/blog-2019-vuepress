@@ -59,7 +59,7 @@ I am a remote software engineer whose ambition in not to "create the next big th
 ## Education
 
 * École Polytechnique Fédérale de Lausanne (EPFL) \
-[Master in computer sciences](http://lorisleiva.com/assets/files/EPFL%20Transcript.pdf). Awarded full scholarship every available year. \
+Master in computer sciences. Awarded full scholarship every available year. \
 <small>Lausanne, Switzerland — 2012-2017</small>
 
 * Lycée Sainte-Geneviève \

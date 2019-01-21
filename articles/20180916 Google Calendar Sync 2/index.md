@@ -8,7 +8,7 @@ date: 2018-09-20 20:13 UTC
 
 # Google Calendar part 2: Periodic synchronizations
 
-In a [previous article](http://lorisleiva.com/google-calendar-part-1-integration/), we've seen how to fetch all calendars and events from multiple Google accounts. However, we haven't yet made any effort to ensure this data stays up-to-date. In this article, we will introduce a new `Synchronization` model and schedule jobs to periodically synchronize our data.
+In a [previous article](/google-calendar-part-1-integration), we've seen how to fetch all calendars and events from multiple Google accounts. However, we haven't yet made any effort to ensure this data stays up-to-date. In this article, we will introduce a new `Synchronization` model and schedule jobs to periodically synchronize our data.
 
 ## The need for a new model
 Consider the following premises:
@@ -445,4 +445,4 @@ In this article we've managed to extract the synchronization logic into its own 
 
 In our next article, we will see how to use Google's push notifications to obtain instant updates and how to encapsulate its logic within our existing `Synchronization` model.
 
-⚡️ [Google Calendar part 3: Webhook synchronizations](http://lorisleiva.com/google-calendar-part-3-webhook-synchronizations/)
+⚡️ [Google Calendar part 3: Webhook synchronizations](/google-calendar-part-3-webhook-synchronizations)

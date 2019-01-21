@@ -9,7 +9,7 @@ icon: launch
 
 # Laravel deployment using GitLab's pipelines
 
-In my [previous article](http://lorisleiva.com/using-gitlabs-pipeline-with-laravel/), I explained the basics of Docker images and introduced a simple GitLab pipeline that runs our test suite and checks our code style. In this article, we will set up a more complex pipeline that ends up deploying our applications using [Laravel Deployer](https://github.com/lorisleiva/laravel-deployer) 🚀.
+In my [previous article](/using-gitlabs-pipeline-with-laravel), I explained the basics of Docker images and introduced a simple GitLab pipeline that runs our test suite and checks our code style. In this article, we will set up a more complex pipeline that ends up deploying our applications using [Laravel Deployer](https://github.com/lorisleiva/laravel-deployer) 🚀.
 
 <GithubButton
     url="https://github.com/lorisleiva/laravel-docker/blob/master/gitlab/.gitlab-ci.deployments.yml"

@@ -809,4 +809,4 @@ The next article will deal with synchronizations at regular intervals which mean
 
 See ya soon 👋
 
-⌚️ [Google Calendar part 2: Periodic synchronizations](http://lorisleiva.com/google-calendar-part-2-periodic-synchronizations/)
+⌚️ [Google Calendar part 2: Periodic synchronizations](/google-calendar-part-2-periodic-synchronizations)

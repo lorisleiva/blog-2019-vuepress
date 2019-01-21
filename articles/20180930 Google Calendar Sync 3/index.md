@@ -305,7 +305,7 @@ As mentioned above, a `Google_Service_Calendar_Channel` object is required to st
 * A unique `id` within the scope of our application. We can provide whatever we want but the same `id` can never *ever* be used twice. Using UUIDs instead of auto-incremented integers makes this task a lot easier.
 * A `resourceId` if the synchronization already has an associated `Google Channel`. At first — when starting a new webhook — this will be `null` and therefore can be ignored. However, this will be useful later on when we need to stop the webhook.
 * A `type` which simply needs to be `"web_hook"`.
-* Finally, the `address` we want Google to use to notify us. In our case, we've already defined this in the configurations in [part 1](http://lorisleiva.com/google-calendar-part-1-integration/#googleasaservice) of this series.
+* Finally, the `address` we want Google to use to notify us. In our case, we've already defined this in the configurations in [part 1](/google-calendar-part-1-integration#googleasaservice) of this series.
 
 ```php
 class Synchronization extends Model

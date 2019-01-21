@@ -8,7 +8,7 @@ date: 2018-05-31 21:03 UTC
 
 # Renderless editable textarea
 
-Following my previous article introducing a renderless component that [resizes a textarea](http://lorisleiva.com/renderless-resizable-textarea/), we'll now explore one that can make all sorts of changes to a textarea's content.
+Following my previous article introducing a renderless component that [resizes a textarea](/renderless-resizable-textarea), we'll now explore one that can make all sorts of changes to a textarea's content.
 
 Contrary to our `<resizable-textarea>` component that acted as a simple wrapper, our new `<editable-textarea>` will go one step further and allow us to control its behaviour from outside of the component.
 
