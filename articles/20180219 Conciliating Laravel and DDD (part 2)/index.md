@@ -44,18 +44,18 @@ Okay let's say we accept implicit attributes. There is actually a deeper problem
  Our `$attributes` property only reflects the columns of our table. We then use accessors and mutators to generate some domain attributes based on some database attributes.
  
 ```php
-    class Cargo extends Model
+class Cargo extends Model
+{
+    public function getTrackingIdAttribute()
     {
-        public function getTrackingIdAttribute()
-        {
-            return $this->id;
-        }
-        
-        public function setTrackingIdAttribute($id)
-        {
-            $this->id = $id;
-        }
+        return $this->id;
     }
+    
+    public function setTrackingIdAttribute($id)
+    {
+        $this->id = $id;
+    }
+}
 ```
  
 * *Why can't we do that with DDD?*

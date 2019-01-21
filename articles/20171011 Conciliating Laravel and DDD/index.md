@@ -130,13 +130,13 @@ This does not mean that we can't leverage the power of Eloquent within the imple
 Unfortunately, this results in using a different static call than what we are used to ...
 
 ```php
-    // From:
-    Customer::find('000-11-1111');
-    
-    // To:
-    CustomerRepository::findBySocialSecurityNumber('000-11-1111');
-    // Note that here we are leveraging real-time
-    // Facades to keep a similar syntax.
+// From:
+Customer::find('000-11-1111');
+
+// To:
+CustomerRepository::findBySocialSecurityNumber('000-11-1111');
+// Note that here we are leveraging real-time
+// Facades to keep a similar syntax.
 ```
 
 ... and adding two files — ergh, doesn't look so good for **rule C**!
