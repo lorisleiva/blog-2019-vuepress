@@ -1,6 +1,6 @@
 ---
 permalink: learn-laravel-deployer-1
-image: covers/learn-laravel-deployer-1.jpg
+image: /covers/learn-laravel-deployer-1.jpg
 description: Deploying your Laravel application without any downtime just got easier. This video helps you get started in 5 minutes only.
 tags: [ 'Laravel Deployer' ]
 date: 2018-04-27 08:58 UTC
