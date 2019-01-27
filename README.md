@@ -2,6 +2,6 @@
 title: Loris Leiva
 metaTitle: Loris Leiva | Recreational programming
 subtitle: Recreational programming
-use: HomeLayout
+layout: HomeLayout
 icon: home
 ---
