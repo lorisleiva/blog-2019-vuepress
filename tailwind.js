@@ -448,6 +448,7 @@ module.exports = {
     require('tailwindcss-plugins/gradients')({
       gradients: {
         'topaz': ['30deg', '#EE7752', '#E73C7E'],
+        'river':   ['to right', '#23A6D5', '#23D5AB'],
       },
       variants: ['responsive', 'hover']
     }),

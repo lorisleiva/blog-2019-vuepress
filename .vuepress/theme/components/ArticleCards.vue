@@ -1,13 +1,13 @@
 <template>
     <div class="flex flex-wrap -mx-5">
         <a 
-            class="article-card flex flex-col mx-5 mb-6 sm:mb-10 rounded-lg shadow-xl hover:shadow-2xl min-h-article-card overflow-hidden border-0"
+            class="article-card relative flex flex-col mx-5 mb-6 sm:mb-10 rounded-lg shadow-xl hover:shadow-2xl min-h-article-card border-0"
             v-for="article in articles"
             :href="article.path"
         >
             <figure>
                 <div 
-                    class="h-48 bg-no-repeat bg-cover bg-center" 
+                    class="h-48 rounded-t-lg bg-no-repeat bg-cover bg-center" 
                     :style="`background-image: url(${article.frontmatter.image})`"
                 ></div>
             </figure>
@@ -27,6 +27,9 @@
                     v-text="article.frontmatter.description"
                 ></section>
             </main>
+            <div v-if="article.frontmatter.ribbon" :class="getRibbonClassFor(article)">
+                <span v-text="article.frontmatter.ribbon"></span>
+            </div>
         </a>
     </div>
 </template>
@@ -34,6 +37,15 @@
 <script>
 export default {
     props: ['articles'],
+    methods: {
+        getRibbonClassFor (article) {
+            switch (article.frontmatter.ribbon) {
+                case 'popular': return 'ribbon river'
+                case 'new': return 'ribbon topaz'     
+                default: return ''
+            }
+        }
+    }
 }
 </script>
 
@@ -52,6 +64,8 @@ export default {
         figure
             flex 1 1 auto
             > div
+                border-bottom-left-radius config('borderRadius.lg')
+                border-top-right-radius 0
                 width 100%
                 height 100%
         main

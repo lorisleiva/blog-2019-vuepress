@@ -5,6 +5,7 @@ description: In this tutorial, we will set up a complex GitLab pipeline that bui
 tags: [ 'Laravel Lab', 'Laravel Deployer' ]
 date: 2018-06-07 23:46 UTC
 icon: launch
+ribbon: popular
 ---
 
 # Laravel deployment using GitLab's pipelines
