@@ -11,7 +11,7 @@
                     :style="`background-image: url(${article.frontmatter.image})`"
                 ></div>
             </figure>
-            <main class="flex flex-1 flex-col p-6">
+            <main class="flex flex-1 flex-col bg-white rounded-b-lg p-6">
                 <header>
                     <div 
                         class="uppercase tracking-wide text-grey-dark text-sm font-semibold" 
@@ -71,6 +71,8 @@ export default {
         main
             flex 0 1 357px
             padding 30px 40px
+            border-bottom-left-radius 0
+            border-top-right-radius config('borderRadius.lg')
             h2
                 font-size config('textSizes.3xl')
             section
