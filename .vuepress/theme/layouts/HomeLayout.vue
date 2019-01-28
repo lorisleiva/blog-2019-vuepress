@@ -2,7 +2,10 @@
     <div class="theme-container">
         <Header/>
         <div class="container lg:max-w-lg xl:max-w-xl"> 
-            <ArticleCards :articles="articles"/>
+            <ArticleCards :articles="$featuredArticles"/>
+        </div>
+        <div class="container">
+            <ArticleList :articles="$otherArticles"/>
         </div>
     </div>
 </template>
@@ -10,19 +13,10 @@
 <script>
 import Header from '@theme/components/Header'
 import ArticleCards from '@theme/components/ArticleCards'
+import ArticleList from '@theme/components/ArticleList'
 
 export default {
-    components: { Header, ArticleCards },
-    computed: {
-        articles () {
-            return this.$site.pages
-                .filter(article => {
-                    return article.regularPath.startsWith('/articles/')
-                        && article.regularPath !== '/articles/'
-                })
-                .sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date))
-        }
-    }
+    components: { Header, ArticleCards, ArticleList },
 }
 </script>
 
