@@ -1,7 +1,7 @@
 <template>
     <div class="theme-container">
         <Header/>
-        <div class="container">
+        <div class="container lg:max-w-lg xl:max-w-xl"> 
             <ArticleCards :articles="articles"/>
         </div>
     </div>
