@@ -8,6 +8,12 @@ module.exports = {
 			name: 'Loris Leiva',
 			twitter: '@lorismatic',
 		},
+		minimumFeaturedArticles: 6,
+		featuredArticles: [
+			'/laravel-deployment-using-gitlab-pipelines/',
+			'/conciliating-laravel-and-ddd/',
+			'/renderless-resizable-textarea/',
+		],
 	},
 	head: [
 		// TODO: Favicons, manifests, etc.
