@@ -15,10 +15,12 @@ export default {
     components: { Header, ArticleCards },
     computed: {
         articles () {
-            return this.$site.pages.filter(article => {
-                return article.regularPath.startsWith('/articles/')
-                    && article.regularPath !== '/articles/'
-            })
+            return this.$site.pages
+                .filter(article => {
+                    return article.regularPath.startsWith('/articles/')
+                        && article.regularPath !== '/articles/'
+                })
+                .sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date))
         }
     }
 }
