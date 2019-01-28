@@ -16,6 +16,7 @@
     "blog"
   ],
   "scripts": {
+    "watch": "npm run dev",
     "dev": "vuepress dev",
     "build": "vuepress build"
   },
