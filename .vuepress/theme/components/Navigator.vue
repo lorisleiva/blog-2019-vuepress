@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { fetchPagesInArray } from '@theme/utils'
 import OnClickOutside from './OnClickOutside'
 import NavigatorButton from './NavigatorButton'
 import NavigatorInput from './NavigatorInput'
@@ -54,10 +55,7 @@ export default {
             return this.query.trim() ? this.$search(this.query, 6) : this.menu
         },
         menu () {
-            const menuPaths = this.$site.themeConfig.nav
-            return this.$site.pages
-                .filter(page => menuPaths.includes(page.path))
-                .sort((a, b) => menuPaths.indexOf(a.path) - menuPaths.indexOf(b.path))
+            return fetchPagesInArray(this.$site.pages, this.$site.themeConfig.nav)
         },
     },
     methods: {

@@ -31,14 +31,21 @@
 </template>
 
 <script>
+import { isArticle } from '@theme/utils'
+
 export default {
     props: ['suggestions', 'query', 'focused'],
     inject: ['focus', 'unfocus', 'go'],
     methods: {
         iconForPage (page) {
-            if (page.frontmatter.icon) return page.frontmatter.icon
-            if (page.regularPath.startsWith('/articles')) return 'news'
-            return 'document'
+            switch (true) {
+                case !! page.frontmatter.icon:
+                    return page.frontmatter.icon
+                case isArticle(page):
+                    return 'news'
+                default:
+                    return 'document'
+            }
         }
     }
 }
