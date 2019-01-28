@@ -1,7 +1,7 @@
 <template>
     <div class="theme-container">
         <Header/>
-        <div class="container lg:max-w-lg xl:max-w-xl"> 
+        <div class="container lg:max-w-lg xl:max-w-xl mb-16"> 
             <div class="flex flex-wrap -mx-5">
                 <ArticleCard 
                     v-for="article in $featuredArticles" 
@@ -12,8 +12,12 @@
             </div>
         </div>
         <div class="container">
-            <ArticleList :articles="$otherArticles"/>
+            <h2>More articles</h2>
         </div>
+        <ArticleList 
+            class="mb-16"
+            :articles="$otherArticles"
+        />
     </div>
 </template>
 
@@ -26,5 +30,3 @@ export default {
     components: { Header, ArticleCard, ArticleList },
 }
 </script>
-
-<style src="@theme/styles" lang="stylus"></style>

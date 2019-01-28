@@ -12,5 +12,3 @@ export default {
     components: { Header },
 }
 </script>
-
-<style src="@theme/styles" lang="stylus"></style>
