@@ -1,6 +1,6 @@
 <template>
     <Moveable>
-        <div class="fixed z-navigator" style="top: 50px; right: 50px;" slot-scope="{ dragged }">
+        <div class="navigator fixed z-navigator" slot-scope="{ dragged }">
             <OnClickOutside :do="() => this.openned && this.toggle()">
                 <div class="relative">
                     <NavigatorButton @click="toggle(dragged)"></NavigatorButton>
@@ -100,3 +100,17 @@ export default {
     },
 }
 </script>
+
+<style lang="stylus">
+.navigator
+    bottom 50px
+    right 50px
+    @media sm
+        bottom auto
+        top 80px
+        right 50px
+    @media md
+        right calc(((100vw - 768px) / 2) + 50px)
+    @media lg
+        right calc(((100vw - 768px) / 2) - 60px)
+</style>
