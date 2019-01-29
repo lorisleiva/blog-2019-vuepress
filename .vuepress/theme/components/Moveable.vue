@@ -4,58 +4,44 @@ export default {
     render (h, context) {
         const slot = context.slots().default[0]
         const vm = slot.context
-
-        let active = false
-        let currentX
-        let currentY
-        let initialX
-        let initialY
-        let xOffset = 0
-        let yOffset = 0
+        let currentX = 0, currentY = 0, previousX, previousY
 
         const dragStart = e => {
-            const dimension = e.type === 'touchmove' ? e.touches[0] : e
-            initialX = dimension.clientX - xOffset
-            initialY = dimension.clientY - yOffset
-            active = true
-        }
-
-        const dragEnd = e => {
-            initialX = currentX
-            initialY = currentY
-            active = false
+            previousX = cursorPosition(e).x - currentX
+            previousY = cursorPosition(e).y - currentY
+            setDocumentEvents(e, drag, dragEnd)
         }
 
         const drag = e => {
-            if (! active) return
             e.preventDefault()
-            const dimension = e.type === 'touchmove' ? e.touches[0] : e
-            currentX = dimension.clientX - initialX
-            currentY = dimension.clientY - initialY
-            xOffset = currentX
-            yOffset = currentY
+            currentX = cursorPosition(e).x - previousX
+            currentY = cursorPosition(e).y - previousY
             vm.$el.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`
         }
 
+        const dragEnd = e => setDocumentEvents(e, null, null)
+
         vm.$on('hook:mounted', () => {
             vm.$el.addEventListener('touchstart', dragStart)
-            vm.$el.addEventListener('touchend', dragEnd)
-            vm.$el.addEventListener('touchmove', drag)
             vm.$el.addEventListener('mousedown', dragStart)
-            vm.$el.addEventListener('mouseup', dragEnd)
-            vm.$el.addEventListener('mousemove', drag)
         })
 
         vm.$on('hook:beforeDestroy', () => {
             vm.$el.addEventListener('touchstart', dragStart)
-            vm.$el.addEventListener('touchend', dragEnd)
-            vm.$el.addEventListener('touchmove', drag)
             vm.$el.addEventListener('mousedown', dragStart)
-            vm.$el.addEventListener('mouseup', dragEnd)
-            vm.$el.addEventListener('mousemove', drag)
         })
 
         return slot
     }
+}
+
+function cursorPosition(event) {
+    const position = event.type === 'touchmove' ? event.touches[0] : event
+    return { x: position.clientX, y: position.clientY }
+}
+
+function setDocumentEvents(event, drag, dragEnd) {
+    document[event.type === 'touchmove' ? 'ontouchmove' : 'onmousemove'] = drag
+    document[event.type === 'touchmove' ? 'ontouchend' : 'onmouseup'] = dragEnd
 }
 </script>
