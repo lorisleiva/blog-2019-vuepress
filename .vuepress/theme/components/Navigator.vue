@@ -1,9 +1,9 @@
 <template>
     <Moveable>
-        <div class="fixed z-navigator" style="top: 50px; right: 50px;">
+        <div class="fixed z-navigator" style="top: 50px; right: 50px;" slot-scope="{ dragged }">
             <OnClickOutside :do="() => this.openned && this.toggle()">
                 <div class="relative">
-                    <NavigatorButton @click="toggle"></NavigatorButton>
+                    <NavigatorButton @click="toggle(dragged)"></NavigatorButton>
                     <div
                         v-show="openned"
                         class="absolute pin-t pin-r shadow-md rounded-lg bg-grey-lighter p-4 -mr-5 -mt-3 w-navigator-sm sm:w-navigator"
@@ -11,11 +11,13 @@
                         <NavigatorInput
                             ref="input"
                             v-model="query"
+                            :dragged="dragged"
                         ></NavigatorInput>
                         <NavigatorResults
                             :query="query"
                             :focused="focused"
                             :suggestions="suggestions"
+                            :dragged="dragged"
                         ></NavigatorResults>
                     </div>
                 </div>
@@ -60,7 +62,9 @@ export default {
         },
     },
     methods: {
-        toggle () {
+        dummyClick () { console.log('dummyClick') },
+        toggle (dragged) {
+            if (dragged) return
             this.openned = ! this.openned
             this.openned
                 ? this.$nextTick(() => this.$refs.input.focus())

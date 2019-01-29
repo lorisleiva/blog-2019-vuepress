@@ -1,18 +1,35 @@
 <script>
 export default {
+    data () {
+        return {
+            distance: 0,
+        }
+    },
+    computed: {
+        dragged () {
+            return this.distance >= 5
+        }
+    },
     render () {
-        let currentX = 0, currentY = 0, initialX, initialY, distance = 0
+        let currentX = 0, currentY = 0, initialX, initialY
+        let startX, startY
 
         const dragStart = e => {
-            initialX = cursorPosition(e).x - currentX
-            initialY = cursorPosition(e).y - currentY
+            const { x, y } = cursorPosition(e)
+            initialX = x - currentX
+            initialY = y - currentY
+            this.distance = 0
+            startX = x
+            startY = y
             setDocumentEvents(e, drag, dragEnd)
         }
 
         const drag = e => {
             e.preventDefault()
-            currentX = cursorPosition(e).x - initialX
-            currentY = cursorPosition(e).y - initialY
+            const { x, y } = cursorPosition(e)
+            currentX = x - initialX
+            currentY = y - initialY
+            this.distance = Math.hypot(startX - x, startY - y)
             this.$el.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`
         }
 
@@ -29,7 +46,9 @@ export default {
             this.$el.addEventListener('mousedown', dragStart)
         })
 
-        return this.$slots.default[0]
+        return this.$scopedSlots.default
+            ? this.$scopedSlots.default({ distance: this.distance, dragged: this.dragged })
+            : this.$slots.default[0]
     }
 }
 
