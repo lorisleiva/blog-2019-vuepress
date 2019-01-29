@@ -1,5 +1,5 @@
 <template>
-    <moveable>
+    <Moveable>
         <div class="fixed z-navigator" style="top: 50px; right: 50px;">
             <OnClickOutside :do="() => this.openned && this.toggle()">
                 <div class="relative">
@@ -21,7 +21,7 @@
                 </div>
             </OnClickOutside>
         </div>
-    </moveable>
+    </Moveable>
 </template>
 
 <script>

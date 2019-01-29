@@ -1,9 +1,6 @@
 <script>
 export default {
-    functional: true,
-    render (h, context) {
-        const slot = context.slots().default[0]
-        const vm = slot.context
+    render () {
         let currentX = 0, currentY = 0, previousX, previousY
 
         const dragStart = e => {
@@ -16,22 +13,22 @@ export default {
             e.preventDefault()
             currentX = cursorPosition(e).x - previousX
             currentY = cursorPosition(e).y - previousY
-            vm.$el.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`
+            this.$el.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`
         }
 
         const dragEnd = e => setDocumentEvents(e, null, null)
 
-        vm.$on('hook:mounted', () => {
-            vm.$el.addEventListener('touchstart', dragStart)
-            vm.$el.addEventListener('mousedown', dragStart)
+        this.$on('hook:mounted', () => {
+            this.$el.addEventListener('touchstart', dragStart)
+            this.$el.addEventListener('mousedown', dragStart)
         })
 
-        vm.$on('hook:beforeDestroy', () => {
-            vm.$el.addEventListener('touchstart', dragStart)
-            vm.$el.addEventListener('mousedown', dragStart)
+        this.$on('hook:beforeDestroy', () => {
+            this.$el.addEventListener('touchstart', dragStart)
+            this.$el.addEventListener('mousedown', dragStart)
         })
 
-        return slot
+        return this.$slots.default[0]
     }
 }
 
