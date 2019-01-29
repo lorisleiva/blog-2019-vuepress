@@ -19,6 +19,7 @@ export default {
         const dragEnd = e => setDocumentEvents(e, null, null)
 
         this.$on('hook:mounted', () => {
+            this.$el.style['touch-action'] = 'none'
             this.$el.addEventListener('touchstart', dragStart)
             this.$el.addEventListener('mousedown', dragStart)
         })
@@ -33,7 +34,8 @@ export default {
 }
 
 function cursorPosition(event) {
-    const position = event.type === 'touchmove' ? event.touches[0] : event
+    const isMobile = ['touchmove', 'touchstart'].includes(event.type)
+    const position = isMobile ? event.touches[0] : event
     return { x: position.clientX, y: position.clientY }
 }
 
