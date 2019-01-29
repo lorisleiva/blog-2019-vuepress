@@ -1,8 +1,8 @@
 <template>
-    <div class="fixed w-full z-navigator">
-        <div class="container flex justify-end">
+    <moveable>
+        <div class="fixed z-navigator" style="top: 50px; right: 50px;">
             <OnClickOutside :do="() => this.openned && this.toggle()">
-                <div class="relative mt-10 sm:mt-16 md:mt-24 mr-4 md:mr-2 lg:-mr-16 xl:-mr-32">
+                <div class="relative">
                     <NavigatorButton @click="toggle"></NavigatorButton>
                     <div
                         v-show="openned"
@@ -21,18 +21,19 @@
                 </div>
             </OnClickOutside>
         </div>
-    </div>
+    </moveable>
 </template>
 
 <script>
 import { fetchPagesInArray } from '@theme/utils'
+import Moveable from './Moveable'
 import OnClickOutside from './OnClickOutside'
 import NavigatorButton from './NavigatorButton'
 import NavigatorInput from './NavigatorInput'
 import NavigatorResults from './NavigatorResults'
 
 export default {
-    components: { OnClickOutside, NavigatorButton, NavigatorInput, NavigatorResults },
+    components: { Moveable, OnClickOutside, NavigatorButton, NavigatorInput, NavigatorResults },
     provide () {
         return {
             toggle: this.toggle,
