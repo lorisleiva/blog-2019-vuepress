@@ -1,7 +1,7 @@
 <template>
-    <OnClickOutside :do="() => this.openned && this.toggle()">
-        <div class="fixed w-full z-navigator">
-            <div class="container flex justify-end">
+    <div class="fixed w-full z-navigator">
+        <div class="container flex justify-end">
+            <OnClickOutside :do="() => this.openned && this.toggle()">
                 <div class="relative mt-10 sm:mt-16 md:mt-24 mr-4 md:mr-2 lg:-mr-16 xl:-mr-32">
                     <NavigatorButton @click="toggle"></NavigatorButton>
                     <div
@@ -19,9 +19,9 @@
                         ></NavigatorResults>
                     </div>
                 </div>
-            </div>
+            </OnClickOutside>
         </div>
-    </OnClickOutside>
+    </div>
 </template>
 
 <script>
