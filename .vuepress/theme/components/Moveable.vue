@@ -1,18 +1,18 @@
 <script>
 export default {
     render () {
-        let currentX = 0, currentY = 0, previousX, previousY
+        let currentX = 0, currentY = 0, initialX, initialY, distance = 0
 
         const dragStart = e => {
-            previousX = cursorPosition(e).x - currentX
-            previousY = cursorPosition(e).y - currentY
+            initialX = cursorPosition(e).x - currentX
+            initialY = cursorPosition(e).y - currentY
             setDocumentEvents(e, drag, dragEnd)
         }
 
         const drag = e => {
             e.preventDefault()
-            currentX = cursorPosition(e).x - previousX
-            currentY = cursorPosition(e).y - previousY
+            currentX = cursorPosition(e).x - initialX
+            currentY = cursorPosition(e).y - initialY
             this.$el.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`
         }
 
