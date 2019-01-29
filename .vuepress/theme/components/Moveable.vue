@@ -38,7 +38,9 @@ function cursorPosition(event) {
 }
 
 function setDocumentEvents(event, drag, dragEnd) {
-    document[event.type === 'touchmove' ? 'ontouchmove' : 'onmousemove'] = drag
-    document[event.type === 'touchmove' ? 'ontouchend' : 'onmouseup'] = dragEnd
+    document.ontouchmove = drag
+    document.onmousemove = drag
+    document.ontouchend = dragEnd
+    document.onmouseup = dragEnd
 }
 </script>
