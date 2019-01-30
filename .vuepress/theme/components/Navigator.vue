@@ -1,29 +1,47 @@
 <template>
-    <Moveable>
-        <div class="navigator fixed z-navigator" slot-scope="{ dragged }">
-            <OnClickOutside :do="() => this.openned && this.toggle()">
-                <div class="relative">
-                    <NavigatorButton @click="toggle(dragged)"></NavigatorButton>
-                    <div
-                        v-show="openned"
-                        class="absolute pin-t pin-r shadow-md rounded-lg bg-grey-lighter p-4 -mr-5 -mt-3 w-navigator-sm sm:w-navigator"
-                    >
-                        <NavigatorInput
-                            ref="input"
-                            v-model="query"
-                            :dragged="dragged"
-                        ></NavigatorInput>
-                        <NavigatorResults
-                            :query="query"
-                            :focused="focused"
-                            :suggestions="suggestions"
-                            :dragged="dragged"
-                        ></NavigatorResults>
+    <div>
+        <Moveable>
+            <div class="navigator fixed z-navigator" slot-scope="{ dragged }">
+                <OnClickOutside :do="() => this.openned && this.toggle()">
+                    <div class="relative">
+                        <NavigatorButton @click="toggle(dragged)"></NavigatorButton>
+                        <div
+                            v-show="openned"
+                            class="hidden sm:block absolute pin-t pin-r shadow-md rounded-lg bg-grey-lighter p-4 -mr-5 -mt-3 w-navigator"
+                        >
+                            <NavigatorInput
+                                ref="input"
+                                v-model="query"
+                                :dragged="dragged"
+                            ></NavigatorInput>
+                            <NavigatorResults
+                                :query="query"
+                                :focused="focused"
+                                :suggestions="suggestions"
+                                :dragged="dragged"
+                            ></NavigatorResults>
+                        </div>
                     </div>
-                </div>
-            </OnClickOutside>
+                </OnClickOutside>
+            </div>
+        </Moveable>
+        <div
+            v-show="openned"
+            class="sm:hidden shadow-md fixed pin-t pin-x bg-grey-lighter p-4 pt-6 z-navigator"
+        >
+            <NavigatorInput
+                ref="input"
+                v-model="query"
+                :dragged="false"
+            ></NavigatorInput>
+            <NavigatorResults
+                :query="query"
+                :focused="focused"
+                :suggestions="suggestions"
+                :dragged="false"
+            ></NavigatorResults>
         </div>
-    </Moveable>
+    </div>
 </template>
 
 <script>
