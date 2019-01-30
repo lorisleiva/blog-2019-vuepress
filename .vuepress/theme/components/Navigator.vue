@@ -30,7 +30,7 @@
             class="sm:hidden shadow-md fixed pin-t pin-x bg-grey-lighter p-4 pt-6 z-navigator"
         >
             <NavigatorInput
-                ref="input"
+                ref="inputMobile"
                 v-model="query"
                 :dragged="false"
             ></NavigatorInput>
@@ -84,9 +84,11 @@ export default {
         toggle (dragged) {
             if (dragged) return
             this.openned = ! this.openned
-            this.openned
-                ? this.$nextTick(() => this.$refs.input.focus())
-                : this.reset()
+            if (! this.openned) return this.reset()
+            this.$nextTick(() => {
+                this.$refs.input.focus()
+                this.$refs.inputMobile.focus()
+            })
         },
         go (event, index) {
             // Allow cmd+click to open a new tab.
