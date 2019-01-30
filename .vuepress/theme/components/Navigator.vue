@@ -133,4 +133,6 @@ export default {
         right calc(((100vw - 768px) / 2) + 50px)
     @media lg
         right calc(((100vw - 768px) / 2) - 60px)
+    @media xl
+        right calc(((100vw - 768px) / 2) - 80px)
 </style>
