@@ -2,7 +2,12 @@
     <div>
         <Content />
         <div class="container">
-            <Disqus shortname="loris-leiva" :identifier="disqusIdentifier" :title="$page.title" />
+            <Disqus 
+                shortname="loris-leiva" 
+                :title="$page.title"
+                :identifier="disqusIdentifier" 
+                :url="disqusUrl"
+            />
         </div>
     </div>
 </template>
@@ -13,7 +18,10 @@ export default {
     computed: {
         disqusIdentifier () {
             return this.$page.frontmatter.disqus || this.$page.path
-        }
+        },
+        disqusUrl () {
+            return this.$themeConfig.domain + this.$page.path
+        },
     }
 }
 </script>
