@@ -5,6 +5,7 @@ description: In this article we'll go one step further and ask the Google API to
 tags: [ 'Laravel Lab' ]
 date: 2018-10-03 10:37 UTC
 ribbon: new
+disqus: ghost-5bb0efc3f16f2160d3040cce
 ---
 
 # Google Calendar part 3: Webhook synchronizations

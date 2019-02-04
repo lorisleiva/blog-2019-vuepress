@@ -4,6 +4,7 @@ image: /covers/google-calendar-part-2-periodic-synchronizations.jpg
 description: Learn how to periodically synchronize your users' calendars and events from the Google API.
 tags: [ 'Laravel Lab' ]
 date: 2018-09-20 20:13 UTC
+disqus: ghost-5b9e24bbf01e18375ea3cf31
 ---
 
 # Google Calendar part 2: Periodic synchronizations

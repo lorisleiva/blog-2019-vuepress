@@ -4,6 +4,7 @@ image: /covers/so-i-wrote-my-dotfiles.jpg
 description: After a whole weekend dedicated to writing my dotfiles, here’s my reflection on this experience.
 tags: [ 'Tooling' ]
 date: 2018-04-15 21:38 UTC
+disqus: ghost-5ad35cf3b8bc5d0907cc0097
 ---
 
 # So I wrote my dotfiles...

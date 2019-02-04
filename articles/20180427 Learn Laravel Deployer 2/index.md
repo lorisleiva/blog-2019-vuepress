@@ -4,6 +4,7 @@ image: /covers/learn-laravel-deployer-2.jpg
 description: It's set up time! Let's see how to create and configure a server that can host your Laravel application.
 tags: [ 'Laravel Deployer' ]
 date: 2018-04-27 08:58 UTC
+disqus: ghost-5ae2d21eb70f970868cfdb18
 ---
 
 # Setting up a Laravel server

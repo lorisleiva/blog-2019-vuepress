@@ -4,6 +4,7 @@ image: /covers/renderless-resizable-textarea.gif
 description: Following the eye-opening course on Advance Vue Component Design from Adam Wathan, here is a renderless component that resize a textarea based on its content.
 tags: [ 'Vue Lab' ]
 date: 2018-05-11 12:31 UTC
+disqus: ghost-5af5828b04de1b2a0fd20f58
 ---
 
 # Renderless resizable textarea

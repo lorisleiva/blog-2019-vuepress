@@ -4,6 +4,7 @@ image: /covers/using-gitlabs-pipeline-with-laravel.jpg
 description: GitLab's pipelines can be scary at first (because you know... Docker) but they're really easy to setup and very helpful. Here's how I set up the pipelines of my Laravel applications on Gitlab.
 tags: [ 'Laravel Lab' ]
 date: 2018-06-03 16:33 UTC
+disqus: ghost-5b13ebd92cd1381e6de492f0
 ---
 
 # Using GitLab's pipeline with Laravel

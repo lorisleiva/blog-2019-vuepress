@@ -6,6 +6,7 @@ tags: [ 'Laravel Lab', 'Laravel Deployer' ]
 date: 2018-06-07 23:46 UTC
 icon: launch
 ribbon: popular
+disqus: ghost-5b1869552cd1381e6de492f7
 ---
 
 # Laravel deployment using GitLab's pipelines

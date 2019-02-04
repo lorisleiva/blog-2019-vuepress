@@ -4,6 +4,7 @@ image: /covers/zero-downtime-deployment.jpg
 description: I released a Laravel package that gives Artisan the power of zero downtime deployment. Get started in three simple steps.
 tags: [ 'Laravel Lab', 'Laravel Deployer' ]
 date: 2018-03-11 22:41 UTC
+disqus: ghost-5aa5a48c191ea008997df9ba
 ---
 
 # Zero-downtime deployment
