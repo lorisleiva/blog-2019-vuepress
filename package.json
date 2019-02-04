@@ -24,7 +24,7 @@
     "svg-inline-loader": "^0.8.0",
     "tailwindcss": "^0.7.3",
     "tailwindcss-plugins": "^0.1.2",
-    "vuepress": "^1.0.0-alpha.32",
+    "vuepress": "^1.0.0-alpha.36",
     "vuepress-plugin-seo": "^0.1.2"
   }
 }
