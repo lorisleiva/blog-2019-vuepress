@@ -1,7 +1,7 @@
 <template>
-    <a 
+    <router-link 
         class="article-card relative flex flex-col rounded-lg shadow-xl hover:shadow-2xl min-h-article-card border-0"
-        :href="article.path"
+        :to="article.path"
     >
         <figure>
             <div 
@@ -28,7 +28,7 @@
         <div v-if="article.frontmatter.ribbon" :class="ribbonClass">
             <span v-text="article.frontmatter.ribbon"></span>
         </div>
-    </a>
+    </router-link>
 </template>
 
 <script>
