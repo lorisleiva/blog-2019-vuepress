@@ -2,12 +2,14 @@
     <div>
         <Content />
         <div class="container">
-            <Disqus 
-                shortname="loris-leiva" 
-                :title="$page.title"
-                :identifier="disqusIdentifier" 
-                :url="disqusUrl"
-            />
+            <ClientOnly>
+                <Disqus 
+                    shortname="loris-leiva" 
+                    :title="$page.title"
+                    :identifier="disqusIdentifier" 
+                    :url="disqusUrl"
+                />
+            </ClientOnly>
         </div>
     </div>
 </template>
