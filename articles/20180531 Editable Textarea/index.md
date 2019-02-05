@@ -3,7 +3,7 @@ permalink: renderless-editable-textarea
 image: /covers/renderless-editable-textarea.gif
 description: In this article, we take renderless components one step further by treating them as Facades.
 tags: [ 'Vue Lab' ]
-date: 2018-05-31 21:03 UTC
+date: 2018-05-31T21:03:00Z
 disqus: ghost-5b0fd47504de1b2a0fd20f60
 ---
 

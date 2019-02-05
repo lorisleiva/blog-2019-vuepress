@@ -3,7 +3,7 @@ permalink: conciliating-laravel-and-ddd
 image: /covers/conciliating-laravel-and-ddd.jpg
 description: This article focuses on finding common grounds for using Domain-Driven Design in the Laravel framework in a way that leverages a maximum of Laravel features.
 tags: [ 'Domain Modeling' ]
-date: 2017-10-13 12:07 UTC
+date: 2017-10-13T12:07:00Z
 disqus: ghost-59ddddc94c4b014f2099543c
 ---
 

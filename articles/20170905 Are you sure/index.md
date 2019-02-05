@@ -3,7 +3,7 @@ permalink: are-you-sure
 image: /covers/are-you-sure.png
 description: For those time where you don't want the user to delete elements by mistake but don't want to bother him/her with a modal neither.
 tags: [ 'Vue Lab' ]
-date: 2017-09-05 12:45 UTC
+date: 2017-09-05T12:45:00Z
 disqus: ghost-59ae9b67babbbac0421d9c14
 ---
 

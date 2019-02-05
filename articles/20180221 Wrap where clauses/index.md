@@ -3,7 +3,7 @@ permalink: wrap-where-clauses
 image: /covers/wrap-where-clauses.jpg
 description: Laravel relationship methods are great to abstract database relationships but they also work really well to abstract complex relationships that span through multiple tables.
 tags: [ 'Laravel Lab' ]
-date: 2018-02-21 17:27 UTC
+date: 2018-02-21T17:27:00Z
 disqus: ghost-5a8d735f191ea008997df9a4
 ---
 
