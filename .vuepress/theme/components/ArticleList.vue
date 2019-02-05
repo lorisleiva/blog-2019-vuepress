@@ -2,7 +2,7 @@
     <div>
         <router-link
             v-for="article in articles"
-            :key="article.path"
+            :key="article.key"
             :to="article.path"
             class="block py-6 hover:bg-grey-lightest border-b border-t border-transparent hover:border-grey hover:text-black"
         >
