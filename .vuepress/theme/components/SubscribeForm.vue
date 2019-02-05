@@ -14,7 +14,7 @@
         <div class="flex justify-center">
             <div class="flex w-full max-w-sm rounded-lg shadow-md">
                 <input 
-                    class="flex-1 p-3 rounded-l-lg border-2 border-white bg-white"
+                    class="w-full p-3 rounded-l-lg border-2 border-white bg-white"
                     type="email" 
                     name="EMAIL" 
                     id="mce-EMAIL" 
@@ -22,8 +22,8 @@
                     required
                 >
                 <button 
-                    class="w-28 rounded-r-lg border-2 border-l-0 border-white text-white tracking-wide uppercase"
-                    :class="{ 'text-2xl': submitHovered }"
+                    class="w-24 sm:w-28 rounded-r-lg border-2 border-l-0 border-white text-white tracking-wide uppercase flex-no-shrink"
+                    :class="submitHovered ? 'text-2xl' : 'text-sm sm:text-base'"
                     type="submit" 
                     id="mc-embedded-subscribe"
                     v-text="submitText"
