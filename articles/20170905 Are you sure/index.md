@@ -23,10 +23,10 @@ A bit more context.
 
 Usage.
 ```html
-    <delete
-        :url="/api/resource/1"
-        @delete="deleteResource(1)"
-    ></delete>
+<delete
+    :url="/api/resource/1"
+    @delete="deleteResource(1)"
+></delete>
 ```
 
 ## One component, five states.
@@ -223,7 +223,7 @@ The last thing we haven't talked about in the state diagram is the status timeou
 A naive approach would be:
 
 ```js
-    setTimeout(() => { this.status = 'idle'; }, 3000);
+setTimeout(() => { this.status = 'idle'; }, 3000);
 ```
 
 The problem with that is that if you happen to manipulate the component within those 3 seconds, it will go back to `idle` no matter what you were doing. This can become a real mess when you have several of those timing out. **The trick here is to check, when we timeout, if the current status is the same as the initial status.** That is, if we were on `confirm` when we set the timeout and we are still on `confirm` afterwards, we can be fairly confident that we can go back to `idle`.
@@ -309,16 +309,16 @@ To fix this we will wrap our axios promise in a `Promise.all` that contains a ti
 Here is our new `submit()` method. Note that if no `url` prop is given, then our real promise is `null` and therefore the timer will be the only promise used which is the expected behavior.
 
 ```js
-    Promise.all([
+Promise.all([
+
+    // Real promise.
+    this.url ? axios.delete(this.url) : null,
     
-        // Real promise.
-        this.url ? axios.delete(this.url) : null,
-        
-        // Promise ensuring at least 300ms of execution.
-        new Promise((resolve, _) => setTimeout(resolve, 300))
-    ])
-    
-    .then(this.onSuccess).catch(this.onError);
+    // Promise ensuring at least 300ms of execution.
+    new Promise((resolve, _) => setTimeout(resolve, 300))
+])
+
+.then(this.onSuccess).catch(this.onError);
 ```
 
 The problem is that this implementation doesn't work when the request is failing. This is due to the fail-fast ability of `Promise.all`. Basically, `Promise.all` waits until all given promises have resolved to resolve but **as soon as** one of them fails, it will fail instantly.
@@ -328,17 +328,17 @@ The problem is that this implementation doesn't work when the request is failing
 There doesn't seem to be any glamorous way of fixing this issue. The approach will we take is to ensure the request promise never fails but returns an `Error` object instead. Then instead of defining a `catch` callback, we check whether the request promise resolved in an error.
 
 ```js
-    Promise.all([
-    
-        // Real promise.
-        this.url ? axios.delete(this.url).catch(_ => new Error) : null,
+Promise.all([
 
-        // Promise ensuring at least 300ms of execution. 
-        new Promise((resolve, _) => setTimeout(resolve, 300))
-    ])
+    // Real promise.
+    this.url ? axios.delete(this.url).catch(_ => new Error) : null,
 
-    // Succeeds or fails based on axios's return value only.
-    .then(([value]) => value instanceof Error ? this.onError() : this.onSuccess());
+    // Promise ensuring at least 300ms of execution. 
+    new Promise((resolve, _) => setTimeout(resolve, 300))
+])
+
+// Succeeds or fails based on axios's return value only.
+.then(([value]) => value instanceof Error ? this.onError() : this.onSuccess());
 ```
 
 ## Conclusion
