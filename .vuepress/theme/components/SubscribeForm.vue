@@ -14,7 +14,7 @@
         <div class="flex justify-center">
             <div class="flex w-full max-w-sm rounded-lg shadow-md">
                 <input 
-                    class="w-full p-3 rounded-l-lg border-2 border-white bg-white"
+                    class="w-full p-3 rounded-l-lg rounded-r-none appearance-none border-2 border-white bg-white"
                     type="email" 
                     name="EMAIL" 
                     id="mce-EMAIL" 
