@@ -4,7 +4,7 @@
             <div class="flex flex-wrap -mx-5">
                 <ArticleCard 
                     v-for="article in $featuredArticles" 
-                    :key="article.key"
+                    :key="article.path"
                     :article="article"
                     class="mx-5 mb-6 sm:mb-10"
                 />
