@@ -12,3 +12,17 @@ export const fetchPagesInArray = (pages, keys) => pages
 
 export const excludePages = (pages, pagesToExclude) =>
     pages.filter(page => ! pagesToExclude.includes(page))
+
+export const randomElement = arr => 
+    arr[Math.floor(Math.random() * arr.length)]
+
+export const randomElements = ([...arr], n = 1) => {
+    let m = arr.length
+    while (m) {
+        const i = Math.floor(Math.random() * m--)
+        const temp = arr[i]
+        arr[i] = arr[m]
+        arr[m] = temp
+    }
+    return arr.slice(0, n)
+}

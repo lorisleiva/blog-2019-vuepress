@@ -20,13 +20,14 @@
             </ClientOnly>
         </div>
         <div class="bg-grey-lighter mt-16">
-            <div class="container pt-16 pb-8">
+            <div class="container py-4 sm:py-8">
+                <h2>Related articles</h2>
                 <div class="flex flex-wrap -mx-5">
                     <ArticleCard 
-                        v-for="article in $featuredArticles.slice(0, 2)" 
+                        v-for="article in relatedArticles" 
                         :key="article.key"
                         :article="article"
-                        class="mx-5 mb-6 sm:mb-10"
+                        class="mx-5 mb-8"
                     />
                 </div>
             </div>
@@ -35,6 +36,7 @@
 </template>
 
 <script>
+import { randomElements, excludePages } from '@theme/utils'
 import SubscribeForm from '@theme/components/SubscribeForm'
 import ArticleMetaData from '@theme/components/ArticleMetaData'
 import ArticleCard from '@theme/components/ArticleCard'
@@ -48,6 +50,13 @@ export default {
         disqusUrl () {
             return this.$themeConfig.domain + this.$page.path
         },
+        relatedArticles () {
+            const tags = this.$page.frontmatter.tags || []
+            const relatedArticles = this.$articles
+                .filter(a => (a.frontmatter.tags || []).some(tag => tags.includes(tag)))
+
+            return randomElements(excludePages(relatedArticles, [this.$page]), 2)
+        }
     }
 }
 </script>

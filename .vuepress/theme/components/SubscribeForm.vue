@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import { randomElement } from '@theme/utils'
+
 export default {
     props: {
         placeholder: { default: '🤖 Updates for humans..' },
@@ -50,7 +52,7 @@ export default {
     computed: {
         submitText () {
             return this.submitHovered
-                ? this.submitEmojis[Math.floor(Math.random() * this.submitEmojis.length)]
+                ? randomElement(this.submitEmojis)
                 : this.submitButton
         }
     },
