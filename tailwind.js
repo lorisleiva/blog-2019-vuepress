@@ -371,7 +371,8 @@ module.exports = {
     'auto': 'auto',
     '0': 0,
     '10': 10,
-    'navigator': 20,
+    'article-card': 20,
+    'navigator': 30,
   },
 
   opacity: {

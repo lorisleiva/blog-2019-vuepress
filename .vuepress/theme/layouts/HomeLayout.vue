@@ -7,6 +7,7 @@
                     :key="article.key"
                     :article="article"
                     class="mx-5 mb-6 sm:mb-10"
+                    highlight-every-third
                 />
             </div>
         </div>

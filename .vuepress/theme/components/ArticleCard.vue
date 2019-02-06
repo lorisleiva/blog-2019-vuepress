@@ -1,6 +1,7 @@
 <template>
     <router-link 
-        class="article-card relative flex flex-col rounded-lg shadow-xl hover:shadow-2xl min-h-article-card border-0"
+        class="article-card relative flex flex-col rounded-lg shadow-xl hover:shadow-2xl min-h-article-card border-0 z-article-card"
+        :class="{ 'highlight-every-third': highlightEveryThird }"
         :to="article.path"
     >
         <figure>
@@ -33,7 +34,10 @@
 
 <script>
 export default {
-    props: ['article'],
+    props: {
+        article: Object,
+        highlightEveryThird: Boolean,
+    },
     computed: {
         ribbonClass () {
             switch (this.article.frontmatter.ribbon) {
@@ -55,7 +59,7 @@ export default {
         transform translate3D(0, -1px, 0) scale(1.02)
 
 @media md
-    .article-card:nth-child(3n+1)
+    .article-card.highlight-every-third:nth-child(3n+1)
         flex 1 1 100%
         flex-direction row
         figure

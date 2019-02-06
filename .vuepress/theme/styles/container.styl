@@ -9,6 +9,13 @@ $container
         padding-left 0
         padding-right 0
 
+$container-lg
+    @extends $container
+    @media lg
+        max-width config('width.bleeding-out-of-container-sm')
+    @media xl
+        max-width config('width.bleeding-out-of-container')
+
 $break-out-of-container
     width 100vw
     position relative
@@ -40,6 +47,9 @@ $bleeding-out-of-container
 
 .container
     @extends $container
+
+.container-lg
+    @extends $container-lg
 
 .break-out-of-container
     @extends $break-out-of-container
