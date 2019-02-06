@@ -80,7 +80,11 @@ export default {
         this.update()
         window.addEventListener('scroll', this.update, { passive: true })
         window.addEventListener('resize', this.update, false)
-    }
+    },
+    beforeDestroy () {
+        window.removeEventListener('scroll', this.update)
+        window.removeEventListener('resize', this.update)
+    },
 }
 </script>
 
