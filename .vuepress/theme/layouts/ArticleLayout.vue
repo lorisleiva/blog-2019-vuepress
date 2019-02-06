@@ -1,5 +1,6 @@
 <template>
     <div>
+        <FloatingHeader />
         <div class="container mb-8">
             <ArticleMetaData />
         </div>
@@ -37,12 +38,13 @@
 
 <script>
 import { randomElements, excludePages } from '@theme/utils'
-import SubscribeForm from '@theme/components/SubscribeForm'
+import FloatingHeader from '@theme/components/FloatingHeader'
 import ArticleMetaData from '@theme/components/ArticleMetaData'
+import SubscribeForm from '@theme/components/SubscribeForm'
 import ArticleCard from '@theme/components/ArticleCard'
 
 export default {
-    components: { SubscribeForm, ArticleMetaData, ArticleCard },
+    components: { FloatingHeader, ArticleMetaData, SubscribeForm, ArticleCard },
     computed: {
         disqusIdentifier () {
             return this.$page.frontmatter.disqus || this.$page.path

@@ -373,6 +373,7 @@ module.exports = {
     '10': 10,
     'article-card': 20,
     'navigator': 30,
+    'floating-header': 40,
   },
 
   opacity: {

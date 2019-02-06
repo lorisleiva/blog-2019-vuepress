@@ -1,5 +1,5 @@
 <template>
-    <div class="h-3" :style="animatedGradient"></div>
+    <div :style="animatedGradient"></div>
 </template>
 
 <script>
