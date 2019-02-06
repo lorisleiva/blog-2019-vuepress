@@ -54,7 +54,8 @@ export default {
     computed: {
         progress () {
             if (this.progressMax === 0) return 0
-            return Math.floor(this.progressValue / this.progressMax * 1000) / 10
+            const percent = Math.floor(this.progressValue / this.progressMax * 1000) / 10
+            return Math.min(percent, 100)
         },
         isVisible () {
             return this.progressValue >= 100
@@ -62,8 +63,9 @@ export default {
     },
     methods: {
         update () {
+            const content = document.querySelector('.content')
             const progressValue = window.scrollY
-            const progressMax = document.body.scrollHeight - window.innerHeight
+            const progressMax = content.scrollHeight + content.offsetTop - window.innerHeight
             this.progressMax = progressMax
             this.progressValue = progressValue
         },
