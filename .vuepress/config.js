@@ -10,9 +10,10 @@ module.exports = {
 		},
 		minimumFeaturedArticles: 6,
 		featuredArticles: [
-			'/laravel-deployment-using-gitlab-pipelines/',
+			'/introducing-javel/',
 			'/conciliating-laravel-and-ddd/',
 			'/renderless-resizable-textarea/',
+			'/laravel-deployment-using-gitlab-pipelines/',
 		],
 	},
 	head: [
