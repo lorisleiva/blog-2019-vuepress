@@ -7,7 +7,7 @@ date: 2019-02-11T12:34:00Z
 ribbon: new
 ---
 # Introducing Javel
-When passing information from Laravel (or another framework) to your JavaScript, It’s easy to forget that you do not have to work with plain JavaScript objects. 
+When passing information from Laravel (or another framework) to your JavaScript, it’s easy to forget that you do not have to work with plain JavaScript objects. 
 
 Take the following Vue.js component as an example.
 
@@ -35,7 +35,7 @@ export default {
 }
 ```
 
-This is a typical component that end up with all the burden of creating custom accessors, mutators and asynchronous calls to our server.
+This is a typical component that ends up with all the burden of creating custom accessors, mutators and asynchronous calls to our server.
 
 If we assume this component handles the edition of an article, we can imagine that some of this logic will also be needed for other components, e.g. creating articles, finding related articles, presenting all the comments of an article, etc.
 
@@ -106,7 +106,7 @@ Javel, provides us with a powerful base model that you can configure to match th
 
 <GithubButton url="https://github.com/lorisleiva/javel" title="Javel on GitHub"></GithubButton>
 
-Let rewrite our `Article` class using Javel.
+Let's rewrite our `Article` class using Javel.
 
 ```js
 import Model from ‘javel’
@@ -245,11 +245,11 @@ export default class Article extends Model
 ```
 
 ## Mixins in your JavaScript
-As the previous questions have shown, each project have their own requirements and configuration is key when defining generic models. 
+As the previous questions have shown, each project has their own requirements and configuration is key when defining generic models. 
 
-That’s why Javel is written as a set of mixins. Each mixin contribute to the models by providing its own piece of logic. At the time of writing this article, these are the mixins that are included in Javel’s model:
+That’s why Javel is written as a set of mixins. Each mixin contributes to the models by providing its own piece of logic. At the time of writing this article, these are the mixins that are included in Javel’s model:
 
-- [HasAttributes](https://github.com/lorisleiva/javel/blob/0b3b64d245561392497c850aa69e0c6b2fc0a767/docs/HasAttributes.md) Defines the basis of getting and setting attributes on a Model and provide some useful methods like `primaryKey`, `exists`, `is`, `clone`, etc.
+- [HasAttributes](https://github.com/lorisleiva/javel/blob/0b3b64d245561392497c850aa69e0c6b2fc0a767/docs/HasAttributes.md) Defines the basis of getting and setting attributes on a Model and provides some useful methods like `primaryKey`, `exists`, `is`, `clone`, etc.
 - [HasRelationships](https://github.com/lorisleiva/javel/blob/0b3b64d245561392497c850aa69e0c6b2fc0a767/docs/HasRelationships.md) Enables models to configure their relationships with each other so that their attributes are automatically wrapped in the right model.
 - [KeepsParentRelationship](https://github.com/lorisleiva/javel/blob/0b3b64d245561392497c850aa69e0c6b2fc0a767/docs/KeepsParentRelationship.md) Ensures each child relationship keeps track of its parent and how to access itself from it. This enables models to climb up the relationship tree and even remove themselves from their parent when deleted.
 - [MakesRequests](https://github.com/lorisleiva/javel/blob/0b3b64d245561392497c850aa69e0c6b2fc0a767/docs/MakesRequests.md) Introduces async actions (`find`, `create`, `update`, etc.) to conveniently request the server and provides all the hooks necessary to customize how to handle your request/response proctol for each model.
@@ -273,7 +273,7 @@ class Model extends mix(BaseModel).with(MyMixin) {
 ```
 
 ## Conclusions
-Since we are encouraged to break down our applications into small components, we can easily end up giving them to much responsibility. Individually they look nice and small and they are easy to reason about. But as a whole, we can find our model logic duplicated and scattered everywhere.
+Since we are encouraged to break down our applications into small components, we can easily end up giving them too much responsibility. Individually they look nice and small and they are easy to reason with. But as a whole, we can find our model logic duplicated and scattered everywhere.
 
 ![Diagram of components with logic everywhere](./Components-before-models.png)
 
