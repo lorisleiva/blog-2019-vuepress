@@ -86,7 +86,7 @@ We can now interact with our articles in a much more intuitive Laravel-ish way.
 
 ```js
 let article = await Article.find(1)
-article = await article.update(newData)
+await article.update(newData)
 
 article.url
 article.isPublished
