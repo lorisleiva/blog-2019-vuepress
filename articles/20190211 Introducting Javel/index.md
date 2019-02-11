@@ -76,7 +76,7 @@ export default class Article
         this.setAttributes(data)
     }
 
-    get articleUrl () { /* ... */ },
+    get url () { /* ... */ },
     get isPublished () { /* ... */ },
     get readingTime () { /* ... */ },
 }
@@ -113,7 +113,7 @@ import Model from ‘javel’
 
 export default class Article extends Model
 {
-    get articleUrl () { /* ... */ },
+    get url () { /* ... */ },
     get isPublished () { /* ... */ },
     get readingTime () { /* ... */ },
 }
