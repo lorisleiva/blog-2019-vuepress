@@ -10,10 +10,11 @@ module.exports = {
 		},
 		minimumFeaturedArticles: 6,
 		featuredArticles: [
-			'/introducing-javel/',
-			'/conciliating-laravel-and-ddd/',
-			'/renderless-resizable-textarea/',
 			'/laravel-deployment-using-gitlab-pipelines/',
+			'/laravel-pagination-with-tailwindcss/',
+			'/conciliating-laravel-and-ddd/',
+			'/introducing-javel/',
+			'/renderless-resizable-textarea/',
 		],
 	},
 	head: [
