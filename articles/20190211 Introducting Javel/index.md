@@ -68,7 +68,7 @@ export default class Article
 
     static async find (id) {
         let { data } = await axios.get(`/api/article/${id}`)
-        let article = new Article(data)
+        return new Article(data)
     }
 
     async update (attributes) {
