@@ -5,7 +5,7 @@ icon: work
 
 # Curriculum Vitæ
 
-I am a remote software engineer whose ambition in not to "create the next big thing" or "change the world" but rather to find my humble place in this world and enjoy every minute of the work I do. This page focuses on giving you more insights on my background.
+I am a remote software engineer whose ambition is not to "create the next big thing" or "change the world" but rather to find my humble place in this world and enjoy every minute of the work I do. This page focuses on giving you more insights on my background.
 
 ## Skills
 
