@@ -2,7 +2,7 @@
 permalink: redesigning-my-blog-using-vuepress-and-tailwindcss
 image: /covers/redesigning-my-blog-using-vuepress-and-tailwindcss.jpg
 description: Moving away from a traditional database blog, I explain why and how I moved to this new stack.
-tags: [ 'Tailwind', 'Vue Lab' ]
+tags: [ 'Vuepress', 'Tailwind', 'Vue Lab' ]
 date: 2019-05-05T09:17:00Z
 ribbon: new
 ---
