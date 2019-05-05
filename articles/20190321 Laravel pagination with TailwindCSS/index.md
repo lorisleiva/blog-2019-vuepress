@@ -4,7 +4,6 @@ image: /covers/laravel-pagination-with-tailwindcss.png
 description: A better way of designing your Laravel pagination links with TailwindCSS.
 tags: [ 'Tailwind', 'Laravel Lab' ]
 date: 2019-03-22T21:56:00Z
-ribbon: new
 ---
 # Laravel pagination with TailwindCSS
 
