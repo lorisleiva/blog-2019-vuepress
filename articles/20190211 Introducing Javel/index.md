@@ -40,7 +40,7 @@ This is a typical component that ends up with all the burden of creating custom 
 If we assume this component handles the edition of an article, we can imagine that some of this logic will also be needed for other components, e.g. creating articles, finding related articles, presenting all the comments of an article, etc.
 
 ## Easy on the stores
-To stay DRY in these situation, developers tend to jump on the occasion to use **store frameworks** like Vuex, Redux or (better yet) by creating their own humble version.
+To stay DRY in these situations, developers tend to jump on the occasion to use **store frameworks** like Vuex, Redux or (better yet) by creating their own humble version.
 
 Whilst stores are a good way to regroup all of the logic related to a piece of information, they’re often not what you need.
 
@@ -123,7 +123,7 @@ And that’s it! You now have access to a range of useful methods that will make
 
 ```js
 await Article.all()                                         // => [ Article* ]
-await Article.paginate({ data: { page: 2 } })               // => { data: [ Article* ], current_page: 2, ... }
+await Article.paginate({ query: { page: 2 } })               // => { data: [ Article* ], current_page: 2, ... }
 await Article.find(1)                                       // => Article { id: 1, ... }
 
 let article = await Article.create({ name: 'My article' })  // => Article { id: 2, name: 'My article' }
