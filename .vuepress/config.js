@@ -11,8 +11,8 @@ module.exports = {
 		minimumFeaturedArticles: 6,
 		featuredArticles: [
 			'/laravel-deployment-using-gitlab-pipelines/',
+			'/making-cron-expressions-human-readable/',
 			'/redesigning-my-blog-using-vuepress-and-tailwindcss/',
-			'/laravel-pagination-with-tailwindcss/',
 			'/introducing-javel/',
 			'/conciliating-laravel-and-ddd/',
 			'/renderless-resizable-textarea/',
