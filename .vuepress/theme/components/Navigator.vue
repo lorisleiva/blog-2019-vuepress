@@ -1,7 +1,7 @@
 <template>
     <div>
         <Moveable>
-            <div class="navigator fixed z-navigator" slot-scope="{ dragged }">
+            <div class="navigator fixed z-30" slot-scope="{ dragged }">
                 <OnClickOutside :do="() => this.openned && this.toggle()">
                     <div class="relative">
                         <NavigatorButton @click="toggle(dragged)"></NavigatorButton>
