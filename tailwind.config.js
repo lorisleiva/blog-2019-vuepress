@@ -22,6 +22,9 @@ module.exports = {
         serif: ['"Arkibal Serif"', ...defaultTheme.fontFamily.serif],
         content: ['Georgia', ...defaultTheme.fontFamily.sans],
       },
+      minHeight: {
+        '72': '18rem',
+      },
     },
     gradients: {
       topaz: ['30deg', '#EE7752', '#E73C7E'],

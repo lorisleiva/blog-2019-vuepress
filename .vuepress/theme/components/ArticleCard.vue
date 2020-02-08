@@ -1,12 +1,12 @@
 <template>
     <router-link 
-        class="article-card relative flex flex-col rounded-lg border-0 z-10 border border-gray-300 cursor-pointer"
+        class="article-card relative flex flex-col rounded-lg border-0 z-10 border border-gray-300 cursor-pointer" style="min-height: 16rem;"
         :to="article.path"
         tag="article"
     >
         <figure
             class="relative bg-cover bg-center overflow-hidden" 
-            :class="featured ? 'h-full rounded-lg' : 'h-48 rounded-t-lg'"
+            :class="featured ? 'h-full min-h-72 rounded-lg' : 'h-48 rounded-t-lg'"
             :style="`background-image: url(${article.frontmatter.image})`"
         >
             <div v-if="featured" class="absolute inset-0" style="background-image: linear-gradient(to top, rgba(74, 85, 104,.4) 20%, rgba(0,0,0,0) 50%)"></div>
@@ -66,8 +66,6 @@ export default {
     transition all 0.4s ease
     &:hover
         transform translate3D(0, -1px, 0) scale(1.02)
-
-.article-card
     &:before 
         content ""
         position absolute

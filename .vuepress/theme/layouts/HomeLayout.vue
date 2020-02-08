@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mx-20 pb-16">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 mx-12 lg:mx-20 pb-16">
             <ArticleCard 
                 v-for="(article, index) in $featuredArticles" 
                 :key="article.key"
                 :article="article"
-                :class="index === 0 ? 'col-span-2' : ''"
+                :class="index === 0 ? 'sm:col-span-2' : ''"
                 :featured="index === 0"
             />
         </div>

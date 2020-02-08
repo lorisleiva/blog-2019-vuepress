@@ -2,7 +2,7 @@ module.exports = {
 	title: 'Loris Leiva',
 	themeConfig: {
 		domain: 'https://lorisleiva.com',
-		repo: 'https://github.com/lorisleiva/blog', // TODO: Not used yet
+		repo: 'https://github.com/lorisleiva/blog',
 		nav: [ '/', '/cv/' ],
 		author: {
 			name: 'Loris Leiva',
@@ -11,15 +11,9 @@ module.exports = {
 		minimumFeaturedArticles: 11,
 		featuredArticles: [
 			'/laravel-deployment-using-gitlab-pipelines/',
-			'/making-cron-expressions-human-readable/',
-			'/redesigning-my-blog-using-vuepress-and-tailwindcss/',
-			'/introducing-javel/',
-			'/conciliating-laravel-and-ddd/',
-			'/renderless-resizable-textarea/',
 		],
 	},
 	head: [
-		// TODO: ['script', { type: 'application/ld+json' }, JSON.stringify({})],
 		['link', { rel: 'apple-touch-icon', sizes: '57x57', href: '/apple-icon-57x57.png' }],
 		['link', { rel: 'apple-touch-icon', sizes: '60x60', href: '/apple-icon-60x60.png' }],
 		['link', { rel: 'apple-touch-icon', sizes: '72x72', href: '/apple-icon-72x72.png' }],
