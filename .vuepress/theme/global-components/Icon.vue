@@ -8,7 +8,7 @@ export default {
         icon: String,
         primary: {
             type: String,
-            default: 'text-gray-600',
+            default: 'text-gray-500',
         },
         secondary: {
             type: String,
