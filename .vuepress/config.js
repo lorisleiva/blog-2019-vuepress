@@ -8,7 +8,7 @@ module.exports = {
 			name: 'Loris Leiva',
 			twitter: '@lorismatic',
 		},
-		minimumFeaturedArticles: 6,
+		minimumFeaturedArticles: 11,
 		featuredArticles: [
 			'/laravel-deployment-using-gitlab-pipelines/',
 			'/making-cron-expressions-human-readable/',

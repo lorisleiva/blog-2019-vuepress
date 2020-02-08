@@ -22,15 +22,6 @@ module.exports = {
         serif: ['"Arkibal Serif"', ...defaultTheme.fontFamily.serif],
         content: ['Georgia', ...defaultTheme.fontFamily.sans],
       },
-      zIndex: {
-        'article-card': 20,
-        'navigator': 30,
-        'floating-header': 40,
-      },
-      // fill: {
-      //   'header-first-gradient': 'url(#header-first-gradient)',
-      //   'header-second-gradient': 'url(#header-second-gradient)',
-      // },
     },
     gradients: {
       topaz: ['30deg', '#EE7752', '#E73C7E'],

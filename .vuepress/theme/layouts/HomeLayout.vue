@@ -1,22 +1,14 @@
 <template>
     <div>
-        <div class="container lg:max-w-lg xl:max-w-xl mb-16"> 
-            <div class="flex flex-wrap -mx-5">
-                <ArticleCard 
-                    v-for="article in $featuredArticles" 
-                    :key="article.key"
-                    :article="article"
-                    class="mx-5 mb-6 sm:mb-10"
-                    highlight-every-third
-                />
-            </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mx-20 pb-16">
+            <ArticleCard 
+                v-for="(article, index) in $featuredArticles" 
+                :key="article.key"
+                :article="article"
+                :class="index === 0 ? 'col-span-2' : ''"
+                :featured="index === 0"
+            />
         </div>
-        <div class="container">
-            <h2>More articles</h2>
-        </div>
-        <ArticleList 
-            :articles="$otherArticles"
-        />
     </div>
 </template>
 

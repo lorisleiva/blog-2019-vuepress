@@ -1,5 +1,5 @@
 <template>
-    <div class="floating-header fixed w-full max-w-screen-xl mx-auto inset-x-0 top-0 pt-2 pb-3 sm:pt-3 sm:pb-4 shadow z-floating-header" :class="{ 'active': isVisible }">
+    <div class="floating-header fixed w-full max-w-screen-xl mx-auto inset-x-0 top-0 pt-2 pb-3 sm:pt-3 sm:pb-4 shadow z-20" :class="{ 'active': isVisible }">
         <div class="container-lg">
             <div class="flex items-center">
 
