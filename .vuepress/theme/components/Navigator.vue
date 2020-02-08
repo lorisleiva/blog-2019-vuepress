@@ -111,7 +111,7 @@ export default {
             return 'document'
         }
     },
-    created() {
+    mounted() {
         const keyboardHandler = e => {
             if (e.key === '/' && ! this.openned) {
                 e.preventDefault()
