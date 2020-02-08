@@ -3,7 +3,7 @@ export const isArticle = page => {
         && page.regularPath !== '/articles/'
 }
 
-export const sortByDate = (a, b) => 
+export const sortByDate = (a, b) =>
     new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
 
 export const fetchPagesInArray = (pages, keys) => pages
@@ -13,7 +13,7 @@ export const fetchPagesInArray = (pages, keys) => pages
 export const excludePages = (pages, pagesToExclude) =>
     pages.filter(page => ! pagesToExclude.includes(page))
 
-export const randomElement = arr => 
+export const randomElement = arr =>
     arr[Math.floor(Math.random() * arr.length)]
 
 export const randomElements = ([...arr], n = 1) => {
