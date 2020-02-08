@@ -1,71 +1,62 @@
 <template>
-    <div>
-        <Moveable>
-            <div class="navigator fixed z-30" slot-scope="{ dragged }">
-                <OnClickOutside :do="() => this.openned && this.toggle()">
-                    <div class="relative">
-                        <NavigatorButton @click="toggle(dragged)"></NavigatorButton>
-                        <div
-                            v-show="openned"
-                            class="hidden sm:block absolute pin-t pin-r shadow-md rounded-lg bg-gray-300 p-4 -mr-5 -mt-3 w-navigator"
-                        >
-                            <NavigatorInput
-                                ref="input"
-                                v-model="query"
-                                :dragged="dragged"
-                            ></NavigatorInput>
-                            <NavigatorResults
-                                :query="query"
-                                :focused="focused"
-                                :suggestions="suggestions"
-                                :dragged="dragged"
-                            ></NavigatorResults>
+    <div class="fixed inset-0 z-40 flex items-start h-full" v-if="openned">
+        <div class="absolute inset-0 bg-white opacity-90" @click="close"></div>
+        <div class="relative mx-auto mt-32 w-full max-w-xl">
+
+            <div class="border border-gray-300 shadow-xl rounded-lg">
+                <input
+                    ref="input"
+                    type="text" 
+                    class="bg-white rounded-t-lg px-4 text-black w-full text-5xl leading-normal focus:outline-none"
+                    placeholder="Search..."
+                    v-model="query"
+                    @keydown.enter="go($event)"
+                    @keydown.esc="close"
+                    @keydown.up.prevent="move(-1)"
+                    @keydown.down.prevent="move(1)"
+                >
+
+                <div class="bg-gray-100 border-t border-gray-300 rounded-b-lg p-4" @mouseleave="unfocus">
+                    <a 
+                        v-for="(page, index) in suggestions"
+                        :key="page.key + (page.header ? `_${page.header.slug}` : '')"
+                        class="flex px-4 py-2 text-lg font-semibold text-gray-600 hover:text-gray-600 rounded cursor-pointer border-0"
+                        :class="index === focused ? 'bg-topaz' : ''"
+                        :href="page.path"
+                        @click="go($event, index)"
+                        @mouseenter="focus(index)"
+                    >
+                        <Icon
+                            class="w-5 h-5 mr-3 mt-2px"
+                            :icon="iconForPage(page)" 
+                            :primary="index === focused ? 'text-white' : 'text-gray-600'"
+                            :secondary="index === focused ? 'text-gray-400' : 'text-gray-800'"
+                        ></Icon>
+                        <div :class="index === focused ? 'text-white' : ''">
+                            <div v-text="page.title"></div>
+                            <span v-if="page.header" class="text-sm">&rightarrow;&nbsp;{{ page.header.title }}</span>
                         </div>
-                    </div>
-                </OnClickOutside>
+                    </a>
+
+                    <!-- No results -->
+                    <div 
+                        v-if="query && suggestions.length === 0"
+                        class="p-6 text-center text-gray-600"
+                        v-text="`No results...`"
+                    ></div>
+                </div>
             </div>
-        </Moveable>
-        <div
-            v-show="openned"
-            class="sm:hidden shadow-md fixed pin-t pin-x bg-gray-300 p-4 pt-6 z-navigator"
-        >
-            <NavigatorInput
-                ref="inputMobile"
-                v-model="query"
-                :dragged="false"
-            ></NavigatorInput>
-            <NavigatorResults
-                :query="query"
-                :focused="focused"
-                :suggestions="suggestions"
-                :dragged="false"
-            ></NavigatorResults>
         </div>
     </div>
 </template>
 
 <script>
-import { fetchPagesInArray } from '@theme/utils'
-import Moveable from './Moveable'
-import OnClickOutside from './OnClickOutside'
-import NavigatorButton from './NavigatorButton'
-import NavigatorInput from './NavigatorInput'
-import NavigatorResults from './NavigatorResults'
+import { fetchPagesInArray, isArticle } from '@theme/utils'
 
 export default {
-    components: { Moveable, OnClickOutside, NavigatorButton, NavigatorInput, NavigatorResults },
-    provide () {
-        return {
-            toggle: this.toggle,
-            go: this.go,
-            move: this.move,
-            focus: this.focus,
-            unfocus: this.unfocus,
-        }
-    },
     data () {
         return {
-            openned: false,
+            openned: true,
             focused: 0,
             query: '',
         }
@@ -80,15 +71,15 @@ export default {
         },
     },
     methods: {
-        dummyClick () { console.log('dummyClick') },
-        toggle (dragged) {
-            if (dragged) return
-            this.openned = ! this.openned
-            if (! this.openned) return this.reset()
+        open () {
+            this.openned = true
             this.$nextTick(() => {
                 this.$refs.input.focus()
-                this.$refs.inputMobile.focus()
             })
+        },
+        close () {
+            this.openned = false
+            this.reset()
         },
         go (event, index) {
             // Allow cmd+click to open a new tab.
@@ -102,7 +93,6 @@ export default {
             this.reset()
         },
         reset () {
-            this.openned = false
             this.focused = 0
             this.query = ''
         },
@@ -117,22 +107,26 @@ export default {
         unfocus () {
             this.focused = -1
         },
+        iconForPage (page) {
+            if (!! page.frontmatter.icon) return page.frontmatter.icon
+            if (isArticle(page)) return 'news'
+            return 'document'
+        }
+    },
+    created() {
+        const keyboardHandler = e => {
+            if (e.key === '/' && ! this.openned) {
+                e.preventDefault()
+                this.open()
+            }
+            if (e.key === 'Escape' || e.key === 'Esc') {
+                this.close()
+            }
+        }
+        document.addEventListener('keydown', keyboardHandler)
+        this.$once('hook:beforeDestroy', () => {
+            document.removeEventListener('keydown', keyboardHandler)
+        })
     },
 }
 </script>
-
-<style lang="stylus">
-.navigator
-    bottom 50px
-    right 50px
-    @media sm
-        bottom auto
-        top 80px
-        right 50px
-    @media md
-        right calc(((100vw - 768px) / 2) + 50px)
-    @media lg
-        right calc(((100vw - 768px) / 2) - 60px)
-    @media xl
-        right calc(((100vw - 768px) / 2) - 80px)
-</style>

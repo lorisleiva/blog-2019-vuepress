@@ -1,6 +1,12 @@
 <template>
     <div class="xl:px-4">
+        <!-- Animated background. -->
         <AnimatedGradient class="fixed inset-0" />
+
+        <!-- Search and navigation menu. -->
+        <Navigator ref="navigator" />
+
+        <!-- Page. -->
         <div class="relative w-full max-w-screen-xl mx-auto mt-4 xl:my-8 xl:rounded-lg overflow-hidden shadow-lg">
             <component :is="layout" />
             <div class="p-8 bg-white-50p">
@@ -13,6 +19,7 @@
 <script>
 import { isArticle } from '@theme/utils'
 import AnimatedGradient from '@theme/components/AnimatedGradient'
+import Navigator from '@theme/components/Navigator'
 import Footer from '@theme/components/Footer'
 
 // Available layouts.
@@ -21,7 +28,7 @@ import ArticleLayout from '@theme/layouts/ArticleLayout'
 import Layout from '@theme/layouts/Layout'
 
 export default {
-    components: { AnimatedGradient, Footer, HomeLayout, ArticleLayout, Layout },
+    components: { AnimatedGradient, Navigator, Footer, HomeLayout, ArticleLayout, Layout },
     computed: {
         layout () {
             if (! this.$page.path) return 'Layout' // TODO 404.vue

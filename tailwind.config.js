@@ -25,6 +25,9 @@ module.exports = {
       minHeight: {
         '72': '18rem',
       },
+      opacity: {
+        '90': '0.9',
+      },
     },
     gradients: {
       topaz: ['30deg', '#EE7752', '#E73C7E'],
