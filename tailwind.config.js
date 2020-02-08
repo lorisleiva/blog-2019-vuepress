@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        'white-50p': '#FFFFFF88',
         primary: {
           '100': defaultTheme.colors.pink['100'],
           '200': defaultTheme.colors.pink['200'],
@@ -16,9 +17,6 @@ module.exports = {
           '900': defaultTheme.colors.pink['900'],
         }
       },
-      backgroundColor: {
-        'white-50p': '#FFFFFF88',
-      },
       fontFamily: {
         sans: ['"Source Sans Pro"', ...defaultTheme.fontFamily.sans],
         serif: ['"Arkibal Serif"', ...defaultTheme.fontFamily.serif],
@@ -28,6 +26,10 @@ module.exports = {
         'article-card': 20,
         'navigator': 30,
         'floating-header': 40,
+      },
+      width: {
+        'bleeding-out-of-container-sm': '900px',
+        'bleeding-out-of-container': '1040px',
       },
       // fill: {
       //   'header-first-gradient': 'url(#header-first-gradient)',
