@@ -27,10 +27,6 @@ module.exports = {
         'navigator': 30,
         'floating-header': 40,
       },
-      width: {
-        'bleeding-out-of-container-sm': '900px',
-        'bleeding-out-of-container': '1040px',
-      },
       // fill: {
       //   'header-first-gradient': 'url(#header-first-gradient)',
       //   'header-second-gradient': 'url(#header-second-gradient)',

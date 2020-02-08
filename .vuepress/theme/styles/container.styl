@@ -1,3 +1,6 @@
+$firstBleedingPoint = 900px
+$secondBleedingPoint = 1040px
+
 $container
     width 100%
     max-width theme('screens.md')
@@ -12,9 +15,9 @@ $container
 $container-lg
     @extends $container
     @media lg
-        max-width theme('width.bleeding-out-of-container-sm')
+        max-width $firstBleedingPoint
     @media xl
-        max-width theme('width.bleeding-out-of-container')
+        max-width $secondBleedingPoint
 
 $break-out-of-container
     width 100vw
@@ -36,14 +39,14 @@ $break-out-of-flex-container
     @extends $break-out-of-container
     align-self stretch
 
-$bleeding-out-of-container
+$bleed-out-of-container
     display block
     margin theme('margin.6') auto
     width 100%
     @media lg
-        width theme('width.bleeding-out-of-container-sm')
+        width $firstBleedingPoint
     @media xl
-        width theme('width.bleeding-out-of-container')
+        width $secondBleedingPoint
 
 .container
     @extends $container
@@ -54,5 +57,5 @@ $bleeding-out-of-container
 .break-out-of-container
     @extends $break-out-of-container
 
-.bleeding-out-of-container
-    @extends $bleeding-out-of-container
+.bleed-out-of-container
+    @extends $bleed-out-of-container

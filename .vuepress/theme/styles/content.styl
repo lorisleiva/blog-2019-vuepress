@@ -19,7 +19,6 @@
     div[class*="language-"]
         @extends $break-out-of-flex-container
         border-radius 0
-        align-self stretch
         pre, pre[class*="language-"]
             @extends $container
 
@@ -29,9 +28,9 @@
         margin theme('margin.6') auto
         max-width 100%
         @media lg
-            max-width theme('width.bleeding-out-of-container-sm')
+            max-width $firstBleedingPoint
         @media xl
-            max-width theme('width.bleeding-out-of-container')
+            max-width $secondBleedingPoint
 
     // Helpers to constraint image size
     @media sm
