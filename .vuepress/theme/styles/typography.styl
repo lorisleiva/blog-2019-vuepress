@@ -2,44 +2,45 @@ $headings = 'h1, h2, h3, h4, h5, h6'
 $blocks = 'p, ul, ol, blockquote'
 
 body
-    color theme('colors.gray.800')
-    font-family theme('fonts.sans')
-    line-height: theme('leading.normal')
+    color theme('colors.gray.700')
+    font-family theme('fontFamily.sans')
+    line-height: theme('lineHeight.normal')
 
 {$headings}
-    line-height theme('leading.tight')
-    font-family theme('fonts.sans')
-    color theme('colors.black')
+    line-height theme('lineHeight.tight')
+    font-family theme('fontFamily.sans')
+    color theme('colors.gray.800')
     & +
         {$blocks}
             margin-top 0
 
 h1
-    font-family theme('fonts.serif')
+    font-family theme('fontFamily.serif')
 
 h2
-    font-size theme('textSizes.3xl')
-    font-family theme('fonts.serif')
-    font-weight theme('fontWeights.semibold')
+    font-size theme('fontSize.3xl')
+    font-family theme('fontFamily.serif')
+    font-weight theme('fontWeight.semibold')
     margin-top theme('margin.8')
     margin-bottom theme('margin.6')
     border-bottom 1px solid theme('colors.gray.400')
     padding-bottom .3rem
     @media md
-        font-size theme('textSizes.4xl')
+        font-size theme('fontSize.4xl')
 
 h3
-    font-size theme('textSizes.3xl')
+    font-size theme('fontSize.3xl')
+    font-weight theme('fontWeight.bold')
     margin-top theme('margin.8')
     margin-bottom theme('margin.2')
     @media md
         margin-bottom theme('margin.3')
-        font-size theme('textSizes.4xl')
+        font-size theme('fontSize.4xl')
 
 h4
-    font-size theme('textSizes.xl')
+    font-size theme('fontSize.xl')
     @media md
-        font-size theme('textSizes.2xl')
+        font-size theme('fontSize.2xl')
 
 h4, h5, h6
     margin-top theme('margin.4')

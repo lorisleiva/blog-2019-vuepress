@@ -1,0 +1,38 @@
+<template>
+    <div class="xl:px-4">
+        <AnimatedGradient class="fixed inset-0" />
+        <div class="relative w-full max-w-screen-xl mx-auto mt-4 xl:my-8 xl:rounded-lg overflow-hidden shadow-lg">
+            <div class="bg-white">
+                <Header />
+                <component :is="layout" />
+            </div>
+            <div class="p-8 bg-white-50p">
+                <Footer />
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import { isArticle } from '@theme/utils'
+import AnimatedGradient from '@theme/components/AnimatedGradient'
+import Header from '@theme/components/Header'
+import Footer from '@theme/components/Footer'
+
+// Available layouts.
+import HomeLayout from '@theme/layouts/HomeLayout'
+import ArticleLayout from '@theme/layouts/ArticleLayout'
+import Layout from '@theme/layouts/Layout'
+
+export default {
+    components: { AnimatedGradient, Header, Footer, HomeLayout, ArticleLayout, Layout },
+    computed: {
+        layout () {
+            if (! this.$page.path) return 'Layout' // TODO 404.vue
+            if (this.$page.path === '/') return 'HomeLayout'
+            if (isArticle(this.$page)) return 'ArticleLayout'
+            return 'Layout'
+        }
+    },
+}
+</script>

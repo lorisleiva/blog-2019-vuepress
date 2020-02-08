@@ -15,7 +15,6 @@
             <h2>More articles</h2>
         </div>
         <ArticleList 
-            class="mb-16"
             :articles="$otherArticles"
         />
     </div>

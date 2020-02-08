@@ -1,5 +1,5 @@
 <template>
-    <div class="floating-header fixed pin-x pin-t pt-2 pb-3 sm:pt-3 sm:pb-4 shadow z-floating-header" :class="{ 'active': isVisible }">
+    <div class="floating-header fixed w-full max-w-screen-xl mx-auto inset-x-0 top-0 pt-2 pb-3 sm:pt-3 sm:pb-4 shadow z-floating-header" :class="{ 'active': isVisible }">
         <div class="container-lg">
             <div class="flex items-center">
 
@@ -36,15 +36,15 @@
                 </div>
             </div>
         </div>
-        <GradientBar :progress="progress" class="absolute pin-x pin-b h-1" />
+        <AnimatedGradient :progress="progress" class="absolute inset-x-0 bottom-0 h-1" />
     </div>
 </template>
 
 <script>
-import GradientBar from '@theme/components/GradientBar'
+import AnimatedGradient from '@theme/components/AnimatedGradient'
 
 export default {
-    components: { GradientBar },
+    components: { AnimatedGradient },
     data () {
         return {
             progressValue: 0,
@@ -60,16 +60,16 @@ export default {
         isVisible () {
             return this.progressValue >= 100
         },
-            absoluteUrl () {
-                return this.$themeConfig.domain + this.$page.path
-            },
-            encodedTitle () {
-                return encodeURIComponent(this.$page.title)
-            },
+        absoluteUrl () {
+            return this.$themeConfig.domain + this.$page.path
+        },
+        encodedTitle () {
+            return encodeURIComponent(this.$page.title)
+        },
     },
     methods: {
         update () {
-            const content = document.querySelector('.content')
+            const content = document.querySelector('.content__default')
             const progressValue = window.scrollY
             const progressMax = content.scrollHeight + content.offsetTop - window.innerHeight
             this.progressMax = progressMax

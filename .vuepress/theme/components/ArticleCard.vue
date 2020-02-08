@@ -75,8 +75,8 @@ export default {
             border-bottom-left-radius 0
             border-top-right-radius config('borderRadius.lg')
             h2
-                font-size config('textSizes.3xl')
+                font-size config('fontSize.3xl')
             section
-                font-size config('textSizes.xl')
+                font-size config('fontSize.xl')
                 line-height 1.55
 </style>
