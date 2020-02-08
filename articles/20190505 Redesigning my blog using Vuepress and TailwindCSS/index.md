@@ -51,7 +51,7 @@ In my case, I have two folders `pages` and `articles` at the root of my reposito
 ├── package-lock.json
 ├── package.json
 ├── pages
-└── tailwind.js
+└── tailwind-old.js
 ```
 
 All the rest of the Vuepress application is located in a `.vuepress` folder. That includes the layout of your application, Vue components, global assets, custom styling, settings, plugin registration, etc.
@@ -83,7 +83,7 @@ module.exports = {
     // ...
     postcss: {
         plugins: [
-            require('tailwindcss')('./tailwind.js'),
+            require('tailwindcss')('./tailwind-old.js'),
             require('autoprefixer'),
         ]
     }

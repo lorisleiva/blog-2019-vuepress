@@ -11,16 +11,14 @@
             </div>
         </div>
         <div class="container">
-            <ClientOnly>
-                <Disqus 
-                    shortname="loris-leiva" 
-                    :title="$page.title"
-                    :identifier="disqusIdentifier" 
-                    :url="disqusUrl"
-                />
-            </ClientOnly>
+            <Disqus 
+                shortname="loris-leiva" 
+                :title="$page.title"
+                :identifier="disqusIdentifier" 
+                :url="disqusUrl"
+            />
         </div>
-        <div class="bg-grey-lighter mt-16">
+        <div class="bg-gray-300 mt-16">
             <div class="container py-4 sm:py-8">
                 <h2>Related articles</h2>
                 <div class="flex flex-wrap -mx-5">

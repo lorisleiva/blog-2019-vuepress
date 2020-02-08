@@ -13,7 +13,7 @@
         <main class="flex flex-1 flex-col bg-white rounded-b-lg p-6">
             <header>
                 <div 
-                    class="uppercase tracking-wide text-grey-dark text-sm font-semibold" 
+                    class="uppercase tracking-wide text-gray-600 text-sm font-semibold" 
                     v-text="article.frontmatter.tags[0]"
                 ></div>
                 <div 
@@ -22,7 +22,7 @@
                 ></div>
             </header>
             <section
-                class="font-content text-lg text-grey-darker" 
+                class="font-content text-lg text-gray-600" 
                 v-text="article.frontmatter.description"
             ></section>
         </main>

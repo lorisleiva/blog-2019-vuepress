@@ -107,9 +107,9 @@ Here are some examples of plugin configurations with their results.
 ```php
 {
     color: colors['orange-light'],
-    link: 'bg-grey-darkest py-4 px-2 border-r border-grey-dark text-white no-underline',
-    linkHover: 'bg-grey-dark',
-    linkDisabled: 'bg-grey-dark',
+    link: 'bg-gray-800 py-4 px-2 border-r border-gray-600 text-white no-underline',
+    linkHover: 'bg-gray-600',
+    linkDisabled: 'bg-gray-600',
     linkFirst: null,
     linkLast: 'border-0',
 }

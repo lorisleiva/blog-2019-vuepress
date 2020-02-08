@@ -7,7 +7,7 @@
                         <NavigatorButton @click="toggle(dragged)"></NavigatorButton>
                         <div
                             v-show="openned"
-                            class="hidden sm:block absolute pin-t pin-r shadow-md rounded-lg bg-grey-lighter p-4 -mr-5 -mt-3 w-navigator"
+                            class="hidden sm:block absolute pin-t pin-r shadow-md rounded-lg bg-gray-300 p-4 -mr-5 -mt-3 w-navigator"
                         >
                             <NavigatorInput
                                 ref="input"
@@ -27,7 +27,7 @@
         </Moveable>
         <div
             v-show="openned"
-            class="sm:hidden shadow-md fixed pin-t pin-x bg-grey-lighter p-4 pt-6 z-navigator"
+            class="sm:hidden shadow-md fixed pin-t pin-x bg-gray-300 p-4 pt-6 z-navigator"
         >
             <NavigatorInput
                 ref="inputMobile"

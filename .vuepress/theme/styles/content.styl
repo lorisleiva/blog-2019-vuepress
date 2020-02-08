@@ -2,18 +2,18 @@
     @extends $flex-container
 
     // Typography.
-    font-family config('fonts.content')
+    font-family theme('fonts.content')
     font-size 18px
-    @media md 
+    @media md
         font-size 21px
 
     // Remove title and magnify introduction.
     > h1:first-of-type
         display none
     > p:first-of-type
-        font-size config('textSizes.xl')
-        @media md 
-            font-size config('textSizes.2xl')
+        font-size theme('textSizes.xl')
+        @media md
+            font-size theme('textSizes.2xl')
 
     // Code breaks out of the container.
     div[class*="language-"]
@@ -22,17 +22,17 @@
         align-self stretch
         pre, pre[class*="language-"]
             @extends $container
-    
+
     // Image breaks out of the container
     > p > img
         display block
-        margin config('margin.6') auto
+        margin theme('margin.6') auto
         max-width 100%
         @media lg
-            max-width config('width.bleeding-out-of-container-sm')
+            max-width theme('width.bleeding-out-of-container-sm')
         @media xl
-            max-width config('width.bleeding-out-of-container')
-    
+            max-width theme('width.bleeding-out-of-container')
+
     // Helpers to constraint image size
     @media sm
         for i in 1..10

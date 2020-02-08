@@ -1,10 +1,10 @@
 $container
     width 100%
-    max-width config('screens.md')
+    max-width theme('screens.md')
     margin-right auto
     margin-left auto
-    padding-left config('padding.8')
-    padding-right config('padding.8')
+    padding-left theme('padding.8')
+    padding-right theme('padding.8')
     @media lg
         padding-left 0
         padding-right 0
@@ -12,9 +12,9 @@ $container
 $container-lg
     @extends $container
     @media lg
-        max-width config('width.bleeding-out-of-container-sm')
+        max-width theme('width.bleeding-out-of-container-sm')
     @media xl
-        max-width config('width.bleeding-out-of-container')
+        max-width theme('width.bleeding-out-of-container')
 
 $break-out-of-container
     width 100vw
@@ -38,12 +38,12 @@ $break-out-of-flex-container
 
 $bleeding-out-of-container
     display block
-    margin config('margin.6') auto
+    margin theme('margin.6') auto
     width 100%
     @media lg
-        width config('width.bleeding-out-of-container-sm')
+        width theme('width.bleeding-out-of-container-sm')
     @media xl
-        width config('width.bleeding-out-of-container')
+        width theme('width.bleeding-out-of-container')
 
 .container
     @extends $container

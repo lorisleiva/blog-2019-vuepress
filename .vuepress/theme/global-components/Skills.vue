@@ -18,13 +18,13 @@ export default {
         classesFor (theme) {
             switch (theme) {
                 case 'category':
-                    return 'border-transparent bg-grey-lighter text-grey-darker text-xs md:text-sm font-semibold uppercase tracking-wide'
+                    return 'border-transparent bg-gray-300 text-gray-600 text-xs md:text-sm font-semibold uppercase tracking-wide'
 
                 case 'highlighted':
                     return 'border-transparent bg-topaz text-white'
             
                 default:
-                    return 'text-grey-darkest md:text-grey-darker'
+                    return 'text-gray-800 md:text-gray-600'
             }
         }
     }
