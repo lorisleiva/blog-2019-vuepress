@@ -1,7 +1,21 @@
 <template>
     <div class="fixed inset-0 z-40 px-4 overflow-auto" v-if="openned">
         <div class="fixed inset-0 bg-white opacity-90" @click="close"></div>
-        <div class="relative mx-auto mt-32 mb-16 w-full max-w-xl">
+        <div class="relative mx-auto mt-8 sm:mt-20 mb-16 w-full max-w-xl">
+            <div class="hidden sm:block font-sans text-xl font-bold mb-2">Featured Tags</div>
+            <div class="hidden sm:grid grid-cols-3 gap-4 mb-8">
+                <a 
+                    v-for="tag in featuredTags" 
+                    :key="tag.name"
+                    class="m-0 hover:bg-blackrock hover:text-white px-4 py-2 rounded-lg border-0"
+                    :class="tag.classes"
+                    :href="tag.path"
+                    @click="visit($event, tag.path)"
+                >
+                    <div class="text-sm uppercase tracking-wider font-semibold opacity-75" v-text="tag.count"></div>
+                    <div class="text-lg font-semibold" v-text="tag.name"></div>
+                </a>
+            </div>
             <div class="border border-gray-300 shadow-xl rounded-lg">
                 <input
                     ref="input"
@@ -65,6 +79,30 @@ export default {
         menu () {
             return fetchPagesInArray(this.$site.pages, this.$site.themeConfig.nav)
         },
+        featuredTags () {
+            const laravelTag = this.$tag.list.find(tag => tag.name === 'Laravel')
+            const vueTag = this.$tag.list.find(tag => tag.name === 'Vue')
+            return [
+                {
+                    name: 'Laravel',
+                    count: laravelTag.pages.length,
+                    path: laravelTag.path,
+                    classes: 'bg-topaz text-white',
+                },
+                {
+                    name: 'Vue',
+                    count: vueTag.pages.length,
+                    path: vueTag.path,
+                    classes: 'bg-emerald text-white',
+                },
+                {
+                    name: 'See all tags',
+                    count: this.$tag.length,
+                    path: '/tag/',
+                    classes: 'bg-moonlight text-gray-700',
+                },
+            ]
+        },
     },
     methods: {
         open () {
@@ -80,14 +118,17 @@ export default {
             this.reset()
         },
         go (event, index) {
+            index = typeof index === 'undefined' ? this.focused : index
+            if (typeof this.suggestions[index] === 'undefined') return
+            this.visit(event, this.suggestions[index].path)
+        },
+        visit (event, path) {
             // Allow cmd+click to open a new tab.
             if (event.metaKey) return
             event.preventDefault()
 
-            // Find page for index and push to router.
-            index = typeof index === 'undefined' ? this.focused : index
-            if (typeof this.suggestions[index] === 'undefined') return
-            this.$router.push(this.suggestions[index].path)
+            // Push and close.
+            this.$router.push(path)
             this.close()
         },
         reset () {
