@@ -1,8 +1,8 @@
 <template>
     <router-link 
-        class="article-card relative flex flex-col rounded-lg border-0 z-10 border border-gray-300 cursor-pointer" style="min-height: 16rem;"
+        class="article-card relative flex flex-col rounded-lg z-10 cursor-pointer" style="min-height: 16rem;"
+        :class="featured ? 'border-0' : 'border border-gray-300'"
         :to="article.path"
-        tag="article"
     >
         <figure
             class="relative bg-cover bg-center overflow-hidden" 

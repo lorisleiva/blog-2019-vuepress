@@ -3,11 +3,12 @@ module.exports = {
 	themeConfig: {
 		domain: 'https://lorisleiva.com',
 		repo: 'https://github.com/lorisleiva/blog',
-		nav: [ '/', '/cv/' ],
+		nav: [ '/', '/articles/', '/cv/' ],
 		author: {
 			name: 'Loris Leiva',
 			twitter: '@lorismatic',
 		},
+		articlesPerPage: 11,
 		minimumFeaturedArticles: 11,
 		featuredArticles: [
 			'/laravel-deployment-using-gitlab-pipelines/',

@@ -18,20 +18,20 @@
                     <a 
                         v-for="(page, index) in suggestions"
                         :key="page.key + (page.header ? `_${page.header.slug}` : '')"
-                        class="flex items-center px-4 py-2 text-lg font-semibold text-gray-600 hover:text-gray-600 rounded cursor-pointer border-0"
+                        class="flex px-4 py-2 text-lg font-semibold text-gray-600 hover:text-gray-600 rounded cursor-pointer border-0"
                         :class="index === focused ? 'bg-gray-200' : ''"
                         :href="page.path"
                         @click="go($event, index)"
                         @mouseenter="focus(index)"
                     >
                         <Icon
-                            class="w-5 h-5 mr-3 mb-px"
+                            class="w-5 h-5 mr-3 mt-1 flex-shrink-0"
                             :icon="iconForPage(page)" 
-                            :primary="index === focused ? 'text-gray-700' : 'text-gray-600'"
-                            :secondary="index === focused ? 'text-black' : 'text-gray-800'"
+                            :primary="index === focused ? 'text-gray-600' : 'text-gray-500'"
+                            :secondary="index === focused ? 'text-black' : 'text-gray-700'"
                         ></Icon>
                         <div :class="index === focused ? 'text-black' : ''">
-                            <div v-text="page.title"></div>
+                            <div v-text="page.path === '/' ? 'Home' : page.title"></div>
                             <span v-if="page.header" class="text-sm">&rightarrow;&nbsp;{{ page.header.title }}</span>
                         </div>
                     </a>
