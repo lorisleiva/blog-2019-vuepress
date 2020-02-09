@@ -1,12 +1,6 @@
 import moment from "moment"
 
-export const isArticle = page => {
-    return page.regularPath.startsWith('/articles/')
-        && page.regularPath !== '/articles/'
-}
-
-export const sortByDate = (a, b) =>
-    new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
+export const sortByDate = (a, b) => new Date(b.isoDate) - new Date(a.isoDate)
 
 export const fetchPagesInArray = (pages, keys) => pages
     .filter(page => keys.includes(page.path))

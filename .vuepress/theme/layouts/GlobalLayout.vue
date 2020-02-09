@@ -38,8 +38,7 @@ export default {
         layout () {
             if (! this.$page.path) return 'Layout' // TODO 404.vue
             if (this.$frontmatter.layout) return this.$frontmatter.layout
-            if (this.$page.path === '/') return 'HomeLayout'
-            if (isArticle(this.$page)) return 'ArticleLayout'
+            if (this.$page.isArticle) return 'ArticleLayout'
             return 'Layout'
         }
     },

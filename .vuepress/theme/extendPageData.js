@@ -1,10 +1,11 @@
-module.exports = () => {
-    return {
-        extendPageData (page) {
-            ensurePageHasFrontmatter(page)
-            setSearchableTitle(page)
-            setIcon(page)
-        }
+module.exports = {
+    extendPageData (page) {
+        ensurePageHasFrontmatter(page)
+        classify(page)
+        setTitle(page)
+        setSearchableTitle(page)
+        setIcon(page)
+        setIsoDate(page)
     }
 }
 
@@ -14,25 +15,28 @@ function ensurePageHasFrontmatter(page) {
     }
 }
 
-function setSearchableTitle(page) {
-    page.frontmatter.searchableTitle = page.frontmatter.searchableTitle 
+function classify(page) {
+    page.isArticle = page.regularPath.startsWith('/articles/') && page.regularPath !== '/articles/'
+    page.isTag = page.regularPath.startsWith('/tag/')
+}
+
+function setTitle(page) {
+    page.title = page.title 
         || (page.path === '/tag/' && 'Tags')
-        || page.frontmatter.title 
-        || page.title
+        || page.frontmatter.title
+}
+
+function setSearchableTitle(page) {
+    page.searchableTitle = page.frontmatter.searchableTitle || page.title
 }
 
 function setIcon(page) {
-    page.frontmatter.icon = page.frontmatter.icon 
-        || (isArticle(page) && 'news')
-        || (isTag(page) && 'tag')
+    page.icon = page.frontmatter.icon 
+        || (page.isArticle && 'news')
+        || (page.isTag && 'tag')
         || 'document'
 }
 
-function isArticle (page) {
-    return page.regularPath.startsWith('/articles/')
-        && page.regularPath !== '/articles/'
-}
-
-function isTag (page) {
-    return page.regularPath.startsWith('/tag/')
+function setIsoDate(page) {
+    page.isoDate = page.frontmatter.date
 }

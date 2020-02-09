@@ -5,7 +5,7 @@ export default ({ Vue }) => {
                 query = query.trim().toLowerCase()
                 const { pages } = this.$site
                 const results = []
-                const matchPage = page => page.frontmatter.searchableTitle.toLowerCase().indexOf(query) > -1
+                const matchPage = page => page.searchableTitle.toLowerCase().indexOf(query) > -1
                 const matchHeader = header => header.title && header.title.toLowerCase().indexOf(query) > -1
 
                 for (let i = 0; i < pages.length; i++) {

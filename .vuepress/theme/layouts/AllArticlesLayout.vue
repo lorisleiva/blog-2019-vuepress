@@ -21,7 +21,7 @@ export default {
     components: { Header },
     methods: {
         dateOf (article) {
-            return relativeDate(article.frontmatter.date)
+            return relativeDate(article.isoDate)
         }
     }
 }
