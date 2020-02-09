@@ -58,7 +58,7 @@ This pagination plugin allows you to override all aspects of its design by eithe
 Here are some examples of plugin configurations with their results.
 
 <div class="-mb-12 z-10 text-center">
-    <img class="rounded shadow max-w-xs" alt="Pagination example 1" src="./pagination_1.png" />
+    <img class="inline rounded shadow max-w-xs" alt="Pagination example 1" src="./pagination_1.png" />
 </div>
 
 ```php
@@ -66,7 +66,7 @@ Here are some examples of plugin configurations with their results.
 ```
 
 <div class="-mb-12 z-10 text-center">
-    <img class="rounded shadow max-w-xs" alt="Pagination example 2" src="./pagination_2.png" />
+    <img class="inline rounded shadow max-w-xs" alt="Pagination example 2" src="./pagination_2.png" />
 </div>
 
 ```php
@@ -76,7 +76,7 @@ Here are some examples of plugin configurations with their results.
 ```
 
 <div class="-mb-12 z-10 text-center">
-    <img class="rounded shadow max-w-xs" alt="Pagination example 3" src="./pagination_3.png" />
+    <img class="inline rounded shadow max-w-xs" alt="Pagination example 3" src="./pagination_3.png" />
 </div>
 
 ```php
@@ -87,7 +87,7 @@ Here are some examples of plugin configurations with their results.
 ```
 
 <div class="-mb-12 z-10 text-center">
-    <img class="rounded shadow max-w-xs" alt="Pagination example 4" src="./pagination_4.png" />
+    <img class="inline rounded shadow max-w-xs" alt="Pagination example 4" src="./pagination_4.png" />
 </div>
 
 ```php
@@ -101,7 +101,7 @@ Here are some examples of plugin configurations with their results.
 ```
 
 <div class="-mb-12 z-10 text-center">
-    <img class="rounded shadow max-w-xs" alt="Pagination example 5" src="./pagination_5.png" />
+    <img class="inline rounded shadow max-w-xs" alt="Pagination example 5" src="./pagination_5.png" />
 </div>
 
 ```php
@@ -116,7 +116,7 @@ Here are some examples of plugin configurations with their results.
 ```
 
 <div class="-mb-12 z-10 text-center">
-    <img class="rounded shadow max-w-xs" alt="Pagination example 6" src="./pagination_6.png" />
+    <img class="inline rounded shadow max-w-xs" alt="Pagination example 6" src="./pagination_6.png" />
 </div>
 
 ```php

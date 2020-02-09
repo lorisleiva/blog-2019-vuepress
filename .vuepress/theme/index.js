@@ -20,8 +20,6 @@ module.exports = {
             ],
             globalPagination: {
                 lengthPerPage: 2,
-                prevText: 'Newer articles',
-                nextText: 'Older articles',
             }
         }],
         'seo',
