@@ -1,7 +1,7 @@
 <template>
     <div class="bg-white">
         <Header no-home xl />
-        <ArticleGrid :articles="$featuredArticles" />
+        <ArticleGrid :articles="$currentTag.pages" />
     </div>
 </template>
 

@@ -61,6 +61,16 @@ $bleed-out-of-container
 .container-lg
     @extends $container-lg
 
+.container-xl
+    margin-left theme('margin.6')
+    margin-right theme('margin.6')
+    @media sm
+        margin-left theme('margin.12')
+        margin-right theme('margin.12')
+    @media lg
+        margin-left theme('margin.20')
+        margin-right theme('margin.20')
+
 .break-out-of-container
     @extends $break-out-of-container
 

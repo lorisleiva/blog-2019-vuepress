@@ -28,10 +28,12 @@ import Footer from '@theme/components/Footer'
 import HomeLayout from '@theme/layouts/HomeLayout'
 import ArticleLayout from '@theme/layouts/ArticleLayout'
 import AllArticlesLayout from '@theme/layouts/AllArticlesLayout'
+import TagsLayout from '@theme/layouts/TagsLayout'
+import TagLayout from '@theme/layouts/TagLayout'
 import Layout from '@theme/layouts/Layout'
 
 export default {
-    components: { AnimatedGradient, Navigator, MenuButton, Footer, HomeLayout, ArticleLayout, AllArticlesLayout, Layout },
+    components: { AnimatedGradient, Navigator, MenuButton, Footer, HomeLayout, ArticleLayout, AllArticlesLayout, TagsLayout, TagLayout, Layout },
     computed: {
         layout () {
             if (! this.$page.path) return 'Layout' // TODO 404.vue

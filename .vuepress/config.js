@@ -3,7 +3,7 @@ module.exports = {
 	themeConfig: {
 		domain: 'https://lorisleiva.com',
 		repo: 'https://github.com/lorisleiva/blog',
-		nav: [ '/', '/articles/', '/cv/' ],
+		nav: [ '/', '/tag/', '/articles/', '/cv/' ],
 		author: {
 			name: 'Loris Leiva',
 			twitter: '@lorismatic',
