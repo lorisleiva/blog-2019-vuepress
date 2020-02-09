@@ -8,9 +8,7 @@
 
         <!-- Page. -->
         <div class="relative w-full max-w-screen-xl mx-auto mt-4 xl:my-8 xl:rounded-lg overflow-hidden shadow-lg">
-            <div class="group menu-button" @click="$refs.navigator.open()">
-                <Icon icon="menu" class="w-6 sm:w-8" secondary="text-gray-500 group-hover:text-white" />
-            </div>
+            <MenuButton @click="$refs.navigator.open()" />
             <component :is="layout" />
             <div class="p-8 bg-white-50p">
                 <Footer />
@@ -23,6 +21,7 @@
 import { isArticle } from '@theme/utils'
 import AnimatedGradient from '@theme/components/AnimatedGradient'
 import Navigator from '@theme/components/Navigator'
+import MenuButton from '@theme/components/MenuButton'
 import Footer from '@theme/components/Footer'
 
 // Available layouts.
@@ -31,7 +30,7 @@ import ArticleLayout from '@theme/layouts/ArticleLayout'
 import Layout from '@theme/layouts/Layout'
 
 export default {
-    components: { AnimatedGradient, Navigator, Footer, HomeLayout, ArticleLayout, Layout },
+    components: { AnimatedGradient, Navigator, MenuButton, Footer, HomeLayout, ArticleLayout, Layout },
     computed: {
         layout () {
             if (! this.$page.path) return 'Layout' // TODO 404.vue
@@ -42,25 +41,3 @@ export default {
     },
 }
 </script>
-
-<style lang="stylus">
-corner-triangle(size, paddingTop, paddingRight)
-    width size
-    height size
-    border-style solid
-    border-width 0 size*2 size*2 0
-    border-color transparent theme('colors.gray.800') transparent transparent
-    position absolute
-    top 0
-    right 0
-    cursor pointer
-    > div
-        position absolute
-        top paddingTop
-        right paddingRight - (size * 2)
-
-.menu-button
-    corner-triangle(30px, 4px, 6px)
-    @media sm
-        corner-triangle(40px, 5px, 8px)
-</style>

@@ -9,8 +9,7 @@
             :class="featured ? 'h-full min-h-72 rounded-lg' : 'h-48 rounded-t-lg'"
             :style="`background-image: url(${article.frontmatter.image})`"
         >
-            <div v-if="featured" class="absolute inset-0" style="background-image: linear-gradient(to top, rgba(74, 85, 104,.4) 20%, rgba(0,0,0,0) 50%)"></div>
-            <div v-if="featured" class="absolute inset-x-0 bottom-0 p-6 text-white">
+            <div v-if="featured" class="absolute inset-x-0 bottom-0 p-6 pt-20 text-white" style="background-image: linear-gradient(to top, rgba(74, 85, 104,.4) 40%, rgba(0,0,0,0) 100%)">
                 <div 
                     class="uppercase tracking-wider text-xs font-semibold mb-2" 
                     v-text="article.frontmatter.tags[0]"
