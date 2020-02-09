@@ -17,8 +17,6 @@ export default {
     components: { Header, ArticleGrid, Pagination },
     computed: {
         articles () {
-            // TODO: add two most popular tags as cards + other cars in navigator (before search input)
-            // TODO: Group series of articles?
             return this.$pagination.pages
         },
         subtitle () {

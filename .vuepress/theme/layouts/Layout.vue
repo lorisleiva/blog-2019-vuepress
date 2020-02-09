@@ -2,8 +2,8 @@
     <div class="bg-white">
         <div class="container">
             <Header />
-            <Content />
         </div>
+        <Content />
     </div>
 </template>
 

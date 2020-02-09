@@ -22,7 +22,7 @@
                     required
                 >
                 <button 
-                    class="w-40 rounded-r-lg border-2 border-l-0 border-white text-white tracking-wide uppercase flex-no-shrink"
+                    class="w-40 rounded-r-lg border-2 border-l-0 border-white text-white tracking-wide uppercase flex-shrink-0"
                     :class="submitHovered ? 'text-2xl' : 'text-sm sm:text-base'"
                     type="submit" 
                     id="mc-embedded-subscribe"

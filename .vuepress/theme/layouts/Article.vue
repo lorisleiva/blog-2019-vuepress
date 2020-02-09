@@ -8,8 +8,8 @@
             <div class="container">
                 <Header />
                 <ArticleMetaData />
-                <Content />
             </div>
+            <Content />
         </article>
 
         <!-- Subscription form. -->
@@ -32,7 +32,7 @@
         </div>
 
         <!-- Related articles. -->
-        <div class="bg-white">
+        <div v-if="relatedArticles.length >= 2" class="bg-white">
             <div class="container py-4 sm:py-8">
                 <h2>Related articles</h2>
                 <div class="flex flex-wrap -mx-5">
