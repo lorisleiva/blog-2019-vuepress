@@ -3,11 +3,9 @@
         <div class="container mb-16">
             <Header />
             <Content />
-            <router-link :to="article.path" v-for="article in $articles" :key="article.key" class="m-0 flex hover:bg-gray-200 hover:text-gray-800 px-4 py-2 rounded-lg cursor-pointer border-0">
-                <div>
-                    <div class="text-sm uppercase tracking-wider text-gray-600 font-semibold" v-text="relativeDate(article)"></div>
-                    <div class="text-lg" v-text="article.title"></div>
-                </div>
+            <router-link :to="article.path" v-for="article in $articles" :key="article.key" class="m-0 block hover:bg-blackrock hover:text-white px-4 py-2 rounded-lg cursor-pointer border-0">
+                <div class="text-sm uppercase tracking-wider text-gray-500 font-semibold" v-text="relativeDate(article)"></div>
+                <div class="text-lg" v-text="article.title"></div>
             </router-link>
         </div>
     </div>

@@ -29,10 +29,13 @@ module.exports = {
         '90': '0.9',
       },
     },
-    gradients: {
+    gradients: theme => ({
       topaz: ['30deg', '#EE7752', '#E73C7E'],
-      river:   ['to right', '#23A6D5', '#23D5AB'],
-    },
+      river: ['30deg', '#23A6D5', '#23D5AB'],
+      emerald: ['30deg', theme('colors.green.400'), theme('colors.teal.600')],
+      blackrock: ['30deg', theme('colors.gray.700'), theme('colors.gray.900')],
+      moonlight: ['30deg', theme('colors.gray.100'), theme('colors.gray.300')],
+    }),
   },
   variants: {
     gradients: ['responsive', 'hover'],
