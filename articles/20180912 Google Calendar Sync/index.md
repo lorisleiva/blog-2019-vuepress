@@ -2,7 +2,7 @@
 permalink: google-calendar-part-1-integration
 image: /covers/google-calendar-part-1-integration.png
 description: You are about to learn how to allow our users to integrate all of their Google calendars and events within our application. In a series of articles we are going to...
-tags: [ 'Laravel Lab' ]
+tags: ['Laravel', 'Google Calendar']
 date: 2018-09-12T14:22:00Z
 disqus: ghost-5b75a2f22cd1381e6de4931d
 ---

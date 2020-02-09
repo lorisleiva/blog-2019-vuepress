@@ -2,7 +2,7 @@
 permalink: google-calendar-part-3-webhook-synchronizations
 image: /covers/google-calendar-part-3-webhook-synchronizations.jpg
 description: In this article we'll go one step further and ask the Google API to notify us of any changes that we should be aware of.
-tags: [ 'Laravel Lab' ]
+tags: ['Laravel', 'Google Calendar']
 date: 2018-10-03T10:37:00Z
 disqus: ghost-5bb0efc3f16f2160d3040cce
 ---

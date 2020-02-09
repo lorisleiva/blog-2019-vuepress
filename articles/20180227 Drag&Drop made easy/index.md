@@ -2,7 +2,7 @@
 permalink: drag-drop-made-easy
 image: /covers/drag-drop-made-easy.jpg
 description: When you need a quick drag&drop that reorders your data in VueJS as well as elements in the DOM.
-tags: [ 'Vue Lab' ]
+tags: ['Vue']
 date: 2018-02-28T09:47:00Z
 disqus: ghost-5a952ce3191ea008997df9aa
 ---
