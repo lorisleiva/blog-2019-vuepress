@@ -20,7 +20,13 @@ module.exports = {
             ],
             globalPagination: {
                 lengthPerPage: 11,
-            }
+            },
+            sitemap: {
+                hostname: 'https://lorisleiva.com',
+            },
+            feed: {
+                canonical_base: 'https://lorisleiva.com',
+            },
         }],
         'seo',
         'disqus',
