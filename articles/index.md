@@ -1,5 +1,5 @@
 ---
-layout: AllArticlesLayout
+layout: ArticlesAll
 icon: collection
 ---
 

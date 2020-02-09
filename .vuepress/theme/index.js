@@ -10,10 +10,10 @@ module.exports = {
                     title: 'Tag',
                     keys: ['tags'],
                     path: '/tag/',
-                    layout: 'TagsLayout',
-                    scopeLayout: 'TagLayout',
+                    layout: 'Tags',
+                    scopeLayout: 'ArticlesPaginated',
                     pagination: {
-                        layout: 'TagLayout',
+                        layout: 'ArticlesPaginated',
                         getPaginationPageTitle: (_, key) => `${key} Tag`,
                     }
                 },

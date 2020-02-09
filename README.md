@@ -4,5 +4,5 @@ metaTitle: Loris Leiva | Recreational programming
 subtitle: Recreational programming
 searchableTitle: Home
 icon: home
-layout: HomeLayout
+layout: Home
 ---

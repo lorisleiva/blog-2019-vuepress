@@ -1,6 +1,6 @@
 <template>
     <div class="group menu-button" @click="$emit('click')">
-        <Icon icon="menu" class="w-6 sm:w-8" secondary="text-gray-500 group-hover:text-white" />
+        <Icon icon="menu" class="w-5 sm:w-6" secondary="text-gray-500 group-hover:text-white" />
     </div>
 </template>
 
@@ -27,7 +27,7 @@ corner-triangle(size, paddingTop, paddingRight)
         right paddingRight - (size * 2)
 
 .menu-button
-    corner-triangle(30px, 5px, 6px)
+    corner-triangle(30px, 7px, 7px)
     @media sm
-        corner-triangle(40px, 6px, 9px)
+        corner-triangle(40px, 11px, 12px)
 </style>

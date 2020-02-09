@@ -20,27 +20,26 @@
 </template>
 
 <script>
-import { isArticle } from '@theme/utils'
 import AnimatedGradient from '@theme/components/AnimatedGradient'
 import Navigator from '@theme/components/Navigator'
 import MenuButton from '@theme/components/MenuButton'
 import Footer from '@theme/components/Footer'
 
 // Available layouts.
-import HomeLayout from '@theme/layouts/HomeLayout'
-import ArticleLayout from '@theme/layouts/ArticleLayout'
-import AllArticlesLayout from '@theme/layouts/AllArticlesLayout'
-import TagsLayout from '@theme/layouts/TagsLayout'
-import TagLayout from '@theme/layouts/TagLayout'
+import Article from '@theme/layouts/Article'
+import ArticlesAll from '@theme/layouts/ArticlesAll'
+import ArticlesPaginated from '@theme/layouts/ArticlesPaginated'
+import Home from '@theme/layouts/Home'
 import Layout from '@theme/layouts/Layout'
+import Tags from '@theme/layouts/Tags'
 
 export default {
-    components: { AnimatedGradient, Navigator, MenuButton, Footer, HomeLayout, ArticleLayout, AllArticlesLayout, TagsLayout, TagLayout, Layout },
+    components: { AnimatedGradient, Navigator, MenuButton, Footer, Article, ArticlesAll, ArticlesPaginated, Home, Layout, Tags },
     computed: {
         layout () {
             if (! this.$page.path) return 'Layout' // TODO 404.vue
             if (this.$frontmatter.layout) return this.$frontmatter.layout
-            if (this.$page.isArticle) return 'ArticleLayout'
+            if (this.$page.isArticle) return 'Article'
             return 'Layout'
         }
     },
