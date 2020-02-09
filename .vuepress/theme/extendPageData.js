@@ -18,6 +18,7 @@ function ensurePageHasFrontmatter(page) {
 function classify(page) {
     page.isArticle = page.regularPath.startsWith('/articles/') && page.regularPath !== '/articles/'
     page.isTag = page.regularPath.startsWith('/tag/')
+    page.isSearchable = page.regularPath.indexOf('/page/') === -1
 }
 
 function setTitle(page) {

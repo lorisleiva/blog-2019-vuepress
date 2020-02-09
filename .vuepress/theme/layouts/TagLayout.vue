@@ -1,12 +1,11 @@
 <template>
     <div class="bg-white">
-        <Header xl />
+        <Header :subtitle="subtitle" xl />
         <ArticleGrid :articles="articles" />
     </div>
 </template>
 
 <script>
-import { sortByDate } from '@theme/utils'
 import Header from '@theme/components/Header'
 import ArticleGrid from '@theme/components/ArticleGrid'
 
@@ -14,12 +13,15 @@ export default {
     components: { Header, ArticleGrid },
     computed: {
         articles () {
-            // TODO: Before pagination? Yes! Use "sorter" option to sort there and not here. https://vuepress-plugin-blog.ulivz.com/pagination/#sorter
-            // TODO: Make sure pagination pages are not searchable (page.isSearchable = false)
             // TODO: Make nice grid for all tags
             // TODO: add two most popular tags as cards + other cars in navigator (before search input)
             // TODO: Group series of articles?
-            return this.$currentTag.pages.sort(sortByDate)
+            return this.$pagination.pages
+        },
+        subtitle () {
+            if (this.$pagination && this.$pagination.paginationIndex > 0) {
+                return `Page ${this.$pagination.paginationIndex + 1}`
+            }
         },
     },
 }
