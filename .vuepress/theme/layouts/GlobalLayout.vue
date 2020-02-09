@@ -27,13 +27,15 @@ import Footer from '@theme/components/Footer'
 // Available layouts.
 import HomeLayout from '@theme/layouts/HomeLayout'
 import ArticleLayout from '@theme/layouts/ArticleLayout'
+import AllArticlesLayout from '@theme/layouts/AllArticlesLayout'
 import Layout from '@theme/layouts/Layout'
 
 export default {
-    components: { AnimatedGradient, Navigator, MenuButton, Footer, HomeLayout, ArticleLayout, Layout },
+    components: { AnimatedGradient, Navigator, MenuButton, Footer, HomeLayout, ArticleLayout, AllArticlesLayout, Layout },
     computed: {
         layout () {
             if (! this.$page.path) return 'Layout' // TODO 404.vue
+            if (this.$frontmatter.layout) return this.$frontmatter.layout
             if (this.$page.path === '/') return 'HomeLayout'
             if (isArticle(this.$page)) return 'ArticleLayout'
             return 'Layout'

@@ -1,3 +1,5 @@
+import moment from "moment"
+
 export const isArticle = page => {
     return page.regularPath.startsWith('/articles/')
         && page.regularPath !== '/articles/'
@@ -26,3 +28,6 @@ export const randomElements = ([...arr], n = 1) => {
     }
     return arr.slice(0, n)
 }
+
+export const relativeDate = date => moment(date).fromNow()
+export const formatDate = date => moment(date).format('lll')
