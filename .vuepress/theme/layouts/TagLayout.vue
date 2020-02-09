@@ -14,7 +14,7 @@ export default {
     components: { Header, ArticleGrid },
     computed: {
         articles () {
-            // TODO: Before pagination?
+            // TODO: Before pagination? Yes! Use "sorter" option to sort there and not here. https://vuepress-plugin-blog.ulivz.com/pagination/#sorter
             // TODO: Make sure pagination pages are not searchable (page.isSearchable = false)
             // TODO: Make nice grid for all tags
             // TODO: add two most popular tags as cards + other cars in navigator (before search input)
