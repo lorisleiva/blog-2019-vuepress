@@ -19,7 +19,7 @@ module.exports = {
                 },
             ],
             globalPagination: {
-                lengthPerPage: 2,
+                lengthPerPage: 11,
             }
         }],
         'seo',
