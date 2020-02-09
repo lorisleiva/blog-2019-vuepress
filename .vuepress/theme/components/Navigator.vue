@@ -7,7 +7,7 @@
                 <a 
                     v-for="tag in featuredTags" 
                     :key="tag.name"
-                    class="m-0 hover:bg-blackrock hover:text-white px-4 py-2 rounded-lg border-0"
+                    class="m-0 hover:bg-blackrock hover:text-white px-4 py-2 rounded-lg border-0 shadow-lg"
                     :class="tag.classes"
                     :href="tag.path"
                     @click="visit($event, tag.path)"
