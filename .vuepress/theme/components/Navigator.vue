@@ -26,12 +26,12 @@
                     >
                         <Icon
                             class="w-5 h-5 mr-3 mt-1 flex-shrink-0"
-                            :icon="iconForPage(page)" 
+                            :icon="page.frontmatter.icon" 
                             :primary="index === focused ? 'text-gray-600' : 'text-gray-500'"
                             :secondary="index === focused ? 'text-black' : 'text-gray-700'"
                         ></Icon>
                         <div :class="index === focused ? 'text-black' : ''">
-                            <div v-text="page.path === '/' ? 'Home' : page.title"></div>
+                            <div v-text="page.frontmatter.searchableTitle"></div>
                             <span v-if="page.header" class="text-sm">&rightarrow;&nbsp;{{ page.header.title }}</span>
                         </div>
                     </a>
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { fetchPagesInArray, isArticle } from '@theme/utils'
+import { fetchPagesInArray, isArticle, isTag } from '@theme/utils'
 
 export default {
     data () {
@@ -105,11 +105,6 @@ export default {
         unfocus () {
             this.focused = -1
         },
-        iconForPage (page) {
-            if (!! page.frontmatter.icon) return page.frontmatter.icon
-            if (isArticle(page)) return 'news'
-            return 'document'
-        }
     },
     mounted() {
         const keyboardHandler = e => {

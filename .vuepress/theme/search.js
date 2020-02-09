@@ -3,13 +3,14 @@ export default ({ Vue }) => {
         methods: {
             $search (query, maxSuggestions = 5) {
                 query = query.trim().toLowerCase()
-                const match = x => x.title && x.title.toLowerCase().indexOf(query) > -1
                 const { pages } = this.$site
                 const results = []
+                const matchPage = page => page.frontmatter.searchableTitle.toLowerCase().indexOf(query) > -1
+                const matchHeader = header => header.title && header.title.toLowerCase().indexOf(query) > -1
 
                 for (let i = 0; i < pages.length; i++) {
                     if (maxSuggestions && results.length >= maxSuggestions) break
-                    results.push(...searchPage(pages[i], match, match))
+                    results.push(...searchPage(pages[i], matchPage, matchHeader))
                 }
 
                 return maxSuggestions ? results.slice(0, maxSuggestions) : results
