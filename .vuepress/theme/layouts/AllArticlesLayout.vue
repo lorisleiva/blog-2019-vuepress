@@ -1,8 +1,8 @@
 <template>
     <div class="bg-white">
-        <Header />
-        <Content />
-        <div class="container flex flex-col pb-16">
+        <div class="container mb-16">
+            <Header />
+            <Content />
             <router-link :to="article.path" v-for="article in $articles" :key="article.key" class="m-0 flex hover:bg-gray-200 hover:text-gray-800 px-4 py-2 rounded-lg cursor-pointer border-0">
                 <div>
                     <div class="text-sm uppercase tracking-wider text-gray-600 font-semibold" v-text="dateOf(article)"></div>

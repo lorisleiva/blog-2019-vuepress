@@ -1,7 +1,9 @@
 <template>
     <div class="bg-white">
-        <Header no-home xl />
-        <ArticleGrid :articles="$featuredArticles" />
+        <div class="container-xl">
+            <Header no-home />
+            <ArticleGrid :articles="$featuredArticles" />
+        </div>
     </div>
 </template>
 

@@ -9,7 +9,9 @@
         <!-- Page. -->
         <div class="relative w-full max-w-screen-xl mx-auto mt-4 xl:my-8 xl:rounded-lg overflow-hidden shadow-lg">
             <MenuButton @click="$refs.navigator.open()" />
-            <component :is="layout" />
+            <div class="flex flex-col">
+                <component :is="layout" />
+            </div>
             <div class="p-8 bg-white-50p">
                 <Footer />
             </div>

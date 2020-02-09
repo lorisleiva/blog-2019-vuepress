@@ -1,15 +1,15 @@
 <template>
-    <div>
+    <div class="flex flex-col">
         <!-- Progress bar and share buttons. -->
         <FloatingHeader />
 
         <!-- Article. -->
         <article class="bg-white">
-            <Header />
-            <div class="container mb-8">
+            <div class="container">
+                <Header />
                 <ArticleMetaData />
+                <Content />
             </div>
-            <Content />
         </article>
 
         <!-- Subscription form. -->

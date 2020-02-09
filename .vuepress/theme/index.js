@@ -13,12 +13,16 @@ module.exports = {
                     layout: 'TagsLayout',
                     scopeLayout: 'TagLayout',
                     pagination: {
-                        lengthPerPage: 2,
                         layout: 'TagLayout',
-                        getPaginationPageTitle: (pageNumber, key) => `${key} Tag`
+                        getPaginationPageTitle: (_, key) => `${key} Tag`,
                     }
                 },
             ],
+            globalPagination: {
+                lengthPerPage: 2,
+                prevText: 'Newer articles',
+                nextText: 'Older articles',
+            }
         }],
         'seo',
         'disqus',

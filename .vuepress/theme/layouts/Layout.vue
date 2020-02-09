@@ -1,7 +1,9 @@
 <template>
     <div class="bg-white">
-        <Header />
-        <Content />
+        <div class="container">
+            <Header />
+            <Content />
+        </div>
     </div>
 </template>
 
