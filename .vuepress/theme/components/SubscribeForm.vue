@@ -12,7 +12,7 @@
         </div>
 
         <div class="flex justify-center">
-            <div class="flex w-full max-w-sm rounded-lg shadow-md">
+            <div class="flex w-full max-w-md rounded-lg shadow-md">
                 <input 
                     class="w-full p-3 rounded-l-lg rounded-r-none appearance-none border-2 border-white bg-white"
                     type="email" 
@@ -22,7 +22,7 @@
                     required
                 >
                 <button 
-                    class="w-24 sm:w-28 rounded-r-lg border-2 border-l-0 border-white text-white tracking-wide uppercase flex-no-shrink"
+                    class="w-40 rounded-r-lg border-2 border-l-0 border-white text-white tracking-wide uppercase font-semibold flex-shrink-0"
                     :class="submitHovered ? 'text-2xl' : 'text-sm sm:text-base'"
                     type="submit" 
                     id="mc-embedded-subscribe"

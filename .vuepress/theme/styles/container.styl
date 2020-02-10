@@ -1,10 +1,13 @@
+$firstBleedingPoint = 900px
+$secondBleedingPoint = 1040px
+
 $container
     width 100%
-    max-width config('screens.md')
+    max-width theme('screens.md')
     margin-right auto
     margin-left auto
-    padding-left config('padding.8')
-    padding-right config('padding.8')
+    padding-left theme('padding.8')
+    padding-right theme('padding.8')
     @media lg
         padding-left 0
         padding-right 0
@@ -12,9 +15,9 @@ $container
 $container-lg
     @extends $container
     @media lg
-        max-width config('width.bleeding-out-of-container-sm')
+        max-width $firstBleedingPoint
     @media xl
-        max-width config('width.bleeding-out-of-container')
+        max-width $secondBleedingPoint
 
 $break-out-of-container
     width 100vw
@@ -23,6 +26,13 @@ $break-out-of-container
     right 50%
     margin-left -50vw
     margin-right -50vw
+    @media xl
+        display block
+        left -33.33333333333%
+        right inherit
+        margin-left inherit
+        margin-right inherit
+        width theme('screens.xl')
 
 $flex-container
     @extends $container
@@ -36,14 +46,14 @@ $break-out-of-flex-container
     @extends $break-out-of-container
     align-self stretch
 
-$bleeding-out-of-container
+$bleed-out-of-container
     display block
-    margin config('margin.6') auto
+    margin theme('margin.6') auto
     width 100%
     @media lg
-        width config('width.bleeding-out-of-container-sm')
+        width $firstBleedingPoint
     @media xl
-        width config('width.bleeding-out-of-container')
+        width $secondBleedingPoint
 
 .container
     @extends $container
@@ -51,8 +61,18 @@ $bleeding-out-of-container
 .container-lg
     @extends $container-lg
 
+.container-xl
+    margin-left theme('margin.6')
+    margin-right theme('margin.6')
+    @media sm
+        margin-left theme('margin.12')
+        margin-right theme('margin.12')
+    @media lg
+        margin-left theme('margin.20')
+        margin-right theme('margin.20')
+
 .break-out-of-container
     @extends $break-out-of-container
 
-.bleeding-out-of-container
-    @extends $bleeding-out-of-container
+.bleed-out-of-container
+    @extends $bleed-out-of-container

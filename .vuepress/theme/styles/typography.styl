@@ -2,61 +2,63 @@ $headings = 'h1, h2, h3, h4, h5, h6'
 $blocks = 'p, ul, ol, blockquote'
 
 body
-    color config('colors.grey-darkest')
-    font-family config('fonts.sans')
-    line-height: config('leading.normal')
+    color theme('colors.gray.700')
+    font-family theme('fontFamily.sans')
+    line-height: theme('lineHeight.relaxed')
 
 {$headings}
-    line-height config('leading.tight')
-    font-family config('fonts.sans')
-    color config('colors.black')
+    line-height theme('lineHeight.tight')
+    font-family theme('fontFamily.sans')
+    color theme('colors.gray.800')
     & +
         {$blocks}
             margin-top 0
 
 h1
-    font-family config('fonts.serif')
+    font-family theme('fontFamily.serif')
 
 h2
-    font-size config('textSizes.3xl')
-    font-family config('fonts.serif')
-    font-weight config('fontWeights.semibold')
-    margin-top config('margin.8')
-    margin-bottom config('margin.6')
-    border-bottom 1px solid config('colors.grey-light')
+    font-size theme('fontSize.3xl')
+    font-family theme('fontFamily.serif')
+    font-weight theme('fontWeight.semibold')
+    margin-top theme('margin.8')
+    margin-bottom theme('margin.6')
+    border-bottom 1px solid theme('colors.gray.400')
     padding-bottom .3rem
-    @media md 
-        font-size config('textSizes.4xl')
+    @media md
+        font-size theme('fontSize.4xl')
 
 h3
-    font-size config('textSizes.3xl')
-    margin-top config('margin.8')
-    margin-bottom config('margin.2')
-    @media md 
-        margin-bottom config('margin.3')
-        font-size config('textSizes.4xl')
+    font-size theme('fontSize.3xl')
+    font-weight theme('fontWeight.bold')
+    margin-top theme('margin.8')
+    margin-bottom theme('margin.2')
+    @media md
+        margin-bottom theme('margin.3')
+        font-size theme('fontSize.4xl')
 
 h4
-    font-size config('textSizes.xl')
-    @media md 
-        font-size config('textSizes.2xl')
+    font-size theme('fontSize.xl')
+    font-weight theme('fontWeight.bold')
+    @media md
+        font-size theme('fontSize.2xl')
 
 h4, h5, h6
-    margin-top config('margin.4')
-    margin-bottom config('margin.3')
+    margin-top theme('margin.4')
+    margin-bottom theme('margin.3')
 
 li
-    margin-bottom config('margin.3')
+    margin-bottom theme('margin.3')
 
 {$blocks}
-    margin-bottom config('margin.8')
+    margin-bottom theme('margin.8')
 
 blockquote
     font-size .9em
-    color config('colors.grey-dark')
-    border-left .5rem solid config('colors.grey-light')
-    margin config('padding.6') 0
-    padding config('padding.2') config('padding.6')
+    color theme('colors.gray.600')
+    border-left .5rem solid theme('colors.gray.400')
+    margin theme('padding.6') 0
+    padding theme('padding.2') theme('padding.6')
     > *
         &:first-child
             margin-top 0
@@ -64,7 +66,7 @@ blockquote
             margin-bottom 0
 
 em, strong
-    color config('colors.black')
+    color theme('colors.black')
 
 small
-    color config('colors.grey-dark')
+    color theme('colors.gray.600')

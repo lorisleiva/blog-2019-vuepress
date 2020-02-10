@@ -2,7 +2,7 @@
 permalink: redesigning-my-blog-using-vuepress-and-tailwindcss
 image: /covers/redesigning-my-blog-using-vuepress-and-tailwindcss.jpg
 description: Moving away from a traditional database blog, I explain why and how I moved to this new stack.
-tags: [ 'Vuepress', 'Tailwind', 'Vue Lab' ]
+tags: ['Vuepress', 'Tailwind', 'Vue', 'Open Source']
 date: 2019-05-05T09:17:00Z
 ---
 # Redesigning my blog using Vuepress and TailwindCSS
@@ -51,7 +51,7 @@ In my case, I have two folders `pages` and `articles` at the root of my reposito
 ├── package-lock.json
 ├── package.json
 ├── pages
-└── tailwind.js
+└── tailwind.config.js
 ```
 
 All the rest of the Vuepress application is located in a `.vuepress` folder. That includes the layout of your application, Vue components, global assets, custom styling, settings, plugin registration, etc.
@@ -83,7 +83,7 @@ module.exports = {
     // ...
     postcss: {
         plugins: [
-            require('tailwindcss')('./tailwind.js'),
+            require('tailwindcss')('./tailwind.config.js'),
             require('autoprefixer'),
         ]
     }

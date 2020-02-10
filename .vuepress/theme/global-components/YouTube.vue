@@ -1,6 +1,6 @@
 <template>
     <div class="mb-8">
-        <div class="bleeding-out-of-container relative" style="padding-top: 56.25%;">
+        <div class="bleed-out-of-container relative" style="padding-top: 56.25%;">
             <iframe 
                 :src="url" width="560" height="315"
                 frameborder="0" allow="autoplay; encrypted-media" allowfullscreen

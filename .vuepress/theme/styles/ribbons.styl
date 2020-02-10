@@ -16,7 +16,7 @@ $ribbon-distance = ($ribbon-width / 2) - ($ribbon-height / 2) / 1.44
         z-index -1
         content ''
         display block
-        border $ribbon-border solid config('colors.grey-darkest')
+        border $ribbon-border solid theme('colors.gray.800')
         border-top-color transparent
         border-left-color transparent
     &::before
@@ -32,10 +32,10 @@ $ribbon-distance = ($ribbon-width / 2) - ($ribbon-height / 2) / 1.44
         width $ribbon-width * 2
         height $ribbon-height
         padding 0
-        background-color config('colors.grey-darker')
+        background-color theme('colors.gray.600')
         box-shadow 0 5px 10px rgba(0,0,0,.1)
-        color config('colors.white')
-        font-family config('fonts.sans')
+        color theme('colors.white')
+        font-family theme('fontFamily.sans')
         font-size 15px
         font-weight 700
         line-height $ribbon-height
@@ -46,23 +46,9 @@ $ribbon-distance = ($ribbon-width / 2) - ($ribbon-height / 2) / 1.44
         top $ribbon-distance - ($ribbon-height / 2)
         transform rotate(-45deg)
 
-$ribbon-colors = ('blue' 'blue' 'blue-dark'),
-                 ('teal' 'teal' 'teal-dark'),
-                 ('indigo' 'indigo' 'indigo-dark'),
-
-.ribbon
-    for ribbon in $ribbon-colors
-        &.{ribbon[0]}
-            > span
-                if ribbon[3]
-                    color config('colors.' + ribbon[3])
-                background-color config('colors.' + ribbon[1])
-            &::before, &::after
-                border-color config('colors.' + ribbon[2])
-
 @css {
     .ribbon.topaz > span { @apply .bg-topaz; }
-    .ribbon.topaz::before, .ribbon.topaz::after { @apply .border-red-darker; }
+    .ribbon.topaz::before, .ribbon.topaz::after { @apply .border-red-800; }
     .ribbon.river > span { @apply .bg-river; }
-    .ribbon.river::before, .ribbon.river::after { @apply .border-blue-dark; }
+    .ribbon.river::before, .ribbon.river::after { @apply .border-blue-700; }
 }

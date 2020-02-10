@@ -8,11 +8,11 @@ export default {
         icon: String,
         primary: {
             type: String,
-            default: 'text-grey-dark',
+            default: 'text-gray-500',
         },
         secondary: {
             type: String,
-            default: 'text-grey-darker',
+            default: 'text-gray-600',
         },
     },
     computed: {

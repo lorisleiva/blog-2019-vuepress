@@ -1,10 +1,6 @@
-export const isArticle = page => {
-    return page.regularPath.startsWith('/articles/')
-        && page.regularPath !== '/articles/'
-}
+import moment from "moment"
 
-export const sortByDate = (a, b) => 
-    new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
+export const sortByDate = (a, b) => new Date(b.isoDate) - new Date(a.isoDate)
 
 export const fetchPagesInArray = (pages, keys) => pages
     .filter(page => keys.includes(page.path))
@@ -13,7 +9,7 @@ export const fetchPagesInArray = (pages, keys) => pages
 export const excludePages = (pages, pagesToExclude) =>
     pages.filter(page => ! pagesToExclude.includes(page))
 
-export const randomElement = arr => 
+export const randomElement = arr =>
     arr[Math.floor(Math.random() * arr.length)]
 
 export const randomElements = ([...arr], n = 1) => {
@@ -26,3 +22,6 @@ export const randomElements = ([...arr], n = 1) => {
     }
     return arr.slice(0, n)
 }
+
+export const relativeDate = date => moment(date).fromNow()
+export const formatDate = date => moment(date).format('lll')

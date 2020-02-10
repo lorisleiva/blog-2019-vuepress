@@ -1,28 +1,38 @@
 <template>
     <router-link 
-        class="article-card relative flex flex-col rounded-lg shadow-xl hover:shadow-2xl min-h-article-card border-0 z-article-card"
-        :class="{ 'highlight-every-third': highlightEveryThird }"
+        class="article-card relative flex flex-col rounded-lg z-10 cursor-pointer" style="min-height: 16rem;"
+        :class="featured ? 'border-0' : 'border border-gray-300'"
         :to="article.path"
     >
-        <figure>
-            <div 
-                class="h-48 rounded-t-lg bg-no-repeat bg-cover bg-center" 
-                :style="`background-image: url(${article.frontmatter.image})`"
-            ></div>
-        </figure>
-        <main class="flex flex-1 flex-col bg-white rounded-b-lg p-6">
-            <header>
+        <figure
+            class="relative bg-cover bg-center overflow-hidden" 
+            :class="featured ? 'h-full min-h-72 rounded-lg' : 'h-48 rounded-t-lg'"
+            :style="`background-image: url(${article.frontmatter.image})`"
+        >
+            <div v-if="featured" class="absolute inset-x-0 bottom-0 p-6 pt-20 text-white" style="background-image: linear-gradient(to top, rgba(74, 85, 104,.4) 40%, rgba(0,0,0,0) 100%)">
                 <div 
-                    class="uppercase tracking-wide text-grey-dark text-sm font-semibold" 
+                    class="uppercase tracking-wider text-xs font-semibold mb-2" 
                     v-text="article.frontmatter.tags[0]"
                 ></div>
                 <div 
-                    class="font-sans text-2xl mb-4 border-0 leading-tight text-black font-semibold" 
+                    class="font-sans text-2xl border-0 leading-tight font-semibold" 
+                    v-text="article.title"
+                ></div>
+            </div>
+        </figure>
+        <main class="flex flex-1 flex-col bg-white rounded-b-lg p-6" v-if="! featured">
+            <header>
+                <div 
+                    class="uppercase tracking-wider text-gray-500 text-xs font-semibold mb-2" 
+                    v-text="article.frontmatter.tags[0]"
+                ></div>
+                <div 
+                    class="font-sans text-lg border-0 leading-tight text-black font-semibold mb-2" 
                     v-text="article.title"
                 ></div>
             </header>
             <section
-                class="font-content text-lg text-grey-darker" 
+                class="font-sans text-gray-600" 
                 v-text="article.frontmatter.description"
             ></section>
         </main>
@@ -36,7 +46,7 @@
 export default {
     props: {
         article: Object,
-        highlightEveryThird: Boolean,
+        featured: Boolean,
     },
     computed: {
         ribbonClass () {
@@ -52,31 +62,21 @@ export default {
 
 <style lang="stylus">
 .article-card
-    flex 1 1 300px
-    transition all 0.5s ease
+    transition all 0.4s ease
     &:hover
-        transition all 0.4s ease
         transform translate3D(0, -1px, 0) scale(1.02)
+    &:before 
+        content ""
+        position absolute
+        top 10px
+        right 10px
+        bottom 0
+        left 10px
+        border-radius 10px
+        box-shadow 0 10px 10px rgba(0,0,0,0.08),0 0 0 transparent
+        transition all .25s cubic-bezier(.02,.01,.47,1)
+        z-index -1
+    &:hover:before
+        box-shadow 0 4px 60px 0 rgba(0,0,0,0.2),0 0 0 transparent
 
-@media md
-    .article-card.highlight-every-third:nth-child(3n+1)
-        flex 1 1 100%
-        flex-direction row
-        figure
-            flex 1 1 auto
-            > div
-                border-bottom-left-radius config('borderRadius.lg')
-                border-top-right-radius 0
-                width 100%
-                height 100%
-        main
-            flex 0 1 357px
-            padding 30px 40px
-            border-bottom-left-radius 0
-            border-top-right-radius config('borderRadius.lg')
-            h2
-                font-size config('textSizes.3xl')
-            section
-                font-size config('textSizes.xl')
-                line-height 1.55
 </style>

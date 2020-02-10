@@ -1,26 +1,38 @@
 <template>
-    <div>
+    <div class="flex flex-col">
+        <!-- Progress bar and share buttons. -->
         <FloatingHeader />
-        <div class="container mb-8">
-            <ArticleMetaData />
-        </div>
-        <Content />
-        <div class="bg-topaz mb-16 mt-8 py-8">
+
+        <!-- Article. -->
+        <article class="bg-white">
+            <div class="container">
+                <Header />
+                <ArticleMetaData />
+            </div>
+            <Content />
+        </article>
+
+        <!-- Subscription form. -->
+        <div class="bg-white-50p pt-8 py-8">
             <div class="container">
                 <SubscribeForm />
             </div>
         </div>
-        <div class="container">
-            <ClientOnly>
+
+        <!-- Disqus. -->
+        <div class="bg-white py-16">
+            <div class="container">
                 <Disqus 
                     shortname="loris-leiva" 
                     :title="$page.title"
                     :identifier="disqusIdentifier" 
                     :url="disqusUrl"
                 />
-            </ClientOnly>
+            </div>
         </div>
-        <div class="bg-grey-lighter mt-16">
+
+        <!-- Related articles. -->
+        <div v-if="relatedArticles.length >= 2" class="bg-white">
             <div class="container py-4 sm:py-8">
                 <h2>Related articles</h2>
                 <div class="flex flex-wrap -mx-5">
@@ -29,6 +41,7 @@
                         :key="article.key"
                         :article="article"
                         class="mx-5 mb-8"
+                        style="flex: 1 1 300px"
                     />
                 </div>
             </div>
@@ -38,13 +51,14 @@
 
 <script>
 import { randomElements, excludePages } from '@theme/utils'
+import Header from '@theme/components/Header'
 import FloatingHeader from '@theme/components/FloatingHeader'
 import ArticleMetaData from '@theme/components/ArticleMetaData'
 import SubscribeForm from '@theme/components/SubscribeForm'
 import ArticleCard from '@theme/components/ArticleCard'
 
 export default {
-    components: { FloatingHeader, ArticleMetaData, SubscribeForm, ArticleCard },
+    components: { Header, FloatingHeader, ArticleMetaData, SubscribeForm, ArticleCard },
     computed: {
         disqusIdentifier () {
             return this.$page.frontmatter.disqus || this.$page.path

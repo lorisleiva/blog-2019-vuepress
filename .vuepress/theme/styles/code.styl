@@ -1,19 +1,18 @@
-$codeBackground = $codeBgColor
-$codeColor = config('colors.white')
+$codeBackground = theme('colors.gray.800')
+$codeColor = theme('colors.white')
 $codeHighlightBackground = rgba(0, 0, 0, 66%)
-$codeVerticalPadding = config('padding.10')
-// $codeHighlightBackground = linear-gradient(120deg, transparentify(#EE7752, $codeBgColor, 0.9), transparentify(#E73C7E, $codeBgColor, 0.9))
+$codeVerticalPadding = theme('padding.10')
 
 pre, code, kbd
-    font-family config('fonts.mono')
+    font-family theme('fontFamily.mono')
 
 pre, pre[class*="language-"]
     line-height 1.4 !important
     margin-top 0
     margin-bottom 0
-    padding $codeVerticalPadding config('padding.8')
+    padding $codeVerticalPadding theme('padding.8')
     background $codeBackground
-    border-radius config('borderRadius.lg')
+    border-radius theme('borderRadius.lg')
     overflow auto
     align-self stretch
     color $codeColor
@@ -25,25 +24,25 @@ pre, pre[class*="language-"]
         font-size 16px
 
 code, kbd
-    padding config('padding.1') config('padding.2')
-    border-radius config('borderRadius.default')
+    padding theme('padding.1') theme('padding.2')
+    border-radius theme('borderRadius.default')
     font-size 0.85em
     margin 0
 
 code
-    color config('colors.grey-darker')
-    background-color config('colors.grey-lighter')
+    color theme('colors.gray.700')
+    background-color theme('colors.gray.200')
 
 kbd
-    color config('colors.white')
-    background-color config('colors.black')
+    color theme('colors.white')
+    background-color theme('colors.black')
 
 div[class*="language-"]
     position relative
     background $codeBackground
-    border-radius config('borderRadius.lg')
-    font-family config('fonts.mono')
-    margin-bottom config('margin.8')
+    border-radius theme('borderRadius.lg')
+    font-family theme('fontFamily.mono')
+    margin-bottom theme('margin.8')
     .highlight-lines
         user-select none
         padding-top $codeVerticalPadding
@@ -61,8 +60,8 @@ div[class*="language-"]
     &::before
         position absolute
         z-index 3
-        top 0.8em
-        right 1em
+        top 1.2em
+        right 2em
         font-size 0.75rem
         color rgba(255, 255, 255, 0.4)
 

@@ -1,11 +1,11 @@
-import { isArticle, sortByDate, fetchPagesInArray, excludePages } from '@theme/utils'
+import { sortByDate, fetchPagesInArray, excludePages } from '@theme/utils'
 
 export default ({ Vue }) => {
     Vue.mixin({
         computed: {
             $articles () {
                 return this.$site.pages
-                    .filter(isArticle)
+                    .filter(page => page.isArticle)
                     .sort(sortByDate)
             },
             $featuredArticles () {

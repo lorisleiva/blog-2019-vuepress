@@ -1,7 +1,7 @@
 <template>
     <p>
         <iframe 
-            class="mb-8 bleeding-out-of-container" 
+            class="mb-8 bleed-out-of-container" 
             :height="height" 
             :title="title" 
             :src="`//codepen.io/${author}/embed/${id}/?height=${height}&theme-id=light&default-tab=result&embed-version=2`" 

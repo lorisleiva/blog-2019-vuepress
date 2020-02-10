@@ -1,26 +1,28 @@
 <template>
-    <div>
-        <Navigator></Navigator>
-        <GradientBar class="h-3"></GradientBar>
-        <div class="container my-16">
-            <div class="text-black font-serif text-4xl md:text-5xl font-semibold leading-tight mr-12 sm:mr-20 lg:mr-0" v-text="title"></div>
-            <div class="text-black font-serif text-xl md:text-2xl font-medium" v-if="subtitle" v-text="subtitle"></div>
-        </div>
-    </div>
+    <header class="my-16">
+        <router-link v-if="! noHome" tag="button" to="/" class="group flex items-center text-gray-600 mb-2 focus:outline-none">
+            <Icon icon="arrow-thin-left-circle" class="w-6 h-6 mr-1" primary="text-white" secondary="group-hover:text-gray-900"></Icon>
+            <div class="uppercase tracking-wider font-semibold text-sm group-hover:text-gray-900">Home</div>
+        </router-link>
+
+        <div class="text-gray-800 font-serif text-4xl md:text-5xl font-semibold leading-tight" v-text="effectiveTitle"></div>
+        <div class="text-gray-800 font-serif text-xl md:text-2xl font-medium" v-if="effectiveSubtitle" v-text="effectiveSubtitle"></div>
+    </header>
 </template>
 
 <script>
-import GradientBar from './GradientBar'
-import Navigator from './Navigator'
-
 export default {
-    components: { GradientBar, Navigator },
+    props: {
+        title: String,
+        subtitle: String,
+        noHome: Boolean,
+    },
     computed: {
-        title () {
-            return this.$page.title
+        effectiveTitle () {
+            return this.title || this.$page.title
         },
-        subtitle () {
-            return this.$page.frontmatter.subtitle
+        effectiveSubtitle () {
+            return this.subtitle || this.$page.frontmatter.subtitle
         },
     }
 }
