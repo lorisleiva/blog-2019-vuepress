@@ -5,7 +5,7 @@
 <script>
 export default {
     props: {
-        colors: { default: () => [ '#EE7752', '#E73C7E', '#23A6D5', '#23D5AB' ] },
+        colors: { default: () => [ '#EE7752', /* '#E73C7E', */ '#23A6D5', '#23D5AB' ] },
         time: { default: '15s' },
         degree: { default: '120deg' },
         progress: { default: 100 },
