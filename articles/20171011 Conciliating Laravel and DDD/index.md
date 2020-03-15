@@ -5,6 +5,7 @@ description: This article focuses on finding common grounds for using Domain-Dri
 tags: ['Domain Modeling', 'Laravel']
 date: 2017-10-13T12:07:00Z
 disqus: ghost-59ddddc94c4b014f2099543c
+ribbon: popular
 ---
 
 # Conciliating Laravel and DDD
