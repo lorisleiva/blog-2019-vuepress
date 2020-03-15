@@ -3,7 +3,7 @@ permalink: visualise-your-users-as-minecraft-villagers
 image: /covers/visualise-your-users-as-minecraft-villagers.png
 description: We're building a Minecraft Mod that listen for database changes so you can see your users as villagers in real-time.
 tags: ['Minecraft']
-date: 2020-03-15T15:46:00Z
+date: 2020-03-15T16:02:00Z
 ---
 
 # Visualise your users as Minecraft villagers
@@ -66,7 +66,7 @@ Please note that a lot of things can go wrong here. Each MySQL set up is differe
 
 ## Into the world of Minecraft Mods
 
-Now that we have our MySQL replication ready, let's have a little introduction on Minecraft Mod.
+Now that we have our MySQL replication ready, let's have a little introduction on Minecraft Mods.
 
 A _Minecraft Mod_ is a Minecraft extension that one can code in **Java** using the [Minecraft Forge](http://files.minecraftforge.net/) API.
 
@@ -200,7 +200,7 @@ And a `NetworkManager` class to register them.
 
 ## Commands as a way to debug
 
-You might have noticed a `command` package in the repository. Commands in Minecraft are instructions that a Player can give directly in the in-game chat. For example, you can change the time to midday by running the following native command: `/time set 6000`.
+You might have noticed a `commands` package in the repository. Commands in Minecraft are instructions that a Player can give directly in the in-game chat. For example, you can change the time to midday by running the following native command: `/time set 6000`.
 
 Since commands are easy to set up within the Minecraft Forge API, it can be a great way to debug your Mods. For example, I created this `CommandSpawnVillager` that allows a player to run `/villager John Doe` to spawn a villager at their position named "John Doe". Once I knew this command was working, I was confident enough to work on other parts of the code.
 
@@ -212,7 +212,7 @@ Since commands are easy to set up within the Minecraft Forge API, it can be a gr
 
 Minecraft Modding is not for the faint-hearted. We don't have an official API or exhaustive documentation we can refer to like we can in Laravel. It can be very frustrating at times but the results are incredibly rewarding.
 
-Even though I hadn't touched a Java program for years, it felt good being out of my comfort zone and experimenting with new language features and new APIs. Staying too long in the comfort zone of a tech stack is good for developing expert skills but can also bring some monotony. I strongly recommend to break that monotony from time to time and just program things because you can and have some fun doing it. That's what originally made us fall in love with programming.
+Even though I hadn't touched a Java program for years, it felt good being out of my comfort zone and experimenting with new language features and new APIs. Staying too long in the comfort zone of a tech stack is good for developing expert skills but can also bring some monotony. I strongly recommend to break that monotony from time to time and just program things because you can and have fun doing it. That's what originally made us fall in love with programming.
 
 Back to our little "Users as villagers" project, there are still a lot of things we could do to improve it. I will write down some ideas that I might toy with in the future or just leave as an "exercise".
 - Use a `date_of_birth` database column to spawn a baby villager instead of a regular villager if the user is under 18 years old.
