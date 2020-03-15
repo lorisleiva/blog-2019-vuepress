@@ -1,7 +1,7 @@
 ---
 permalink: visualise-your-users-as-minecraft-villagers
 image: /covers/visualise-your-users-as-minecraft-villagers.png
-description: We're building a Minecraft Mod that listen for database changes so you can see your users as villagers in real-time.
+description: We're building a Minecraft Mod that listens for database changes so you can see your users as villagers in real-time.
 tags: ['Minecraft']
 date: 2020-03-15T16:02:00Z
 ---
