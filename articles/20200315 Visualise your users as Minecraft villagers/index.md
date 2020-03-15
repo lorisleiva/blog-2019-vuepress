@@ -3,14 +3,14 @@ permalink: visualise-your-users-as-minecraft-villagers
 image: /covers/visualise-your-users-as-minecraft-villagers.png
 description: We're building a Minecraft Mod that listen for database changes so you can see your users as villagers in real-time.
 tags: ['Minecraft']
-date: 2020-03-15T15:00:00Z
+date: 2020-03-15T15:31:00Z
 ---
 
 # Visualise your users as Minecraft villagers
 
 In this tutorial, we are going to listen for real-time changes in our database and use that information to create or delete villagers in Minecraft. Before we get started, let's have a quick look at the end result.
 
-[TODO] Good showcase video
+<YouTube url="https://www.youtube.com/embed/WmV03rvS_us" />
 
 ## Listening for database changes
 
@@ -218,5 +218,6 @@ Back to our little "Users as villagers" project, there are still a lot of things
 - Use a `date_of_birth` database column to spawn a baby villager instead of a regular villager if the user is under 18 years old.
 - Use a `role` database column to define the Biome of the villager (e.g. `admin` → Savana, `moderator` → Taiga, `user` → Plains, etc.). 
 - Use an `industry` database column to define the Job of the villager (`null` → Unemployed, `agriculture` → Farmer, `medical` → Cleric, etc.)
+- Ensure villagers cannot breed or be killed otherwise they will be inconsistent with the database state.
 
 <GithubButton url="https://github.com/lorisleiva/minecravel" title="See full project on GitHub"></GithubButton>
