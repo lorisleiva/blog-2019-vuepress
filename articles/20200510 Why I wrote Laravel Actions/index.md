@@ -1,7 +1,7 @@
 ---
 permalink: why-i-wrote-laravel-actions
 image: /covers/why-i-wrote-laravel-actions.png
-description: I explain my motivations for writting Laravel Actions and provide a small refactoring example.
+description: I explain my motivations for writing Laravel Actions and provide a small refactoring example.
 tags: ['Laravel', 'Open Source']
 date: 2020-05-10T14:00:00Z
 ---
