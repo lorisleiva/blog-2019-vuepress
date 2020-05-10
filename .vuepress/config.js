@@ -11,9 +11,8 @@ module.exports = {
 		articlesPerPage: 11,
 		minimumFeaturedArticles: 11,
 		featuredArticles: [
-			'/visualise-your-users-as-minecraft-villagers/',
+			'/why-i-wrote-laravel-actions/',
 			'/laravel-deployment-using-gitlab-pipelines/',
-			'/conciliating-laravel-and-ddd/',
 		],
 	},
 	head: [
