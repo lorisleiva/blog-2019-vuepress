@@ -42,7 +42,7 @@ Here is my point: DDD is a philosophy. You might not agree with everything and y
 So, how can we reach a more intuitive structure (closer to our domain) whilst carrying on using our beloved Laravel framework and all the amazing features that comes with it?
 
 ## A beautiful compromise
-If you’ve spend a bit of time developing a frontend using VueJS, you might be familiar with Single-File Components. They are simple `.vue` files that wraps all you need to design a piece of UI. That is the HTML, the CSS and the JavaScript (or any modern alternatives of these languages).
+If you’ve spent a bit of time developing a frontend using VueJS, you might be familiar with Single-File Components. They are simple `.vue` files that wraps all you need to design a piece of UI. That is the HTML, the CSS and the JavaScript (or any modern alternatives of these languages).
 
 That organisation system makes total sense to me. If later on I need to adjust the design and/or the behaviour of a dropdown menu, it’s all in one place. Furthermore, components can be re-used within components so you can elegantly abstract common logic.
 
@@ -52,7 +52,7 @@ I find this concept of having a single “unit of life” in our applications ve
 
 Laravel Actions aims to bring that concept into the Laravel framework. Whilst in the backend world we do not worry about HTML, CSS and JavaScript, we do have various engineering concepts that could do with being abstracted in a single “unit of life” that will now be referred to as an “Action”.
 
-Actions provide a more intuitive structure that focuses on you domain whilst embracing the features of the framework it relies upon.
+Actions provide a more intuitive structure that focuses on your domain whilst embracing the features of the framework it relies upon.
 
 ## A new unit of life
 You might have been using a similar concept already in your applications. Lots of articles (e.g. from [Michael Dyrynda](https://dyrynda.com.au/blog/single-action-controllers-in-laravel) or [Dries Vints](https://driesvints.com/blog/the-beauty-of-single-action-controllers/)) are talking about the benefits of only using invokable controllers, i.e. defining each endpoint in a dedicated class.
@@ -61,7 +61,7 @@ This is a good first step as it allows you to organise your controllers more int
 
 However, you are still likely going to write your authorisation and/or validation logic somewhere else (e.g. in custom Request classes). And even if you didn’t, what about jobs, event listeners or console commands? They are also likely to contain domain logic, yet, they will live outside of your “domain-friendly” folder structure.
 
-And what about common logic shared between controllers, between jobs, between controllers and jobs, etc? Have you ever shamefully googled “how to call a controller from a controller?”? In the end, that responsibility tend to be delegated to Models which make them unmaintainable god-like objets.
+And what about common logic shared between controllers, between jobs, between controllers and jobs, etc? Have you ever shamefully googled “how to call a controller from a controller?”? In the end, that responsibility tends to be delegated to Models which make them unmaintainable god-like objects.
 
 With Laravel Actions,
 * Actions take care of a single task.
@@ -202,7 +202,7 @@ app/
 └── User.php
 ```
 
-First of all, how eloquent is that? A new developer joining the project can look at that folder structure and immediately understand every feature that the application provides. If they need to update the behaviour of a feature, they will know immediately were to go.
+First of all, how eloquent is that? A new developer joining the project can look at that folder structure and immediately understand every feature that the application provides. If they need to update the behaviour of a feature, they will know immediately where to go.
 
 If you read back the points 3, 4 and 5 from the "Before" section, you wouldn’t have been able to guess them without opening the files and reading the code. Now, most of the domain logic is obvious.
 
@@ -233,6 +233,6 @@ tests/
 ```
 
 ## Conclusion
-Laravel Actions has been released almost exactly one year ago and I’m so excited to have finally released it as a version 1.0. I hope this article helped understanding the rationales behind this package and I’m looking forward to get more feedback from the community which has already been instrumental during this entire year.
+Laravel Actions has been released almost exactly one year ago and I’m so excited to have finally released it as a version 1.0. I hope this article helps understanding the rationales behind this package and I’m looking forward to getting more feedback from the community which has already been instrumental during this entire year.
 
 <GithubButton url="https://github.com/lorisleiva/laravel-actions" title="Laravel Actions on GitHub"></GithubButton>
