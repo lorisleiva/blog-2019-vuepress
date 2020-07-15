@@ -68,7 +68,6 @@ Let's start with a simple example wrapping [Laravel Echo](https://github.com/lar
 // resources/js/services/Realtime.js
 
 import Echo from 'laravel-echo'
-import { forEach } from 'lodash'
 
 // Make Pusher globally accessible for Laravel Echo.
 window.Pusher = require('pusher-js');
@@ -88,8 +87,8 @@ export default {
             ? echo.channel(channel)
             : echo.private(channel)
 
-        forEach(listeners, (handler, event) => {
-            channel.listen(`.${event}`, handler)
+        Object.keys(listeners).forEach(function (event) {
+            channel.listen(`.${event}`, listeners[event])
         })
     },
 
@@ -99,7 +98,7 @@ export default {
 }
 ```
 
-As you can see, all that application need is a way to subscribe and unsubscribe to a channel. When subscribing, I want to pass an object of event listeners that the service will take care of registering for me. That's it. Now the rest of the frontend doesn't need to be aware of the ins and out of Laravel Echo nor how it is configured. Before moving on to our next service, let's see a basic usage example of RealTime.
+As you can see, all that application need is a way to subscribe and unsubscribe to a channel. When subscribing, I want to pass an object of event listeners that the service will take care of registering for me. That's it. Now the rest of the frontend doesn't need to be aware of the ins and out of Laravel Echo nor how it is configured. Before moving on to our next service, let's see a basic usage example of Realtime.
 
 ```js
 // resources/js/components/SomeComponent.vue
@@ -214,7 +213,7 @@ export default {
         }
 
         throw error
-    }
+    },
 }
 ```
 
@@ -228,7 +227,7 @@ import { Http } from '@services'
 const newVillain = await Http.post('/villains', attributes)
 const allVillains = await Http.get('/villains')
 const firstVillain = await Http.get('/villains/1')
-const updatedVillain = await Http.put('/villains/1')
+const updatedVillain = await Http.put('/villains/1', attributes)
 await Http.delete('/villains/1')
 ```
 
@@ -265,9 +264,11 @@ export default {
 }
 ```
 
-> Note that it's important for the form to be declared as a `data` variable so that it can be reactive.
+Note that it's important for the form to be declared as a `data` variable so that it can be reactive.
 
-Now we can use that form object in our template like this — I have omitted most of the styling to keep things to the point.
+Now we can use that form object in our template like this.
+
+<small>I have omitted most of the styling to keep things to the point.</small>
 
 ```html
 <!-- Name field. -->
