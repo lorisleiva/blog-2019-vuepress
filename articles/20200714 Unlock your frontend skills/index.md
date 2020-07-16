@@ -481,8 +481,7 @@ Arguably this could also be a valid `Str` service — to follow Laravel‘s nami
 
 A quick note on imports before moving on to our next hero.
 
-// TODO: You might have noticed...
-From this point forward I will assume we have webpack aliases that points to an `index.js` file for each of our frontend folders.
+You might have noticed that I used webpack aliases to import services in the above examples.
 
 This enables us to import our custom code using the same beautiful syntax we would use to import from a library.
 
@@ -498,6 +497,10 @@ import { Http, RealTime } from '@services'
 import { slugify, fromNow } from '@utils'
 ```
 
-If you're interested in knowing how to achieve this click the button below to reveal the code.
+From this point forward I will assume we have webpack aliases that points to an `index.js` file for each of our frontend folders. If you're interested in knowing how to achieve this, I've create a little GitHub gist that shows how to set this up.
 
-**TOGGLEABLECODE** webpack config + mix config + index.js for utils and services.
+<GithubButton url="https://gist.github.com/lorisleiva/877004cc7650f458903d357bce45298e" title="Gist on webpack aliases"></GithubButton>
+
+## Next up
+
+Our next hero will be about using Models in your frontend. Stay tuned. 📻
