@@ -736,17 +736,108 @@ Potentially, one of the best use-case for a Store is one that keeps track of the
 
 Here is the starting base I use for almost all the authentication store of my projects. See explanations as comments in the code.
 
-**CODE**: comments
+```js
+// resources/js/stores/authStore.js
 
+import { Http } from '@services'
+import { User, Team } from '@models'
+
+export const authStore = {
+
+    // Most of my app are using some sort of multi-tenancy so I tend
+    // to start with an authentication store that keeps track of
+    // all the user's teams as well as their current team.
+    state: Vue.observable({
+        user: null,
+        currentTeam: null,
+        teams: [],
+        ready: false,
+    }),
+
+    // This particular example of authentication store assumes 
+    // we are using VueJS within Blade and therefore expect
+    // us to provide the initial data manually from PHP.
+    init (user, currentTeam, teams) {
+        this.state.user = User.make(user)
+        this.state.currentTeam = Team.make(currentTeam)
+        this.state.teams = Team.make(teams)
+        this.refreshCsrfTokenEveryFewMinutes()
+        this.state.ready = true
+    },
+
+    // For most of the variables inside the "state" of my stores,
+    // I like to create getter shortcuts so I don't need to
+    // call `myStore.state.myVariable` every single time.
+    get user () { return this.state.user },
+    get currentTeam () { return this.state.currentTeam },
+    get teams () { return this.state.teams },
+    get ready () { return this.state.ready },
+
+    // If you're using the `web` middleware group to make API calls,
+    // then you need a dedicated `POST` endpoint that does nothing 
+    // in order to refresh the CSRF token every now and then.
+    refreshCsrfTokenEveryFewMinutes () {
+        setInterval(() => Http.post('/api/refresh-csrf'), 1000 * 60 * 15) // Every 15 min.
+    },
+}
+```
 An important thing to note here is the use of the `init` method to initialise the store with some initial data. This is not mandatory but, for some stores, it can be a useful way to regroup all the logic of initialising the state of a store.
 
 In this case, the `init` method assumes the data will be coming from blade and therefore provided immediately.
 
-**CODE**: how the init method is called
+To do this, I like to create a global variable — using [`View::share`](https://laravel.com/docs/7.x/views#sharing-data-with-all-views) — and pass it to the frontend using a global `window` property. I usually name this variable after the application itself. For example:
 
-However, if I was implementing a Single-Page Application (SPA), I would need to make some calls to the backend to figure out who the authenticated user is, if there is one. For example, this `init` method could look like this.
+```html
+<!-- Global Octohook Object -->
+<script>
+    window.Octohook = {!! json_encode($octohook) !!}
+</script>
+```
 
-**CODE**
+I can then use this `Octohook` variable in the `app.js` file to intialise our `authStore`.
+
+```js
+// resources/js/app.js
+
+import { authStore } from '@stores'
+
+new Vue({
+    el: '#app',
+    created () {
+        const { user, currentTeam, teams } = Octohook
+        authStore.init(user, currentTeam, teams)
+    },
+});
+```
+
+Now if, instead, I was implementing a Single-Page Application (SPA), I would need to make some calls to the backend to figure out who the authenticated user is, if there is one. For example, this `init` method could look like this.
+
+```js
+export const authStore = {
+
+    async init () {
+        // Assume we have a static method `me` that gets the
+        // authenticated user or null if we're logged out.
+        const user = await User.me()
+
+        // If we're logged out, we keep the initial 
+        // values and mark that we're initialised.
+        if (! user) {
+            this.state.ready = true
+            return
+        }
+
+        // Otherwise, we keep track of the authenticated user
+        // and fetch its teams as well as its current team.
+        this.state.user = user
+        this.state.currentTeam = await Team.find(user.current_team_id)
+        this.state.teams = await Team.forUser(user.id)
+        this.state.ready = true
+    },
+
+    // ...
+}
+```
 
 This store will be even more powerful when we introduce a certain plugin that provides an `$auth` shortcut to every component. But before we move on to Plugins, let's take a look at a few more Store examples.
 
@@ -756,15 +847,100 @@ If you are using VueJs within Blade, chances are you came across the need of usi
 
 For example, you might have a settings page with a "profile" tab, a "security" tab and a "billing" tab. Clicking on the page should update the anchor of the URL — anything after the `#`. For example, clicking on the "security" tab would update the URL to `/settings#security` such that if a user copies the URL and pastes it back later, they will be back in the exact same tab.
 
-Whilst this might be overkill for this simple example, there are plenty of valid usage for such "anchor" router. For example, when building **Octohook**, we wanted the user to be able to click on a webhook to get more information without leaving the page since the webhooks appear in real-time on the timeline. When visiting that webhook "sub-page" we wanted to make sure the URL will be updated accordingly such that they could share it to other members of their team.
+Whilst this might be overkill for this simple example, there are plenty of valid usage for such "anchor" router. For example, when building [Octohook](https://octohook.com/), we wanted the user to be able to click on a webhook to get more information without leaving the page since webhooks appear in real-time on a timeline. When visiting that webhook "sub-page" we wanted to make sure the URL will be updated accordingly such that they could share it to other members of their team.
 
-We ended up creating a Store that acts as a custom router and it's been absolutely brilliant to use. Here is the code we used (minus any domain specific logic that you likely won't need).
+We ended up creating a Store that acts as a custom router and it's been absolutely brilliant to use. Here is the code we used — minus any domain specific logic that you likely won't need.
 
-**CODE**: add comments in code
+```js
+// resources/js/stores/routerStore.js
+
+export const routerStore = {
+    initiated: false,
+    prefix: '#/',
+    defaultHash: '',
+
+    // `hash` is everything after our `prefix` (here: '#/').
+    //   -> E.g. "webhooks/42/body"
+    // `segments` is an array of all elements between "/" in our `hash`.
+    //   -> E.g. ["webhooks", "42", "body"]
+    state: Vue.observable({
+        hash: '',
+        segments: [],
+    }),
+
+    // You can initialise your route store with a default hash that will be automatically
+    // applied when no achor exists in the URL. The `hashchange` event listener makes
+    // sure our store is always up-to-date when the user updates the URL directly.
+    init (defaultHash = null) {
+        this.defaultHash = defaultHash ? (this.prefix + defaultHash) : ''
+        this.set(this.getCurrentHash())
+
+        window.addEventListener('hashchange', () => {
+            this.set(this.getCurrentHash())
+        })
+
+        this.initiated = true
+    },
+
+    // Find the current hash from the URL or fallback to the default hash.
+    getCurrentHash () {
+        return window.location.hash || this.defaultHash
+    },
+
+    // Use this method to travel to different hash.
+    push (hash) {
+        history.pushState(null, null, this.prefix + hash)
+        this.set(this.prefix + hash)
+    },
+
+    // Removes the anchor from the URL.
+    reset () {
+        history.pushState(null, null, ' ')
+        this.state.hash = ''
+        this.state.segments = []
+    },
+
+    // The logic that sets the `hash` and split it into `segments`.
+    set (hash) {
+        this.state.hash = hash
+        this.state.segments = hash.substring(1).replace(/^\//, '').split('/')
+    },
+
+    // Use this method to check if the URL has the given hash.
+    // E.g. This is useful for tab active states.
+    is (hash) {
+        return this.state.hash === (this.prefix + hash)
+    },
+
+    // Same as above but comparing with the default hash.
+    isDefault () {
+        return this.state.hash === this.defaultHash
+    },
+}
+```
+
+<small>Notice how not every variable of a store has to be observable.</small>
 
 And here is how we use it in our webhook pages.
 
-**CODE** without routeChanged hook (plugin)
+```js
+import { routerStore } from '@stores'
+
+export default {
+    created () {
+        routerStore.init()
+    },
+    computed: {
+        // We can now use $router.push(...), 
+        // $router.is(...), etc. in our template.
+        $router () {
+            return routerStore
+        },
+    }
+}
+```
+
+<small>Plugins will help us cleaning this up by providing a global `$router` VueJs property.</small>
 
 ### Shared store
 
