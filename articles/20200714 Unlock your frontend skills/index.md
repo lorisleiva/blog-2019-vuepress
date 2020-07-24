@@ -2,9 +2,8 @@
 permalink: unlock-your-frontend-skills
 image: /covers/unlock-your-frontend-skills.png
 description: The first article of a series dedicated to homemade frontend patterns.
-title: 'Unlock your frontend skills - Part 1: Services'
-header_title: 'Unlock your frontend skills'
-subtitle: 'Part 1: Services'
+title: 'Unlock your frontend skills'
+subtitle: 'Homemade frontend patterns'
 tags: ['JavaScript', 'Vue']
 date: 2020-07-15T18:00:00Z
 ---
@@ -119,10 +118,11 @@ export default {
             'power.level-up': () => this.superPower.level++,
             'power.level-down': () => this.superPower.level--,
         })
-
+    },
+    beforeDestroy () {
         // Unsubscribe when the component gets destroyed.
-        this.$once('hook:beforeDestroy', () => Realtime.unsubscribe('my-channel'))
-    }
+        Realtime.unsubscribe('my-channel')
+    },
 }
 ```
 
@@ -323,107 +323,9 @@ Phew! So many features! Yet the code itself for that service is quicker to read 
 
 That's one of the reasons I see no point in extracting such service — as useful as it might be — into a JavaScript library. The other and arguably more important reason being that every project is different. For my next project, I might not need all that fuss around clearing errors or I might want my global error message to be provided differently. More often than not, I find copy/pasting/adapting a piece of code from one project to another more valuable and easier to maintain in the long run.
 
-Right Loris, shut up and show us the code! Fair enough, there you go: 😘
+Right Loris, shut up and show us the code! Fair enough, here's a gist for you. 😘
 
-#### Form.js
-
-```js
-import FormErrors from './FormErrors'
-
-export default class {
-    
-    constructor (initialData = {}, submitCallback = null) {
-        this._initialData = initialData
-        this._submitCallback = submitCallback
-        this.errors = new FormErrors()
-        this.reset()
-    }
-
-    reset () {
-        this.busy = false
-        this.successful = false
-        this.errors.clear()
-        Object.assign(this, this._initialData)
-    }
-
-    async submit (...args) {
-        if (this.busy || ! this._submitCallback) {
-            return
-        }
-        this.beforeStart()
-        const result = await this._submitCallback(this, ...args).catch(error => {
-            this.onFailure(error)
-            throw error
-        })
-        this.onSuccess()
-        return result
-    }
-
-    export () {
-        return { ...this }
-    }
-
-    beforeStart () {
-        this.busy = true
-        this.successful = false
-        this.errors.clear()
-    }
-
-    onSuccess () {
-        this.busy = false
-        this.successful = true
-    }
-
-    onFailure (error) {
-        this.busy = false
-        if (error.response && error.response.data) {
-            const { errors, message } = error.response.data
-            this.setErrors(errors, message)
-        }
-    }
-
-    setErrors (errors, message) {
-        this.errors.set(errors, message)
-    }
-}
-```
-
-#### FormErrors.js
-
-```js
-export default class {
-    
-    constructor () {
-        this.errors = {}
-        this.message = null
-    }
-
-    set (errors, message) {
-        this.errors = errors || {};
-        this.message = message || null;
-    }
-
-    has (field) {
-        return Object.keys(this.errors).includes(field)
-    }
-
-    get (field) {
-        if (this.has(field)) {
-            const error = this.errors[field]
-            return Array.isArray(error) && error.length > 0 ? error[0] : error
-        }
-    }
-
-    clear (field) {
-        if (field) {
-            Vue.delete(this.errors, field);
-        } else {
-            this.errors = {}
-            this.message = null
-        }
-    }
-}
-```
+<GithubButton url="https://gist.github.com/lorisleiva/4c03fc332cd54941493e70ad464f730e" title="Form.js and FormErrors.js Gist"></GithubButton>
 
 ### Form and Http
 
@@ -501,6 +403,628 @@ From this point forward I will assume we have webpack aliases that points to an 
 
 <GithubButton url="https://gist.github.com/lorisleiva/877004cc7650f458903d357bce45298e" title="Gist on webpack aliases"></GithubButton>
 
-## Next up
+## Models
 
-Our next hero will be about using Models in your frontend. Stay tuned. 📻
+![Models logo with a diagram showing components using objects versus using models.](./models.png)
+
+The initial value of almost everything in the frontend world is a plain object.
+
+You're passing a PHP variable from a blade file to a VueJs component using `json_encode`? You end up with a plain object as a props.
+
+You're retrieving some data from your Http service using a JSON API? Your response payload is a plain object.
+
+We have to accept what we receive from the external world and that's fine but no one said we couldn't transform it into something more practical.
+
+Now, if you're using typescript — which, to be honest, I don't with VueJs 2.x — then that should be a little bit more obvious to you since the language basically forces you to strongly type everything. But this isn't just about types. This is about realising that what you're given is not necessarily what you have to use.
+
+More to the point, this is about wrapping these plain objects into classes that you can control.
+
+In the particular case of this second hero, this is about importing the concept of Laravel models to your frontend.
+
+Imagine creating an entire Laravel backend without any models and, instead, using plain PHP arrays to manipulate the data back and forth from your database. I bet you'll have nightmares about this this evening! Then why not offer the same level of care to your frontend?
+
+### A homemade Model class
+
+Initially, I was so enthusiastic about this approach that I spent weeks perfecting a JavaScript library that would bring the power of Eloquent into our frontends. And I did. It's called [Javel](https://github.com/lorisleiva/javel) and I wrote a [blog post](https://lorisleiva.com/introducing-javel/) about it.
+
+I tackled the challenge of making sure it would fit at least 80% of projects and even made it modular by importing the concepts of JavaScript mixins.
+
+In the end, it did so much that it just felt unnecessarily complicated for any of my new projects. Most of them needed about 20% of what the package does but each required a slightly different 20%. Again, this is because I feel into the trap of extracting a library when all I needed was a good starting point to copy_paste_adapt — I feel like I need to stick this on a mug or something 🤔.
+
+Below is the starting point I use in all of my projects. It's only 46 lines of code long yet it's just powerful enough to get me started whilst giving me the flexibility to improve it based on the evolving needs of my projects.
+
+<GithubButton url="https://gist.github.com/lorisleiva/93e66ba226ec53cc13c9e54d7f334f2c" title="Model.js Gist"></GithubButton>
+
+All this class does is accept a bunch of attributes (e.g. the response payload you got from an Http call) and return an object with those same attributes except that this time the object is an instance of a class we can control!
+
+It provides a static `make` function that either:
+* accepts some attributes returning an instance of that model
+* or accepts an array of attributes returning an array of instantiated models.
+
+Finally, it allows you to provide a definition of the relationships within that model. That way, whenever a new model is instantiated, we will automatically recognise nested models within that model so that they can be wrapped into their appropriate models too.
+
+### Usage example
+
+Let's take a look at an example to understand how we can benefit from such model classes.
+
+Say you have a page that displays a list of articles and that each of these articles have a nested `author` object that references a `User` model.
+
+Then you'd define your models like this.
+
+```js
+// resources/js/models/Article.js
+
+import Model from './Model'
+import User from './User'
+
+export default class Article extends Model {
+    getRelationships () {
+        return {
+            author: User,
+        }
+    }
+}
+
+// resources/js/models/User.js
+
+import Model from './Model'
+
+export default class User extends Model {
+    //
+}
+```
+
+You can now wrap your plain JavaScript articles in `Article` models using the `make` method and the author objects will automatically be wrapped in `User` models as well.
+
+```js
+const myArticles = Article.make(myPlainArticles)
+```
+
+More concretely, if you were passing a collection of articles as JSON from a blade file to a JavaScript component, you could do it like this:
+
+```html
+<!-- resources/views/some-blade-file.blade.php -->
+
+<MyArticleTimeline :init-articles="{{ $articles }}"></MyArticleTimeline>
+```
+
+```js
+// resources/js/components/MyArticleTimeline.js
+
+import { Article } from '@models'
+
+export default {
+    props: ['initArticles'],
+    data () {
+        return {
+            articles: Article.make(this.initArticles),
+        }
+    }
+}
+```
+
+You can interact with these models just like you were before. They can be used inside `v-model` attributes, they can be passed as props to children components, etc. Except that now, we have a dedicated class where we can add any logic specific to this model.
+
+For example, say an article object has an ISO 8601 formatted `created_at` date and you need to display it using a human-friendly format within your application. Instead of parsing this date in the template of many components, you can just have a `getCreatedAtForHumans()` method in your `Article` model.
+
+```js
+// resources/js/models/Article.js
+
+import { dateForHumans } from '@utils'
+
+export default class Article extends Model {
+    // ...
+
+    getCreatedAtForHumans() {
+        return dateForHumans(this.created_at)
+    }
+}
+```
+
+Even better, make it a getter method so you can access it as if it was available as a `created_at_for_humans` property.
+
+```js
+// resources/js/models/Article.js
+
+import { dateForHumans } from '@utils'
+
+export default class Article extends Model {
+    // ...
+
+    get created_at_for_humans() {
+        return dateForHumans(this.created_at)
+    }
+}
+```
+
+The same could apply if we needed a `fullname` property from the `firstname` and `lastname` properties of a user.
+
+```js
+// resources/js/models/User.js
+
+export default class User extends Model {
+    // ...
+
+    get fullname() {
+        return `${this.firstname} ${this.lastname}`
+    }
+}
+```
+
+Since we have already specified that the `author` property of an article is a `User` model, we can access the full name of an article's author using `article.author.fullname`.
+
+### Async methods
+
+Potentially the biggest benefit of having model classes in your frontend though, is that they can have asynchronous methods that interact with your backend!
+
+Say you want to update the title of an article. Well, you can now have an async method on your `Article` model that does just that. Since we're already inside that model class, we can update the title on the object directly after the request was successful.
+
+```js
+// resources/js/models/Article.js
+
+import { Http } from '@services'
+
+export default class Article extends Model {
+    // ...
+
+    async updateTitle (newTitle) {
+        await Http.put(this.apiUrl(), { title: newTitle })
+        this.title = newTitle
+
+        return this
+    }
+
+    apiUrl () {
+        return `/articles/${this.id}`
+    }
+}
+```
+
+Note that we are still making use of our Http service inside our model classes to make sure all our API requests are going through a single-point of failure.
+
+The possibilities here are limitless. You can even use this to delete an article altogether.
+
+```js
+// resources/js/models/Article.js
+
+import { Http } from '@services'
+
+export default class Article extends Model {
+    // ...
+
+    async delete () {
+        await Http.delete(this.apiUrl())
+    }
+}
+```
+
+### Static async methods
+
+And the fun doesn't stop here. There is nothing stopping us from creating static asynchronous methods that interact with our backend.
+
+This is particularly useful to create new instances of models or to find models using an identifier. Here is a typical CRUD example using JavaScript frontend.
+
+**CODE**
+
+Note that, I would recommend using asynchronous methods that make sense to your domain logic rather than sticking to create, find, update and delete but hopefully this helps you see what can be done with that super duper Model hero!
+
+## Stores
+
+![Stores logo with a diagram showing a store connected to a component tree.](./stores.png)
+
+Stores in a JavaScript framework enable you to centralise some piece of data that can then be used by many components throughout your app.
+
+Without them, as the complexity of your frontend increases, we can easily end up with a huge amount of data being passed from parent components to children components. Especially when some data needs to be available in many different parts of the component tree.
+
+Now, because every framework as its own official Store management system — Redux for React, Vuex for VueJs, etc. — it seems to be widely accepted that _this is the way_ of creating stores.
+
+However, I am a firm believer that these libraries are overkill 99% of the time. They introduce concepts like "actions", "mutations", "mapping getters and setters", etc. All you needed was a way to extract some data away from your components and now you're having to learn a new framework within your framework. Not cool!
+
+Well, worry not, our Store hero is here to save the day.
+
+A Store is actually a simple concept: **it's an object that wraps an observed state**. It allows the store to be passed as reference and the state to be observed by VueJs in order to be reactive.
+
+I promise it's simpler than it sounds. Imagine wanting to store a `hero` and `level` variables so that they can be available everywhere — e.g. in your navbar, your settings page, etc.
+
+You could do this by creating a new `hero.js` file inside a `stores` folder. That file would simply export an object with these values.
+
+```js
+export default {
+    hero: 'Store',
+    level: 42,
+}
+```
+
+And this would work. You would be able to access and update this data from everywhere in the app.
+
+However, a great thing with Stores is they enable you to define custom methods that interact with these values.
+
+Taking our example above, imagine you needed a method that increases the level and a getter method that returns a human-friendly text for that data.
+
+In order to allow this to work, we need to separate the **state** — the data we want to centralise — from the **store** — the object that allows us to interact with that data.
+
+```js
+export default {
+    state: {
+        hero: 'Store',
+        level: 42,
+    },
+
+    levelUp (increment = 1) {
+        this.state.level += increment
+    },
+
+    get text () {
+        return `${this.state.hero} (Level ${this.state.level})`
+    },
+}
+```
+
+This is much better! However, there is one last issue with this store: it's not reactive. Meaning that, if we used some of that data in the template of our components and then updated the data, it would not re-render the component. Fortunately, VueJs makes this very easy for us by providing a `Vue.observable(myObject)` method that makes any given object reactive.
+
+**CODE**: wrap state in method and ... the rest
+
+That's it! You now have a way of making homemade stores in just a few lines of codes.
+
+You can now use that store and interact with its data in any component you want.
+
+**CODE**: use text as computer property and levelUp method.
+
+Right! Enough theory on Stores, let's see how we can leverage them in practice!
+
+### Auth store
+
+Potentially, one of the best use-case for a Store is one that keeps track of the authenticated user. That information needs to be available just about everywhere. Think about how often you use `Auth::user()` on Laravel. Let's bring that goodness to our frontend!
+
+Here is the starting base I use for almost all the authentication store of my projects. See explanations as comments in the code.
+
+**CODE**: comments
+
+An important thing to note here is the use of the `init` method to initialise the store with some initial data. This is not mandatory but, for some stores, it can be a useful way to regroup all the logic of initialising the state of a store.
+
+In this case, the `init` method assumes the data will be coming from blade and therefore provided immediately.
+
+**CODE**: how the init method is called
+
+However, if I was implementing a Single-Page Application (SPA), I would need to make some calls to the backend to figure out who the authenticated user is, if there is one. For example, this `init` method could look like this.
+
+**CODE**
+
+This store will be even more powerful when we introduce a certain plugin that provides an `$auth` shortcut to every component. But before we move on to Plugins, let's take a look at a few more Store examples.
+
+### Router store
+
+If you are using VueJs within Blade, chances are you came across the need of using VueJs to separate the page in multiple tabs that alter the URL as you click on them but does not refresh the page.
+
+For example, you might have a settings page with a "profile" tab, a "security" tab and a "billing" tab. Clicking on the page should update the anchor of the URL — anything after the `#`. For example, clicking on the "security" tab would update the URL to `/settings#security` such that if a user copies the URL and pastes it back later, they will be back in the exact same tab.
+
+Whilst this might be overkill for this simple example, there are plenty of valid usage for such "anchor" router. For example, when building **Octohook**, we wanted the user to be able to click on a webhook to get more information without leaving the page since the webhooks appear in real-time on the timeline. When visiting that webhook "sub-page" we wanted to make sure the URL will be updated accordingly such that they could share it to other members of their team.
+
+We ended up creating a Store that acts as a custom router and it's been absolutely brilliant to use. Here is the code we used (minus any domain specific logic that you likely won't need).
+
+**CODE**: add comments in code
+
+And here is how we use it in our webhook pages.
+
+**CODE** without routeChanged hook (plugin)
+
+### Shared store
+
+Finally, it's worth noting that when using more and more stores, organising their initialisation can become a difficult task.
+
+Which is why some developers like to use a "shared" store to take care of the coordination of data between stores and abstract how such data is initially fetched.
+
+A good example of such shared store is [the one implemented in the Koel application by Phan An](https://github.com/koel/core/blob/423f3512a874a44d65d83fa057efbd5c7eccd274/js/stores/shared.ts). Note that, their stores do not use the `Vue.observable` method because their frontend rely on adding these stores in the `data` function of their components which automatically makes them reactive.
+
+Also note that the [Koel project](https://github.com/koel/koel) is an amazing open source repository to learn from, both on the backend (Laravel) and the frontend (VueJs SPA).
+
+In all honesty, I rarely end up needing a shared store because I already clean a lot of that store initialisation logic using plugins.
+
+## Internal plugins
+
+![Plugins logo with a diagram showing the app.js delegating to plugins to extend the frontend framework.](./plugins.png)
+
+Our last heroes of this (much too long) article are Plugins.
+
+We know them, we `npm install` them and we `Vue.use` them but we rarely take a minute to think about how we could use them to refactor our own internal logic.
+
+Ultimately, a VueJs plugin is a just a function. More precisely, it's an object containing an `install` function.
+
+```js
+export default {
+    install (Vue) {
+       // That's it! That's a plug-in.
+    }
+}
+```
+
+In my applications, I basically use local plugins to clean up my `app.js` file. This file is the entry file of your frontend ecosystem. I see it as the welcome mat of my frontend and for that reason I like to make it as tidy as possible.
+
+Furthermore, any logic that typically lives in our `app.js` file is related to super-charging our frontend one way or another. We might register some components globally, import external plugins, initialise some stores, create global mixins, etc. All of these things are perfect use-cases for plugins.
+
+For example, this is Octohook's `app.js` file:
+
+```js
+// resources/js/app.js
+
+// Global variables.
+window.Vue = require('vue')
+window.Http = require('@services/Http').default
+window.Form = require('@services/Form').default
+
+// Plugins.
+import registerPlugins from '@plugins'
+registerPlugins(Vue)
+
+// Start the application.
+new Vue({
+    el: '#app',
+});
+```
+
+<small>Quick side-note: I use the `Http` and `Form` services so much that I like to define them as global variables so I don't have to import them everywhere.</small>
+
+The `@plugins` webpack alias points to the following file that exports a function whose entire job is to register all our plugins, both external plugins (downloaded from NPM) and internal plugins (files inside our `plugins` directory).
+
+```js
+// resources/js/plugins/index.js
+
+export default function (Vue) {
+    // External plugins.
+    Vue.use(require('vue-unique-id').default)    
+
+    // Internal plugins.
+    Vue.use(require('./register-components').default)
+    Vue.use(require('./stores').default)
+    Vue.use(require('./filters').default)
+}
+```
+
+I'm not going to talk about external plugins since it's just the case of downloading, using and configuring them.
+
+Instead, I'm going to focus on providing examples of internal plugins so you can help you get some inspiration to design your own. Let's go!
+
+### Register components globally
+
+The most common thing we do in our `app.js` is making sure some of our components are registered globally.
+
+Say you're using VueJs in blade files and you want to automatically register all components inside the `components` directory recursively. Here's a plugin for that.
+
+```js
+// resources/js/plugins/register-components.js
+
+export default {
+    install (Vue) {
+        // Register App components dynamically.
+        const files = require.context('../components', true, /\.(vue|js)$/i)
+        files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+    }
+}
+```
+
+You can tweak what you can to import automatically by updating the arguments of the `require.context` method.
+
+```js
+require.context(
+    '../components',  	// path to your directory (string)
+    true, 				// look into nested directories (boolean)
+    /\.(vue|js)$/i		// filename pattern (regex)
+)
+```
+
+For example, if you only wanted to globally register the `.vue` files of your `components/pages` folder without looking into subdirectories, that plugin would become:
+
+```js
+// resources/js/plugins/register-components.js
+
+export default {
+    install (Vue) {
+        // Register App components dynamically.
+        const files = require.context('../components/pages', false, /\.vue$/i)
+        files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+    }
+}
+```
+
+You get the gist, let's move on to our next internal plugin.
+
+### Initialise stores
+
+We saw on the previous section how useful stores can be, but they can be even more useful when integrated within our VueJs framework.
+
+The first thing I like to do is to register all my stores as `Vue` properties and prefix them with a `$` to feel like it's part of the `VueJs` framework. This enables me to have direct access to all the stores from both the template and the script of the `.vue` components.
+
+Here is an example of what this could looks like with the authentication store.
+
+```html
+<template>
+    <div v-if="$auth.user">
+        <h1>Hi, {{ $auth.user.name }}!</h1>
+        <button>Logout</button>
+    </div>
+    <div v-else>
+        <button>Login</button>
+    </div>
+</template>
+
+<script>
+import { Realtime } from '@services'
+
+export default {
+    mounted () {
+        if (this.$auth.user) {
+            Realtime.subscribe(this.$auth.user.id, {
+                // My realtime listeners here...
+            })
+        }
+    }
+}
+</script>
+```
+
+To make this happen, all we need to do is create an internal plugin that attach a new property to the `Vue` prototype using the `Object.defineProperty` method. Because doing this is quite verbose, I like create a little helper function called `addProperty` within that plugin. Here is what this looks like for Octohook:
+
+```js
+// resources/js/plugins/stores.js
+
+import { authStore, modalStore, routerStore, sourceStore } from '@stores'
+
+function addProperty(Vue, property, value) {
+    Object.defineProperty(Vue.prototype, property, {
+        get () { return value }
+    })
+}
+
+export default {
+    install (Vue) {
+
+        // Register store properties.
+        addProperty(Vue, '$auth', authStore)
+        addProperty(Vue, '$modals', modalStore)
+        addProperty(Vue, '$router', routerStore)
+        addProperty(Vue, '$source', sourceStore)
+    }
+}
+```
+
+<small>Note that, we could achieve the same result using a global mixin that defines computed properties. I prefer using `Object.defineProperty` since it doesn't come with all the unnecessary reactivity that brings computed properties.</small>
+
+Next, we can leverage this plugin to initialise our stores. What we previously had in our `app.js` file can be migrated over here.
+
+```js
+// resources/js/plugins/stores.js
+
+export default {
+    install (Vue) {
+        // ...
+
+        // Initialise stores.
+        const { user, currentTeam, teams } = Octohook
+        authStore.init(user, currentTeam, teams, true)
+    }
+}
+```
+
+Finally, we can use this `stores.js` plugin as an opportunity to add any additional functionality that any of ours stores might need.
+
+For example, for our `router` store, we might want to add a custom hook called `routeChanged` that will be triggered every time the URL anchor gets updated.
+
+```js
+// resources/js/components/SomeComponent.vue
+
+export default {
+    // ...
+
+    async routeChanged ({ segments }) {
+        if (segments.length === 0) {
+            return this.$source.unselectWebhook()
+        }
+
+        await this.$source.selectWebhook(segments[0])
+    },
+}
+```
+
+To achieve this, we simply register a global mixin that uses the `created` hook to register our new custom `routeChanged` hook.
+
+```js
+// resources/js/plugins/stores.js
+
+export default {
+    install (Vue) {
+        // ...
+
+        // Register routeChanged(state) hook.
+        Vue.mixin({
+            created() {
+                if (this.$options.routeChanged) {
+                    const handler = () => {
+                        if (this.$router.initiated) {
+                            this.$options.routeChanged.bind(this)(this.$router.state)
+                        }
+                    }
+                    const unwatch = this.$watch('$router.state.hash', handler, { immediate: true })
+                    this.$once('hook:destroyed', unwatch)
+                }
+            },
+        })
+    }
+}
+```
+
+And there you have it! Our complete `stores.js` internal plugin. Btw, this is verbatim what we use on Octohook right now.
+
+```js
+// resources/js/plugins/stores.js
+
+import { authStore, modalStore, routerStore, sourceStore } from '@stores'
+
+function addProperty(Vue, property, value) {
+    Object.defineProperty(Vue.prototype, property, {
+        get () { return value }
+    })
+}
+
+export default {
+    install (Vue) {
+
+        // Register store properties.
+        addProperty(Vue, '$auth', authStore)
+        addProperty(Vue, '$modals', modalStore)
+        addProperty(Vue, '$router', routerStore)
+        addProperty(Vue, '$source', sourceStore)
+
+        // Initialise stores.
+        const { user, currentTeam, teams } = Octohook
+        authStore.init(user, currentTeam, teams, true)
+
+        // Register routeChanged(state) hook.
+        Vue.mixin({
+            created() {
+                if (this.$options.routeChanged) {
+                    const handler = () => {
+                        if (this.$router.initiated) {
+                            this.$options.routeChanged.bind(this)(this.$router.state)
+                        }
+                    }
+                    const unwatch = this.$watch('$router.state.hash', handler, { immediate: true })
+                    this.$once('hook:destroyed', unwatch)
+                }
+            },
+        })
+    }
+}
+```
+
+<small>If you are intrigued by how the `modalStore` works, I might dedicate a separate article to this. It's probably one of my favourite use-case for a store.</small>
+
+### Util methods as filters
+
+For our final internal plugin, let's use a less heavy example. I often like using filters in VueJs for very common string operations. In case, you're not familiar with filters, they're just a way of transforming variables using pipes — `|`. For example:
+
+```html
+{{ article.status }}                <!-- "published" -->
+{{ article.status | capitalize }}   <!-- "Published" -->
+```
+
+Therefore, I like having a `filter.js` internal plugin that uses some of my most common services or utils functions and register them as VueJs filters.
+
+```js
+// resources/js/plugins/filters.js
+
+import { capitalize, fromNow } from '@utils'
+
+export default {
+    install (Vue) {
+        Vue.filter('capitalize', capitalize)
+        Vue.filter('fromNow', fromNow)
+    }
+}
+```
+
+## Conclusion
+Congratulations, you made it to the end of this article! 😅
+
+I've been meaning to write about these frontend patterns for a while now and I'm really pleased to have finally shared that with you.
+
+I hope that they will help you feel more in control of your frontend and that they will inspire you to create some new ones that are more relevant to your current project. If that's the case, feel free to share them with the community in the comments below.
