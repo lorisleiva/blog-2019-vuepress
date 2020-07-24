@@ -587,8 +587,6 @@ The possibilities here are limitless. You can even use this to delete an article
 ```js
 // resources/js/models/Article.js
 
-import { Http } from '@services'
-
 export default class Article extends Model {
     // ...
 
@@ -604,9 +602,42 @@ And the fun doesn't stop here. There is nothing stopping us from creating static
 
 This is particularly useful to create new instances of models or to find models using an identifier. Here is a typical CRUD example using JavaScript frontend.
 
-**CODE**
+```js
+// resources/js/models/Article.js
 
-Note that, I would recommend using asynchronous methods that make sense to your domain logic rather than sticking to create, find, update and delete but hopefully this helps you see what can be done with that super duper Model hero!
+export default class Article extends Model {
+    // ...
+
+    static async create (attributes = {}) {
+        const { data } = await Http.post(`/articles`, attributes)
+        return this.make(data)
+    }
+
+    static async all () {
+        const { data } = await Http.get(`/articles`)
+        return this.make(data)
+    }
+
+    static async find (id) {
+        const { data } = await Http.get(`/articles/${id}`)
+        return this.make(data)
+    }
+
+    async update (attributes = {}) {
+        const { data } = await Http.put(`/articles/${this.id}`, attributes)
+
+        // "fill" update the attributes of the current model
+        // whereas "make" returns a new model.
+        return this.fill(data)
+    }
+
+    async delete () {
+        await Http.delete(`/articles/${this.id}`)
+    }
+}
+```
+
+Note that I would recommend using asynchronous methods that make sense to your domain logic rather than sticking to `create`, `all`, `find`, `update` and `delete` but hopefully this helps you see what can be done with that super duper Model hero!
 
 ## Stores
 
@@ -662,13 +693,40 @@ export default {
 
 This is much better! However, there is one last issue with this store: it's not reactive. Meaning that, if we used some of that data in the template of our components and then updated the data, it would not re-render the component. Fortunately, VueJs makes this very easy for us by providing a `Vue.observable(myObject)` method that makes any given object reactive.
 
-**CODE**: wrap state in method and ... the rest
+
+```js
+import Vue from 'vue'
+
+export default {
+    state: Vue.observable({
+        hero: 'Store',
+        level: 42,
+    }),
+
+    // ...
+}
+```
 
 That's it! You now have a way of making homemade stores in just a few lines of codes.
 
 You can now use that store and interact with its data in any component you want.
 
-**CODE**: use text as computer property and levelUp method.
+```js
+import { superHeroStore } from '@stores'
+
+export default {
+    computed: {
+        text () {
+            return superHeroStore.text
+        }
+    },
+    methods: {
+        levelUp () {
+            return superHeroStore.levelUp()
+        }
+    },
+}
+```
 
 Right! Enough theory on Stores, let's see how we can leverage them in practice!
 
