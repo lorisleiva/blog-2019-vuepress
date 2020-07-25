@@ -5,8 +5,14 @@ description: The first article of a series dedicated to homemade frontend patter
 title: 'Unlock your frontend skills'
 subtitle: 'Homemade frontend patterns'
 tags: ['JavaScript', 'Vue']
-date: 2020-07-15T18:00:00Z
+date: 2020-07-25T15:15:00Z
 ---
+
+> 👋 Hiya! So this is quite a long article. If you don't have the time to read it in one go, here are some links you can use to jump between sections.
+> - [Services](#services)
+> - [Models](#models)
+> - [Stores](#stores)
+> - [Internal Plugins](#internal-plugins)
 
 ## Introduction
 In an era where developers are trying to run away from JavaScript by using tools like LiveWire, I decided to put together an article that I hope will help developers make peace with the frontend world.
@@ -861,9 +867,10 @@ export const routerStore = {
         segments: [],
     }),
 
-    // You can initialise your route store with a default hash that will be automatically
-    // applied when no achor exists in the URL. The `hashchange` event listener makes
-    // sure our store is always up-to-date when the user updates the URL directly.
+    // You can initialise your route store with a default hash that
+    // will be automatically applied when no achor exists in the URL.
+    // The `hashchange` event listener makes sure our store is
+    // always up-to-date when the user updates the URL directly.
     init (defaultHash = null) {
         this.defaultHash = defaultHash ? (this.prefix + defaultHash) : ''
         this.set(this.getCurrentHash())
@@ -880,7 +887,7 @@ export const routerStore = {
         return window.location.hash || this.defaultHash
     },
 
-    // Use this method to travel to different hash.
+    // Use this method to travel to a different hash.
     push (hash) {
         history.pushState(null, null, this.prefix + hash)
         this.set(this.prefix + hash)
@@ -1009,7 +1016,7 @@ export default function (Vue) {
 
 I'm not going to talk about external plugins since it's just the case of downloading, using and configuring them.
 
-Instead, I'm going to focus on providing examples of internal plugins so you can help you get some inspiration to design your own. Let's go!
+Instead, I'm going to focus on providing examples of internal plugins so it can help you get some inspiration to design your own. Let's go!
 
 ### Register components globally
 
@@ -1022,7 +1029,8 @@ Say you're using VueJs in blade files and you want to automatically register all
 
 export default {
     install (Vue) {
-        // Register App components dynamically.
+
+        // Register all components dynamically.
         const files = require.context('../components', true, /\.(vue|js)$/i)
         files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
     }
@@ -1046,7 +1054,8 @@ For example, if you only wanted to globally register the `.vue` files of your `c
 
 export default {
     install (Vue) {
-        // Register App components dynamically.
+
+        // Register all page components dynamically.
         const files = require.context('../components/pages', false, /\.vue$/i)
         files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
     }
@@ -1059,14 +1068,14 @@ You get the gist, let's move on to our next internal plugin.
 
 We saw on the previous section how useful stores can be, but they can be even more useful when integrated within our VueJs framework.
 
-The first thing I like to do is to register all my stores as `Vue` properties and prefix them with a `$` to feel like it's part of the `VueJs` framework. This enables me to have direct access to all the stores from both the template and the script of the `.vue` components.
+The first thing I like to do is to register all my stores as `Vue` properties and prefix them with a `$` to feel like it's part of the VueJs framework. This enables me to have direct access to all the stores from both the template and the script of the `.vue` components.
 
 Here is an example of what this could looks like with the authentication store.
 
 ```html
 <template>
     <div v-if="$auth.user">
-        <h1>Hi, {{ $auth.user.name }}!</h1>
+        <h1>Hi {{ $auth.user.name }}! 👋</h1>
         <button>Logout</button>
     </div>
     <div v-else>
@@ -1114,7 +1123,7 @@ export default {
 }
 ```
 
-<small>Note that, we could achieve the same result using a global mixin that defines computed properties. I prefer using `Object.defineProperty` since it doesn't come with all the unnecessary reactivity that brings computed properties.</small>
+<small>Note that, we could achieve the same result using a global mixin that defines computed properties. I prefer using `Object.defineProperty` since it doesn't come with all the unnecessary reactivity whilst allowing us to only provide a getter function — i.e. the reference to the store cannot be updated.</small>
 
 Next, we can leverage this plugin to initialise our stores. What we previously had in our `app.js` file can be migrated over here.
 
@@ -1127,12 +1136,12 @@ export default {
 
         // Initialise stores.
         const { user, currentTeam, teams } = Octohook
-        authStore.init(user, currentTeam, teams, true)
+        authStore.init(user, currentTeam, teams)
     }
 }
 ```
 
-Finally, we can use this `stores.js` plugin as an opportunity to add any additional functionality that any of ours stores might need.
+Finally, we can use this `stores.js` plugin as an opportunity to add any additional functionality that any of our stores might need.
 
 For example, for our `router` store, we might want to add a custom hook called `routeChanged` that will be triggered every time the URL anchor gets updated.
 
