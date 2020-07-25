@@ -1,7 +1,7 @@
 ---
 permalink: unlock-your-frontend-skills
 image: /covers/unlock-your-frontend-skills.png
-description: The first article of a series dedicated to homemade frontend patterns.
+description: 'In this article, I share four of my favourite frontend patterns: services, models, stores and internal plugins.'
 title: 'Unlock your frontend skills'
 subtitle: 'Homemade frontend patterns'
 tags: ['JavaScript', 'Vue']
