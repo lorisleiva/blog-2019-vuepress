@@ -19,7 +19,7 @@ export default {
     },
     computed: {
         effectiveTitle () {
-            return this.title || this.$page.title
+            return this.title || this.$page.frontmatter.header_title || this.$page.title
         },
         effectiveSubtitle () {
             return this.subtitle || this.$page.frontmatter.subtitle

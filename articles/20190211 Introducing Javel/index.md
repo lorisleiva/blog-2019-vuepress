@@ -2,7 +2,7 @@
 permalink: introducing-javel
 image: /covers/introducing-javel.png
 description: Wrap your plain JavaScript objects into customizable Laravel-like models.
-tags: ['Vue', 'Laravel', 'Open Source']
+tags: ['JavaScript', 'Vue', 'Laravel', 'Open Source']
 date: 2019-02-11T12:34:00Z
 ---
 # Introducing Javel
