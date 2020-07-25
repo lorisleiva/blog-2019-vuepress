@@ -128,7 +128,7 @@ export default {
 
 ### Http
 
-Following the same concept of our Realtime service, we will now encapsulate or dear friend `axios` in an Http service.
+Following the same concept, let's encapsulate our dear friend `axios` into an Http service.
 
 ```js
 // resources/js/services/Http.js
@@ -244,7 +244,7 @@ Say we have a component that updates the name and email address of a user. Let's
 ```js
 // resources/js/components/SomeComponent.vue
 
-import { Form } from '@services'
+import { Http, Form } from '@services'
 
 export default {
     props: ['user'],
@@ -355,7 +355,7 @@ This is just a small example on how your services can benefit from each other no
 
 ### Utils
 
-Not every reusable piece of logic is a service. Sometimes, you just have a few helper methods that you want to store somewhere and organise them by categories in different files.
+Not every reusable piece of logic is a service. Sometimes, you just have a few helper methods that you want to store somewhere and organise them in different files.
 
 For that I use a traditional `utils` directory containing files such as `dates.js`, `strings.js`, `collections.js`, etc. These files can sometimes import external libraries but always export individual helper methods rather than abstracting a full ecosystem as a black box.
 
@@ -409,9 +409,9 @@ From this point forward I will assume we have webpack aliases that points to an 
 
 The initial value of almost everything in the frontend world is a plain object.
 
-You're passing a PHP variable from a blade file to a VueJs component using `json_encode`? You end up with a plain object as a props.
+You're passing a PHP variable from a blade file to a VueJs component using `json_encode`. You end up with a plain object as a props.
 
-You're retrieving some data from your Http service using a JSON API? Your response payload is a plain object.
+You're retrieving some data from your Http service using a JSON API. Your response payload is a plain object.
 
 We have to accept what we receive from the external world and that's fine but no one said we couldn't transform it into something more practical.
 
@@ -429,19 +429,19 @@ Initially, I was so enthusiastic about this approach that I spent weeks perfecti
 
 I tackled the challenge of making sure it would fit at least 80% of projects and even made it modular by importing the concepts of JavaScript mixins.
 
-In the end, it did so much that it just felt unnecessarily complicated for any of my new projects. Most of them needed about 20% of what the package does but each required a slightly different 20%. Again, this is because I feel into the trap of extracting a library when all I needed was a good starting point to copy_paste_adapt — I feel like I need to stick this on a mug or something 🤔.
+In the end, it did so much that it just felt unnecessarily complicated for any of my new projects. Most of them needed about 20% of what the package does but each required a slightly different 20%. Again, this is because I feel into the trap of extracting a library when all I needed was a good starting point to copy/paste/adapt — I feel like I need to stick this on a mug or something 🤔.
 
 Below is the starting point I use in all of my projects. It's only 46 lines of code long yet it's just powerful enough to get me started whilst giving me the flexibility to improve it based on the evolving needs of my projects.
 
 <GithubButton url="https://gist.github.com/lorisleiva/93e66ba226ec53cc13c9e54d7f334f2c" title="Model.js Gist"></GithubButton>
 
-All this class does is accept a bunch of attributes (e.g. the response payload you got from an Http call) and return an object with those same attributes except that this time the object is an instance of a class we can control!
+All this class does is accept a bunch of attributes (e.g. the response payload you got from an Http call) and return an object with those same attributes except that, this time, the object is an instance of a class we can control!
 
 It provides a static `make` function that either:
-* accepts some attributes returning an instance of that model
-* or accepts an array of attributes returning an array of instantiated models.
+* accepts some attributes and returns an instance of that model
+* or accepts an array of attributes and returns an array of instantiated models.
 
-Finally, it allows you to provide a definition of the relationships within that model. That way, whenever a new model is instantiated, we will automatically recognise nested models within that model so that they can be wrapped into their appropriate models too.
+Finally, it allows you to define the relationships within that model. That way, whenever a new model is instantiated, we will automatically recognise nested models and wrap them into their appropriate models.
 
 ### Usage example
 
@@ -480,7 +480,7 @@ You can now wrap your plain JavaScript articles in `Article` models using the `m
 const myArticles = Article.make(myPlainArticles)
 ```
 
-More concretely, if you were passing a collection of articles as JSON from a blade file to a JavaScript component, you could do it like this:
+More concretely, if you were passing a collection of articles as JSON from a blade file to a VueJs component, you could do it like this:
 
 ```html
 <!-- resources/views/some-blade-file.blade.php -->
@@ -489,7 +489,7 @@ More concretely, if you were passing a collection of articles as JSON from a bla
 ```
 
 ```js
-// resources/js/components/MyArticleTimeline.js
+// resources/js/components/MyArticleTimeline.vue
 
 import { Article } from '@models'
 
@@ -645,7 +645,7 @@ Note that I would recommend using asynchronous methods that make sense to your d
 
 Stores in a JavaScript framework enable you to centralise some piece of data that can then be used by many components throughout your app.
 
-Without them, as the complexity of your frontend increases, we can easily end up with a huge amount of data being passed from parent components to children components. Especially when some data needs to be available in many different parts of the component tree.
+Without them, as the number of components increases, we can easily end up with a huge amount of data being passed from parent to children components. Especially when some data needs to be available in many different parts of the component tree.
 
 Now, because every framework as its own official Store management system — Redux for React, Vuex for VueJs, etc. — it seems to be widely accepted that _this is the way_ of creating stores.
 
@@ -653,11 +653,11 @@ However, I am a firm believer that these libraries are overkill 99% of the time.
 
 Well, worry not, our Store hero is here to save the day.
 
-A Store is actually a simple concept: **it's an object that wraps an observed state**. It allows the store to be passed as reference and the state to be observed by VueJs in order to be reactive.
+A Store is actually a simple concept: **it's an object that wraps an observed state**. It allows the store to be passed as reference and the state to be reactive.
 
-I promise it's simpler than it sounds. Imagine wanting to store a `hero` and `level` variables so that they can be available everywhere — e.g. in your navbar, your settings page, etc.
+I promise it's simpler than it sounds. Imagine wanting to store two variables `hero` and `level` so that they can be available everywhere — e.g. in your navbar, your settings page, etc.
 
-You could do this by creating a new `hero.js` file inside a `stores` folder. That file would simply export an object with these values.
+You could do this by creating a new `super-hero.js` file inside a `stores` folder. That file would simply export an object with these values.
 
 ```js
 export default {
@@ -668,18 +668,27 @@ export default {
 
 And this would work. You would be able to access and update this data from everywhere in the app.
 
-However, a great thing with Stores is they enable you to define custom methods that interact with these values.
+However, there is issue with this store: it's not reactive. Meaning that, if we used some of that data in the template of our components and then updated the data, it would not re-render the component. Fortunately, VueJs makes this very easy for us by providing a `Vue.observable()` method that makes any given object reactive.
 
-Taking our example above, imagine you needed a method that increases the level and a getter method that returns a human-friendly text for that data.
+```js
+export default Vue.observable({
+    hero: 'Store',
+    level: 42,
+})
+```
 
-In order to allow this to work, we need to separate the **state** — the data we want to centralise — from the **store** — the object that allows us to interact with that data.
+That's better but a great thing with Stores is they enable you to define custom methods that interact with these values.
+
+Taking our example above, imagine you needed a method that increases the level and a getter method that returns a human-friendly text for that data. These helper methods interact with reactive data but they don't need to be reactive themselves.
+
+Therefore, we need to separate the **state** — the data we want to centralise — from the **store** — the object that allows us to interact with that data.
 
 ```js
 export default {
-    state: {
+    state: Vue.observable({
         hero: 'Store',
         level: 42,
-    },
+    }),
 
     levelUp (increment = 1) {
         this.state.level += increment
@@ -688,22 +697,6 @@ export default {
     get text () {
         return `${this.state.hero} (Level ${this.state.level})`
     },
-}
-```
-
-This is much better! However, there is one last issue with this store: it's not reactive. Meaning that, if we used some of that data in the template of our components and then updated the data, it would not re-render the component. Fortunately, VueJs makes this very easy for us by providing a `Vue.observable(myObject)` method that makes any given object reactive.
-
-
-```js
-import Vue from 'vue'
-
-export default {
-    state: Vue.observable({
-        hero: 'Store',
-        level: 42,
-    }),
-
-    // ...
 }
 ```
 
@@ -734,7 +727,7 @@ Right! Enough theory on Stores, let's see how we can leverage them in practice!
 
 Potentially, one of the best use-case for a Store is one that keeps track of the authenticated user. That information needs to be available just about everywhere. Think about how often you use `Auth::user()` on Laravel. Let's bring that goodness to our frontend!
 
-Here is the starting base I use for almost all the authentication store of my projects. See explanations as comments in the code.
+Here is the starting base I use for almost all of my projects. See explanations as comments in the code.
 
 ```js
 // resources/js/stores/authStore.js
@@ -744,7 +737,7 @@ import { User, Team } from '@models'
 
 export const authStore = {
 
-    // Most of my app are using some sort of multi-tenancy so I tend
+    // Most of my apps are using some sort of multi-tenancy so I tend
     // to start with an authentication store that keeps track of
     // all the user's teams as well as their current team.
     state: Vue.observable({
