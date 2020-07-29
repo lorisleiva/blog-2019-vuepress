@@ -7,7 +7,7 @@ date: 2020-05-10T14:00:00Z
 ---
 
 # Why I wrote Laravel Actions
-As I recently released version 1.0 of Laravel Actions, I thought I’d write a little article explaining my motivations for developing this package.
+As I recently released version 1.0 of [Laravel Actions](https://laravelactions.com/), I thought I’d write a little article explaining my motivations for developing this package.
 
 ## An unintuitive structure
 I absolutely love the Laravel Framework. It enables me to go from idea to prototype very quickly whilst being able to scale if whatever I’m building turns out to have some sort of traction.
