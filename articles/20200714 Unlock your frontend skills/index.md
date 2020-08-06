@@ -183,7 +183,7 @@ We can do this as an `axios` interceptor...
 
 ```js
 axios.interceptors.response.use(response => response, error => {
-    if (error.response !== undefined) {
+    if (error.response === undefined) {
         return Promise.reject(error)
     }
 
