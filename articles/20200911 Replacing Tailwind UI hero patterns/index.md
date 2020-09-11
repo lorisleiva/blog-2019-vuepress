@@ -1,6 +1,6 @@
 ---
-permalink: replacing-tailwing-ui-hero-patterns
-image: /covers/replacing-tailwing-ui-hero-patterns.png
+permalink: replacing-tailwind-ui-hero-patterns
+image: /covers/replacing-tailwind-ui-hero-patterns.png
 description: 'Use a more unique SVG pattern in your TailwindUI applications.'
 title: 'Replacing Tailwind UI hero patterns'
 tags: ['Tailwind']
