@@ -11,7 +11,7 @@ module.exports = {
 		articlesPerPage: 11,
 		minimumFeaturedArticles: 11,
 		featuredArticles: [
-			'/unlock-your-frontend-skills/',
+			'/replacing-tailwing-ui-hero-patterns/',
 			'/laravel-deployment-using-gitlab-pipelines/',
 		],
 	},
