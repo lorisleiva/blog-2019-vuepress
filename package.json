@@ -29,6 +29,8 @@
     "svg-inline-loader": "^0.8.2",
     "tailwindcss": "^1.4.6",
     "tailwindcss-plugins": "^0.3.0",
+    "vue": "^2.6.12",
+    "vue-template-compiler": "^2.6.12",
     "vuepress": "^1.5.2",
     "vuepress-plugin-disqus": "^0.2.0",
     "vuepress-plugin-seo": "^0.1.4"
